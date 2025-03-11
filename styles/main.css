@@ -1,0 +1,76 @@
+#midori-background {
+    transition-property: height;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+}
+
+#white-line {
+    transition-property: width;
+    transition-duration: 4s;
+    transition-timing-function:linear;
+}
+.onloadimages {
+    position: absolute;
+    top: 50%;
+    transition: transform .5s ease-in-out;
+}
+@keyframes imageAppearRestaurant {
+    0% {
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    30% {
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50%) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes imageAppearNoodles {
+    0% {
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+        opacity: 0;
+    }
+    50.999% {
+        opacity:1;
+
+    }
+    55% {
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+    }
+    75% {
+        transform: translateY(-50%) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes imageAppearLeaf {
+    0% {
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+        opacity:0;
+    }
+    10% {
+        opacity:1;
+        transform: translateY(-50%) scale(0) rotate(-10deg);
+
+    }
+    30% {
+        transform: translateY(-50%) scale(1) rotate(0deg);
+
+    }
+}
+
+#leafintro {
+    animation: imageAppearLeaf 5s ease-out;
+}
+#noodles-intro {
+    animation: imageAppearNoodles 5s ease-out;
+}
+#restaurant-intro {
+    animation: imageAppearRestaurant 5s ease-out;
+}
+
+.nowclass {
+    transition: opacity .5s ease-in-out;
+}

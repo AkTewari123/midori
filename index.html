@@ -3,7 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Midori.</title>
+    <title>Midori</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="./js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
-  <body></body>
+  <body data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="home">
+      <div
+        class="bg-[#047857] h-screen bottom-0 left-0 w-full absolute"
+        id="midori-background"
+      >
+        <div class="absolute bottom-0 left-0 p-4 text-white">
+          <h1
+            id="midori-header"
+            class="urbanist-light text-[120px] inline-block decoration-black"
+          >
+            <b> Midori </b>
+          </h1>
+        </div>
+      </div>
+      <div class="absolute w-full top-1/2 h-[2px]">
+        <!-- Preparing Text -->
+        <p
+          class="text-white urbanist-light ml-2 absolute -top-8 text-xl left-0"
+          id="preparing"
+        >
+          Preparing your menu...
+        </p>
+
+        <!-- White Line -->
+        <div
+          class="absolute top-1/2 left-0 h-[2px] bg-white transform -translate-y-1/2 w-0 transition-all duration-3000 ease-in-out"
+          id="white-line"
+        ></div>
+
+        <!-- Image Breaks -->
+        <img
+          src="/img/leaf.png"
+          class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-[160px] onloadimages aspect-square"
+          alt="Leaf"
+          id="leafintro"
+        />
+        <img
+          src="/img/curry.png"
+          class="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-48 onloadimages aspect-square"
+          alt="Restaurant"
+          id="restaurant-intro"
+        />
+        <img
+          src="/img/noodles.png"
+          class="absolute top-1/2 left-3/4 transform -translate-y-1/2 w-48 onloadimages aspect-square"
+          alt="Noodles"
+          id="noodles-intro"
+        />
+      </div>
+    </div>
+  </body>
 </html>
