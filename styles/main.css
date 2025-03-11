@@ -1,6 +1,6 @@
-#midori-background {
-    transition-property: height;
-    transition-duration: 1s;
+#midori-background, #midori-background-2 {
+    transition-property: height, opacity;
+    transition-duration: .2s;
     transition-timing-function: ease-out;
 }
 
@@ -74,3 +74,52 @@
 .nowclass {
     transition: opacity .5s ease-in-out;
 }
+
+.step {
+    background-color: #057957;
+    position: absolute;
+    right: 0;
+    animation: shrinkHeight 1.5s ease-in-out forwards;
+  }
+
+  /* Positioning each step at different vertical levels */
+  .step:nth-child(1) {
+    width: 20%;
+    height: 100vh;
+    animation-delay: 4.5s;
+  }
+  .step:nth-child(2) {
+    width: 20%;
+    right: 20%;
+    height: 100vh;
+    animation-delay: 4.75s;
+  }
+  .step:nth-child(3) {
+    width: 20%;
+    right: 40%;
+
+    height: 100vh;
+    animation-delay: 5s;
+  }
+  .step:nth-child(4) {
+    width: 20%;
+    right: 60%;
+    height: 100vh;
+    animation-delay: 5.25s;
+  }
+  .step:nth-child(5) {
+    width: 20%;
+    right: 80%;
+
+    height: 100vh;
+    animation-delay: 5.5s;
+  }
+
+  @keyframes shrinkHeight {
+    0% {
+      height: 100vh;
+    }
+    100% {
+      height: 0vh;
+    }
+  }

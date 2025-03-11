@@ -6,17 +6,12 @@ const hideMidoriOnload = () => {
   if (bg) {
     // Trigger the transition after a slight delay to ensure the DOM is ready
     setTimeout(() => {
-      document.getElementById("white-line").display = "none";
-      document.getElementById("midori-header").display = "none";
-      document.getElementById("preparing").display = "none";
-      Array.from(document.getElementsByClassName("onloadimages")).forEach(
-        (img) => {
-          console.log("changing images...");
-          img.style.transform = "scale(0)";
-        }
-      );
-      bg.style.height = "0vh"; // Shrink to 0 height
-
+      bg.style.opacity = "0";
+      document.getElementById("midori-background-2").style.opacity = "0";
+      setTimeout(() => {
+        bg.style.display = "none";
+        document.getElementById("midori-background-2").style.display = "none";
+      }, 1000);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
   } else {
