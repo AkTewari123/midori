@@ -1,5 +1,5 @@
-import hideMidoriOnload from "js/functions/midorionload.js";
-import drawHorizontalLine from "js/functions/drawhorizontalline.js";
+import hideMidoriOnload from "./functions/midorionload.js";
+import drawHorizontalLine from "./functions/drawhorizontalline.js";
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
