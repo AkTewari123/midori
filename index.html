@@ -68,24 +68,65 @@
         />
       </div>
     </div>
-    <div id="post-transition" class="urbanist-regular text-black">
-      <nav class="bg-[#1B1B1A] p-6 w-4/5 mx-auto rounded-xl mt-4">
+    <div id="post-transition" class="urbanist-regular hidden text-black p-4">
+      <nav class="bg-[#1B1B1A] py-0 px-4 w-[95%] mx-auto rounded-xl">
         <ul class="flex items-center justify-between urbanist-regular text-xl">
           <!-- Left Item -->
           <li>
-            <a href="/" class="text-white font-bold">Midori</a>
+            <a href="/" class="text-white font-bold ml-2">Midori</a>
           </li>
 
           <!-- Centered Items -->
-          <div class="inline-flex space-x-6 px-4 py-4 bg-[#242425] rounded-xl">
-            <li><a href="#" class="text-white">Home</a></li>
-            <li><a href="#" class="text-white">About</a></li>
-            <li><a href="#" class="text-white">Contact</a></li>
+          <div class="flex w-[600px] h-[80px] py-2">
+            <ul class="flex w-full h-full bg-[#242425] rounded-xl">
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Home</a
+                >
+              </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >About</a
+                >
+              </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Contact</a
+                >
+              </li>
+            </ul>
           </div>
 
           <!-- Right Item -->
-          <li>
-            <a href="#" class="text-white">Sources</a>
+          <li class="relative inline-block">
+            <a
+              href="#"
+              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+              id="sources"
+            >
+              <div
+                id="greendot"
+                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+              ></div>
+              <p
+                class="relative text-black transition-colors duration-300"
+                id="sourcestext"
+              >
+                Sources
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

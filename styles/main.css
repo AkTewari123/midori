@@ -123,10 +123,29 @@
       height: 0vh;
     }
   }
-
   #post-transition {
-    transition: opacity 5s ease-in-out;
-    color: black !important;
+    opacity: 0;
+    pointer-events: none; /* Prevents interaction when hidden */
+    transform: translateY(-5px);
+    transition: all 500ms ease-in-out;
+  }
+  .centeritem {
+    margin: 0 30px;
+  }
+  
+  .hoveritem {
+    transition: all 0.25s ease-in-out;
+    border-radius: 10px;
+    color: white !important;
+  }
+
+  #sources:hover #sourcestext {
+    color: white;
+
+  }
+  
+  .hoveritem:hover {
+    background-color: #E2E8F0;
   }
   li {
     color: black !important;

@@ -11,12 +11,15 @@ const hideMidoriOnload = () => {
     setTimeout(() => {
       bg.style.opacity = "0";
       document.getElementById("midori-background-2").style.opacity = "0";
+      const postTransition = document.getElementById("post-transition");
+      postTransition.style.display = "block";
       setTimeout(() => {
         bg.style.display = "none";
         document.getElementById("midori-background-2").style.display = "none";
-        document.getElementById("post-transition").style.display = "block";
-        document.getElementById("post-transition").style.opacity = "1";
-      }, 1000);
+        postTransition.style.opacity = "1";
+        postTransition.style.transform = "translateY(5px)";
+        postTransition.style.pointerEvents = "auto"; // Enable interaction
+      }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
   } else {
@@ -63,8 +66,45 @@ const drawHorizontalLine = () => {
     console.error("White line element not found");
   }
 };
+const sourcesGreenTransition = () => {
+  document.getElementById("sources").addEventListener("mouseenter", (event) => {
+    const greenDot = document.getElementById("greendot");
+    const sourcesElement = document.getElementById("sources");
+
+    // Get the mouse X position relative to the "sources" element
+    const sourcesRect = sourcesElement.getBoundingClientRect();
+    const relativeX = event.clientX - sourcesRect.left; // Adjust X coordinate
+    const relativeY = event.clientY - sourcesRect.top; // Adjust X coordinate
+    console.log(sourcesRect);
+    // Position the green dot horizontally within "sources"
+    greenDot.style.left = `${relativeX}px`;
+    greenDot.style.top = `${relativeY}px`;
+
+    // Scale it by 20
+    greenDot.style.transform = "scale(20)";
+
+    console.log(greenDot);
+  });
+  document.getElementById("sources").addEventListener("mouseleave", (event) => {
+    const greenDot = document.getElementById("greendot");
+    const sourcesElement = document.getElementById("sources");
+
+    const sourcesRect = sourcesElement.getBoundingClientRect(); // get pos of mouse relative to sources box
+    const relativeX = event.clientX - sourcesRect.left;
+    const relativeY = event.clientY - sourcesRect.top;
+    console.log(sourcesRect);
+    greenDot.style.left = `${relativeX}px`;
+    greenDot.style.top = `${relativeY}px`;
+
+    greenDot.style.transform = "scale(.01)";
+
+    console.log(greenDot);
+  });
+};
+
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
+  sourcesGreenTransition();
 };
 main();
