@@ -71,6 +71,12 @@
     animation: imageAppearRestaurant 5s ease-out;
 }
 
+video {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
 .nowclass {
     transition: opacity .5s ease-in-out;
 }
@@ -126,8 +132,17 @@
   #post-transition {
     opacity: 0;
     pointer-events: none; /* Prevents interaction when hidden */
-    transform: translateY(-5px);
     transition: all 500ms ease-in-out;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh; /* Ensure it takes up full viewport height */
+  }
+  .shiftUp {
+    transition: transform 500ms ease-in-out;
+  }
+  nav {
+    position: relative;
+    z-index: 20;
   }
   .centeritem {
     margin: 0 30px;

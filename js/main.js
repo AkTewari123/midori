@@ -17,11 +17,20 @@ const hideMidoriOnload = () => {
         bg.style.display = "none";
         document.getElementById("midori-background-2").style.display = "none";
         postTransition.style.opacity = "1";
-        postTransition.style.transform = "translateY(5px)";
+        document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
+        Array.from(document.getElementsByClassName("shiftUp")).forEach(
+          (elem) => {
+            elem.style.transform = "translateY(5px)";
+            console.log(elem.style);
+          }
+        );
       }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
+    setTimeout(() => {
+      console.log("All processes have completed");
+    }, 8000);
   } else {
     console.error("Background element not found");
   }
