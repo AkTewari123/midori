@@ -2,7 +2,10 @@ const hideMidoriOnload = () => {
   console.log("JS Loaded");
 
   const bg = document.getElementById("midori-background");
-
+  document.getElementById("post-transition").style.color = "black";
+  document.getElementById("post-transition").style.display = "none";
+  document.getElementById("post-transition").style.opacity = "0";
+  console.log(document.getElementById("post-transition"));
   if (bg) {
     // Trigger the transition after a slight delay to ensure the DOM is ready
     setTimeout(() => {
@@ -11,6 +14,8 @@ const hideMidoriOnload = () => {
       setTimeout(() => {
         bg.style.display = "none";
         document.getElementById("midori-background-2").style.display = "none";
+        document.getElementById("post-transition").style.display = "block";
+        document.getElementById("post-transition").style.opacity = "1";
       }, 1000);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
