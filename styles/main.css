@@ -154,7 +154,7 @@ video {
     color: white !important;
   }
 
-  #sources:hover #sourcestext {
+  #menu:hover #menutext {
     color: white;
 
   }

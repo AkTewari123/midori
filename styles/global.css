@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Spicy+Rice&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -39,5 +41,31 @@ html, body {
     font-family: "Urbanist", sans-serif;
     font-optical-sizing: auto;
     font-weight: 100;
+    font-style: normal;
+  }
+
+  .spicy-rice-regular {
+    font-family: "Spicy Rice", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .forum-regular {
+    font-family: "Forum", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .forum-light {
+    font-family: "Forum", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .forum-bold {
+    font-family: "Forum", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  .forum-extrabold {
+    font-family: "Forum", serif;
+    font-weight: 800;
     font-style: normal;
   }

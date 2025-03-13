@@ -1,3 +1,24 @@
+const enableParallax = () => {
+  const blockOne = document.getElementById("block-one");
+  const blockTwo = document.getElementById("block-2");
+  const video = document.querySelector("#block-2 video");
+
+  window.addEventListener("scroll", () => {
+    let scrollY = window.scrollY;
+    let blockOneHeight = blockOne.offsetHeight;
+
+    // Move blockTwo upwards as user scrolls
+    if (scrollY < blockOneHeight) {
+      blockTwo.style.transform = `translateY(-${scrollY * 0.8}px)`;
+    } else {
+      blockTwo.style.transform = `translateY(-${blockOneHeight}px)`;
+    }
+
+    // Slight parallax effect for video inside blockTwo
+    video.style.transform = `translateY(${scrollY * 0.05}px)`;
+  });
+};
+
 const hideMidoriOnload = () => {
   console.log("JS Loaded");
 
@@ -19,7 +40,7 @@ const hideMidoriOnload = () => {
         postTransition.style.opacity = "1";
         document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftUp")).forEach(
+        Array.from(document.getElementsByClassName("shiftDown")).forEach(
           (elem) => {
             elem.style.transform = "translateY(5px)";
             console.log(elem.style);
@@ -75,17 +96,17 @@ const drawHorizontalLine = () => {
     console.error("White line element not found");
   }
 };
-const sourcesGreenTransition = () => {
-  document.getElementById("sources").addEventListener("mouseenter", (event) => {
+const menuGreenTransition = () => {
+  document.getElementById("menu").addEventListener("mouseenter", (event) => {
     const greenDot = document.getElementById("greendot");
-    const sourcesElement = document.getElementById("sources");
+    const menuElement = document.getElementById("menu");
 
-    // Get the mouse X position relative to the "sources" element
-    const sourcesRect = sourcesElement.getBoundingClientRect();
-    const relativeX = event.clientX - sourcesRect.left; // Adjust X coordinate
-    const relativeY = event.clientY - sourcesRect.top; // Adjust X coordinate
-    console.log(sourcesRect);
-    // Position the green dot horizontally within "sources"
+    // Get the mouse X position relative to the "menu" element
+    const menuRect = menuElement.getBoundingClientRect();
+    const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
+    const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
+    console.log(menuRect);
+    // Position the green dot horizontally within "menu"
     greenDot.style.left = `${relativeX}px`;
     greenDot.style.top = `${relativeY}px`;
 
@@ -94,14 +115,14 @@ const sourcesGreenTransition = () => {
 
     console.log(greenDot);
   });
-  document.getElementById("sources").addEventListener("mouseleave", (event) => {
+  document.getElementById("menu").addEventListener("mouseleave", (event) => {
     const greenDot = document.getElementById("greendot");
-    const sourcesElement = document.getElementById("sources");
+    const menuElement = document.getElementById("menu");
 
-    const sourcesRect = sourcesElement.getBoundingClientRect(); // get pos of mouse relative to sources box
-    const relativeX = event.clientX - sourcesRect.left;
-    const relativeY = event.clientY - sourcesRect.top;
-    console.log(sourcesRect);
+    const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
+    const relativeX = event.clientX - menuRect.left;
+    const relativeY = event.clientY - menuRect.top;
+    console.log(menuRect);
     greenDot.style.left = `${relativeX}px`;
     greenDot.style.top = `${relativeY}px`;
 
@@ -114,6 +135,7 @@ const sourcesGreenTransition = () => {
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
-  sourcesGreenTransition();
+  menuGreenTransition();
+  enableParallax();
 };
 main();

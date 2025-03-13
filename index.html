@@ -28,7 +28,7 @@
           <div class="absolute bottom-0 left-0 p-4 text-white">
             <h1
               id="midori-header"
-              class="urbanist-light text-[120px] inline-block decoration-black"
+              class="forum-extrabold text-[120px] inline-block decoration-black"
             >
               <b> Midori </b>
             </h1>
@@ -75,28 +75,22 @@
       id="post-transition"
       class="urbanist-regular hidden min-h-screen text-black"
     >
-      <video
-        autoplay
-        loop
-        muted
-        playsinline
-        class="absolute top-0 left-0 w-full h-full object-cover"
+      <nav
+        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
       >
-        <source src="./images/tsa.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <nav class="mx-auto shiftUp bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl">
         <ul class="flex items-center justify-between urbanist-regular text-xl">
           <!-- Left Item -->
           <li>
             <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a href="/" class="inline text-white font-bold ml-2 text-[24px]"
+            <a
+              href="/"
+              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
               >Midori</a
             >
           </li>
 
           <!-- Centered Items -->
-          <div class="flex w-[600px] h-[80px] py-2">
+          <div class="flex w-[800px] h-[80px] py-2">
             <ul class="flex w-full h-full bg-[#242425] rounded-xl">
               <li
                 class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
@@ -125,6 +119,15 @@
                   >Contact</a
                 >
               </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Sources</a
+                >
+              </li>
             </ul>
           </div>
 
@@ -133,7 +136,7 @@
             <a
               href="#"
               class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-              id="sources"
+              id="menu"
             >
               <div
                 id="greendot"
@@ -141,16 +144,39 @@
               ></div>
               <p
                 class="relative text-black transition-colors duration-300"
-                id="sourcestext"
+                id="menutext"
               >
-                Sources
+                Menu
               </p>
             </a>
           </li>
         </ul>
       </nav>
-
-      <div></div>
+      <div id="block-one" class="h-screen shiftDown p-16 z-10">
+        <div class="ml-4 mt-4">
+          <h1
+            id="midori-h1"
+            class="text-[#1B1B1A] shiftDown forum-extrabold text-[100px]"
+          >
+            Midori
+          </h1>
+          <span class="text-emerald-500 forum-bold" id="culinary-journey"
+            >Discover our delicious and unforgettable culinary journey.
+          </span>
+        </div>
+      </div>
+      <div id="block-2" class="h-screen relative z-10">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          class="absolute left-0 w-full h-full object-cover"
+        >
+          <source src="./images/tsa.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </body>
 </html>
