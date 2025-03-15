@@ -19,6 +19,31 @@ const enableParallax = () => {
   });
 };
 
+const animateCharacters = () => {
+  const contentTitle = new SplitType("#midori-h1", { types: "chars" });
+  const contentText = new SplitType("#culinary-journey", { types: "chars" });
+  // Animate characters using a js lib
+  setTimeout(() => {
+    gsap.from(contentTitle.chars, {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.05,
+    });
+
+    gsap.from(contentText.chars, {
+      opacity: 0,
+      y: 20,
+      duration: 0.3,
+      ease: "power2.out",
+      stagger: 0.01, // Gap between each character lifting up
+      delay: 0.3,
+    });
+    console.log("Characters animated");
+  }, 7000);
+};
+
 const hideMidoriOnload = () => {
   console.log("JS Loaded");
 
@@ -137,5 +162,6 @@ const main = () => {
   hideMidoriOnload();
   menuGreenTransition();
   enableParallax();
+  animateCharacters();
 };
 main();

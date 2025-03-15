@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   </head>
   <body data-barba="wrapper">
     <div id="precursor">
@@ -152,18 +155,23 @@
           </li>
         </ul>
       </nav>
-      <div id="block-one" class="h-screen shiftDown p-16 z-10">
-        <div class="ml-4 mt-4">
+      <div id="block-one" class="h-screen flex shiftDown p-16 z-10">
+        <img
+          src="./images/vegetarian-plate.png"
+          class="rounded-xl mt-8 aspect-1/2"
+          alt="Vegetarian sushi"
+        />
+        <div
+          class="ml-8 mt-4 w-full flex items-center justify-center center flex-col"
+        >
           <h1
             id="midori-h1"
-            class="text-[#1B1B1A] shiftDown forum-extrabold text-[100px]"
+            class="text-[#047857] text-center shiftDown forum-extrabold center text-[100px]"
           >
-            Midori
+            An Exquisite Vegetarian Cuisine, Done the Right Way
           </h1>
-          <span class="text-emerald-500 forum-bold" id="culinary-journey"
-            >Discover our delicious and unforgettable culinary journey.
-          </span>
         </div>
+        <div></div>
       </div>
       <div id="block-2" class="h-screen relative z-10">
         <video
