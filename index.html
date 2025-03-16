@@ -156,35 +156,58 @@
         </ul>
       </nav>
       <div id="block-one" class="h-screen flex shiftDown p-16 z-10">
-        <img
-          src="./images/vegetarian-plate.png"
-          class="rounded-xl mt-8 aspect-1/2"
-          alt="Vegetarian sushi"
-        />
         <div
           class="ml-8 mt-4 w-full flex items-center justify-center center flex-col"
         >
+          <div class="flex flex-row">
+            <div>
+              <img
+                class="w-[75px] mt-8 h-[75px] aspect-square inline"
+                src="images/fin.png"
+                alt="Fin Image"
+              />
+              <img
+                class="w-[75px] mt-8 h-[75px] aspect-square inline -ml-4"
+                src="images/circular-leaf.png"
+                alt="Circular leaf Image"
+              />
+            </div>
+
+            <h1
+              id="midori-h1"
+              class="text-black ml-2 text-center shiftDown urbanist-regular center text-[100px]"
+            >
+              &nbsp; Vegetarian
+            </h1>
+          </div>
+          <div class="w-64 rounded-md aspect-video relative overflow-hidden">
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              class="absolute w-full h-full object-cover"
+            >
+              <source src="./images/tsa.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
           <h1
-            id="midori-h1"
-            class="text-[#047857] text-center shiftDown forum-extrabold center text-[100px]"
+            id="midori-h1-3"
+            class="text-black text-center shiftDown urbanist-regular center text-[100px]"
           >
-            An Exquisite Vegetarian Cuisine, Done the Right Way
+            Cuisine
+          </h1>
+          <h1
+            id="midori-h1-2"
+            class="text-black text-center shiftDown urbanist-regular center text-[100px]"
+          >
+            Done the Right Way.
           </h1>
         </div>
         <div></div>
       </div>
-      <div id="block-2" class="h-screen relative z-10">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          class="absolute left-0 w-full h-full object-cover"
-        >
-          <source src="./images/tsa.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <div id="block-2" class="h-screen relative z-10"></div>
     </div>
   </body>
 </html>
