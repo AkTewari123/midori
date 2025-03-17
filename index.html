@@ -24,10 +24,7 @@
         <div class="step"></div>
       </div>
       <div data-barba="container" data-barba-namespace="home">
-        <div
-          class="h-screen bottom-0 left-0 w-full absolute"
-          id="midori-background"
-        >
+        <div class="h-screen bottom-0 left-0 w-full absolute" id="midori-background">
           <div class="absolute bottom-0 left-0 p-4 text-white">
             <h1
               id="midori-header"
@@ -39,10 +36,7 @@
         </div>
         <div id="midori-background-2" class="absolute w-full top-1/2 h-[2px]">
           <!-- Preparing Text -->
-          <p
-            class="text-white urbanist-light ml-2 absolute -top-8 text-xl left-0"
-            id="preparing"
-          >
+          <p class="text-white urbanist-light ml-2 absolute -top-8 text-xl left-0" id="preparing">
             Preparing your menu...
           </p>
 
@@ -74,10 +68,7 @@
         </div>
       </div>
     </div>
-    <div
-      id="post-transition"
-      class="urbanist-regular hidden min-h-screen text-black"
-    >
+    <div id="post-transition" class="urbanist-regular hidden min-h-screen text-black">
       <nav
         class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
       >
@@ -85,9 +76,7 @@
           <!-- Left Item -->
           <li>
             <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a
-              href="/"
-              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            <a href="/" class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
               >Midori</a
             >
           </li>
@@ -98,38 +87,22 @@
               <li
                 class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Home</a
-                >
+                <a href="#" class="w-full h-full flex justify-center items-center">Home</a>
               </li>
               <li
                 class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >About</a
-                >
+                <a href="#" class="w-full h-full flex justify-center items-center">About</a>
               </li>
               <li
                 class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Contact</a
-                >
+                <a href="#" class="w-full h-full flex justify-center items-center">Contact</a>
               </li>
               <li
                 class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Sources</a
-                >
+                <a href="#" class="w-full h-full flex justify-center items-center">Sources</a>
               </li>
             </ul>
           </div>
@@ -145,67 +118,61 @@
                 id="greendot"
                 class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
               ></div>
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                Menu
-              </p>
+              <p class="relative text-black transition-colors duration-300" id="menutext">Menu</p>
             </a>
           </li>
         </ul>
       </nav>
-      <div id="block-one" class="h-screen flex shiftDown p-16 z-10">
-        <div
-          class="ml-8 mt-4 w-full flex items-center justify-center center flex-col"
-        >
-          <div class="flex flex-row">
-            <div>
-              <img
-                class="w-[75px] mt-8 h-[75px] aspect-square inline"
-                src="images/fin.png"
-                alt="Fin Image"
-              />
-              <img
-                class="w-[75px] mt-8 h-[75px] aspect-square inline -ml-4"
-                src="images/circular-leaf.png"
-                alt="Circular leaf Image"
-              />
+      <div id="block-one" class="h-screen flex flex-col shiftDown p-16 z-10">
+        <!-- Two-column layout for top section with reduced bottom margin -->
+        <div class="flex flex-row w-full h-3/4 mb-[-100px]">
+          <!-- Left Column - Text content -->
+          <div class="flex flex-col justify-center w-2/3">
+            <div class="flex flex-row items-center justify-end">
+              <div class="flex items-center">
+                <img
+                  class="w-[75px] h-[75px] aspect-square inline"
+                  src="images/fin.png"
+                  alt="Fin Image"
+                />
+                <img
+                  class="w-[75px] h-[75px] aspect-square inline -ml-4"
+                  src="images/circular-leaf.png"
+                  alt="Circular leaf Image"
+                />
+              </div>
+              <h1
+                id="midori-h1"
+                class="text-black text-right shiftDown urbanist-bold text-[100px] leading-[1.5]"
+              >
+                Vegetarian
+              </h1>
             </div>
-
             <h1
-              id="midori-h1"
-              class="text-black ml-2 text-center shiftDown urbanist-regular center text-[100px]"
+              id="midori-h1-3"
+              class="text-black text-right shiftDown urbanist-bold text-[100px] -mt-6 leading-[1.5]"
             >
-              &nbsp; Vegetarian
+              Cuisine
             </h1>
           </div>
-          <div class="w-64 rounded-md aspect-video relative overflow-hidden">
-            <video
-              autoplay
-              loop
-              muted
-              playsinline
-              class="absolute w-full h-full object-cover"
-            >
-              <source src="./images/tsa.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+
+          <!-- Right Column - Video -->
+          <div class="flex justify-left items-center w-1/2">
+            <div class="ml-8 w-3/5 rounded-md aspect-video relative overflow-hidden">
+              <video autoplay loop muted playsinline class="absolute w-full h-full object-cover">
+                <source src="./images/tsa.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
-          <h1
-            id="midori-h1-3"
-            class="text-black text-center shiftDown urbanist-regular center text-[100px]"
-          >
-            Cuisine
-          </h1>
-          <h1
-            id="midori-h1-2"
-            class="text-black text-center shiftDown urbanist-regular center text-[100px]"
-          >
+        </div>
+
+        <!-- Bottom centered text -->
+        <div class="w-full flex justify-center items-center h-1/6 mt-[-40px]">
+          <h1 id="midori-h1-2" class="text-black text-center shiftDown urbanist-bold text-[100px]">
             Done the Right Way.
           </h1>
         </div>
-        <div></div>
       </div>
       <div id="block-2" class="h-screen relative z-10"></div>
     </div>

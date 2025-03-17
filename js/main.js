@@ -1,3 +1,6 @@
+// Skip animation flag - set to true to bypass intro animations for development
+const skipAnimation = false;
+
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
   const blockTwo = document.getElementById("block-2");
@@ -20,6 +23,8 @@ const enableParallax = () => {
 };
 
 const animateCharacters = () => {
+  if (skipAnimation) return; // Skip if animations are disabled
+
   const contentTitle = new SplitType("#midori-h1", { types: "chars" });
   const contentText = new SplitType("#culinary-journey", { types: "chars" });
   // Animate characters using a js lib
@@ -52,6 +57,24 @@ const hideMidoriOnload = () => {
   document.getElementById("post-transition").style.display = "none";
   document.getElementById("post-transition").style.opacity = "0";
   console.log(document.getElementById("post-transition"));
+
+  // Skip animation if set to true
+  if (skipAnimation) {
+    // Immediately show the post-transition content
+    bg.style.display = "none";
+    document.getElementById("midori-background-2").style.display = "none";
+    const postTransition = document.getElementById("post-transition");
+    postTransition.style.display = "block";
+    postTransition.style.opacity = "1";
+    document.getElementById("precursor").style.display = "none";
+    postTransition.style.pointerEvents = "auto";
+    Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
+      elem.style.transform = "translateY(5px)";
+      console.log(elem.style);
+    });
+    return;
+  }
+
   if (bg) {
     // Trigger the transition after a slight delay to ensure the DOM is ready
     setTimeout(() => {
@@ -65,12 +88,10 @@ const hideMidoriOnload = () => {
         postTransition.style.opacity = "1";
         document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftDown")).forEach(
-          (elem) => {
-            elem.style.transform = "translateY(5px)";
-            console.log(elem.style);
-          }
-        );
+        Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
+          elem.style.transform = "translateY(5px)";
+          console.log(elem.style);
+        });
       }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
@@ -107,6 +128,8 @@ const hideMidoriOnload = () => {
 };
 
 const drawHorizontalLine = () => {
+  if (skipAnimation) return; // Skip if animations are disabled
+
   console.log("Line Animation JS Loaded");
 
   const whiteLine = document.getElementById("white-line");
@@ -121,6 +144,7 @@ const drawHorizontalLine = () => {
     console.error("White line element not found");
   }
 };
+
 const menuGreenTransition = () => {
   document.getElementById("menu").addEventListener("mouseenter", (event) => {
     const greenDot = document.getElementById("greendot");
