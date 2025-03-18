@@ -1,74 +1,72 @@
-#midori-background, #midori-background-2 {
-    transition-property: height, opacity;
-    transition-duration: .2s;
-    transition-timing-function: ease-out;
+#midori-background,
+#midori-background-2 {
+  transition-property: height, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
 }
 
 #white-line {
-    transition-property: width;
-    transition-duration: 4s;
-    transition-timing-function:linear;
+  transition-property: width;
+  transition-duration: 4s;
+  transition-timing-function: linear;
 }
 .onloadimages {
-    position: absolute;
-    top: 50%;
-    transition: transform .5s ease-in-out;
+  position: absolute;
+  top: 50%;
+  transition: transform 0.5s ease-in-out;
 }
 @keyframes imageAppearRestaurant {
-    0% {
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-        opacity: 0;
-    }
-    30% {
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-50%) scale(1) rotate(0deg);
-    }
+  0% {
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1) rotate(0deg);
+  }
 }
 
 @keyframes imageAppearNoodles {
-    0% {
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-        opacity: 0;
-    }
-    50.999% {
-        opacity:1;
-
-    }
-    55% {
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-    }
-    75% {
-        transform: translateY(-50%) scale(1) rotate(0deg);
-    }
+  0% {
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  50.999% {
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-50%) scale(1) rotate(0deg);
+  }
 }
 
 @keyframes imageAppearLeaf {
-    0% {
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-        opacity:0;
-    }
-    10% {
-        opacity:1;
-        transform: translateY(-50%) scale(0) rotate(-10deg);
-
-    }
-    30% {
-        transform: translateY(-50%) scale(1) rotate(0deg);
-
-    }
+  0% {
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-50%) scale(0) rotate(-10deg);
+  }
+  30% {
+    transform: translateY(-50%) scale(1) rotate(0deg);
+  }
 }
 
 #leafintro {
-    animation: imageAppearLeaf 5s ease-out;
+  animation: imageAppearLeaf 5s ease-out;
 }
 #noodles-intro {
-    animation: imageAppearNoodles 5s ease-out;
+  animation: imageAppearNoodles 5s ease-out;
 }
 #restaurant-intro {
-    animation: imageAppearRestaurant 5s ease-out;
+  animation: imageAppearRestaurant 5s ease-out;
 }
 
 video {
@@ -78,96 +76,140 @@ video {
 }
 
 .nowclass {
-    transition: opacity .5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .step {
-    background-color: #057957;
-    position: absolute;
-    right: 0;
-    animation: shrinkHeight 1.5s ease-in-out forwards;
-  }
+  background-color: #057957;
+  position: absolute;
+  right: 0;
+  animation: shrinkHeight 1.5s ease-in-out forwards;
+}
 
-  /* Positioning each step at different vertical levels */
-  .step:nth-child(1) {
-    width: 20%;
+/* Positioning each step at different vertical levels */
+.step:nth-child(1) {
+  width: 20%;
+  height: 100vh;
+  animation-delay: 4.5s;
+}
+.step:nth-child(2) {
+  width: 20%;
+  right: 20%;
+  height: 100vh;
+  animation-delay: 4.75s;
+}
+.step:nth-child(3) {
+  width: 20%;
+  right: 40%;
+
+  height: 100vh;
+  animation-delay: 5s;
+}
+.step:nth-child(4) {
+  width: 20%;
+  right: 60%;
+  height: 100vh;
+  animation-delay: 5.25s;
+}
+.step:nth-child(5) {
+  width: 20%;
+  right: 80%;
+
+  height: 100vh;
+  animation-delay: 5.5s;
+}
+
+@keyframes shrinkHeight {
+  0% {
     height: 100vh;
-    animation-delay: 4.5s;
   }
-  .step:nth-child(2) {
-    width: 20%;
-    right: 20%;
-    height: 100vh;
-    animation-delay: 4.75s;
+  100% {
+    height: 0vh;
   }
-  .step:nth-child(3) {
-    width: 20%;
-    right: 40%;
+}
+#post-transition {
+  opacity: 0;
+  pointer-events: none; /* Prevents interaction when hidden */
+  transition: all 500ms ease-in-out;
+  position: relative;
+  z-index: 10;
+  min-height: 100vh; /* Ensure it takes up full viewport height */
+}
+.shiftUp {
+  transition: transform 500ms ease-in-out;
+}
+nav {
+  position: relative;
+  z-index: 20;
+}
+.centeritem {
+  margin: 0 30px;
+}
 
-    height: 100vh;
-    animation-delay: 5s;
-  }
-  .step:nth-child(4) {
-    width: 20%;
-    right: 60%;
-    height: 100vh;
-    animation-delay: 5.25s;
-  }
-  .step:nth-child(5) {
-    width: 20%;
-    right: 80%;
+.hoveritem {
+  transition: all 0.25s ease-in-out;
+  border-radius: 10px;
+  color: white !important;
+}
 
-    height: 100vh;
-    animation-delay: 5.5s;
-  }
+#menu:hover #menutext {
+  color: white;
+}
 
-  @keyframes shrinkHeight {
-    0% {
-      height: 100vh;
-    }
-    100% {
-      height: 0vh;
-    }
-  }
-  #post-transition {
-    opacity: 0;
-    pointer-events: none; /* Prevents interaction when hidden */
-    transition: all 500ms ease-in-out;
-    position: relative;
-    z-index: 10;
-    min-height: 100vh; /* Ensure it takes up full viewport height */
-  }
-  .shiftUp {
-    transition: transform 500ms ease-in-out;
-  }
-  nav {
-    position: relative;
-    z-index: 20;
-  }
-  .centeritem {
-    margin: 0 30px;
-  }
-  
-  .hoveritem {
-    transition: all 0.25s ease-in-out;
-    border-radius: 10px;
-    color: white !important;
-  }
+.hoveritem:hover {
+  background-color: #e2e8f0;
+}
+li {
+  color: black !important;
+  transition: opacity 5s ease-in-out;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
 
-  #menu:hover #menutext {
-    color: white;
+/* Video controls */
+.video-control {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  background-color: rgba(5, 121, 87, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 9px;
+}
 
-  }
-  
-  .hoveritem:hover {
-    background-color: #E2E8F0;
-  }
-  li {
-    color: black !important;
-    transition: opacity 5s ease-in-out;
+.video-control:hover {
+  background-color: rgba(5, 121, 87, 0.9);
+  transform: scale(1.1);
+}
 
-  }
-  body {
-    margin: 0;
-    padding: 0;
-  }
+.video-control:focus {
+  outline: none;
+}
+
+.video-control svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pause-icon {
+  display: none;
+}
+
+.video-playing .play-icon {
+  display: none;
+}
+
+.video-playing .pause-icon {
+  display: block;
+}

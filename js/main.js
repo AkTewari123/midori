@@ -1,5 +1,5 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = false;
+const skipAnimation = true;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
@@ -181,11 +181,48 @@ const menuGreenTransition = () => {
   });
 };
 
+const setupVideoControls = () => {
+  const video = document.getElementById("hero-video");
+  const playPauseBtn = document.getElementById("play-pause-btn");
+
+  if (!video || !playPauseBtn) return;
+
+  // Remove muted attribute to allow sound control
+  video.muted = false;
+
+  // Update button state based on video state
+  const updateButtonState = () => {
+    if (video.paused) {
+      playPauseBtn.classList.remove("video-playing");
+    } else {
+      playPauseBtn.classList.add("video-playing");
+    }
+  };
+
+  // Initial state
+  updateButtonState();
+
+  // Toggle play/pause on button click
+  playPauseBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    updateButtonState();
+  });
+
+  // Update button when video state changes
+  video.addEventListener("play", updateButtonState);
+  video.addEventListener("pause", updateButtonState);
+};
+
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
   menuGreenTransition();
   enableParallax();
   animateCharacters();
+  setupVideoControls();
 };
 main();
