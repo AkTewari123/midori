@@ -6,6 +6,12 @@ const enableParallax = () => {
   const blockTwo = document.getElementById("block-2");
   const video = document.querySelector("#block-2 video");
 
+  // Return early if any required elements don't exist
+  if (!blockOne || !blockTwo || !video) {
+    console.warn("Parallax elements not found. Skipping parallax setup.");
+    return;
+  }
+
   window.addEventListener("scroll", () => {
     let scrollY = window.scrollY;
     let blockOneHeight = blockOne.offsetHeight;
@@ -218,81 +224,141 @@ const setupVideoControls = () => {
 };
 
 const setupTestimonials = () => {
-  const tracks = document.querySelectorAll(".testimonial-track");
-  const animations = []; // Store animation data for each track
+  // Clear any existing animations first
+  if (window.testimonialAnimationFrame) {
+    cancelAnimationFrame(window.testimonialAnimationFrame);
+  }
 
-  tracks.forEach((track, index) => {
-    // Clone cards for continuous scrolling
-    const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
-    const trackWidth = originalCards.reduce((width, card) => width + card.offsetWidth + 24, 0); // 24px is the gap
+  // Delay starting animations if intro animation is playing
+  const animationDelay = skipAnimation ? 0 : 6000; // Wait for intro animation to complete
 
-    // Create enough duplicates to fill viewport multiple times
-    const requiredSets = Math.ceil((window.innerWidth * 3) / trackWidth) + 1;
+  setTimeout(() => {
+    const tracks = document.querySelectorAll(".testimonial-track");
+    if (!tracks.length) return;
 
-    for (let i = 0; i < requiredSets; i++) {
-      originalCards.forEach((card) => {
-        const clone = card.cloneNode(true);
-        track.appendChild(clone);
-      });
-    }
+    const animations = []; // Store animation data for each track
 
-    // Set up animation data (direction and speed varies by track)
-    const direction = index % 2 === 0 ? -1 : 1; // Alternate direction
-    const speed = 0.5 + index * 0.15; // Vary speed slightly by track
-
-    // Measure the width of a complete set for looping calculation
-    const fullSetWidth = trackWidth;
-
-    // Set initial position - for right moving tracks, start from negative position
-    let initialPosition = 0;
-    if (direction === 1) {
-      initialPosition = -fullSetWidth;
-      track.style.transform = `translate3d(${initialPosition}px, 0, 0)`;
-    }
-
-    animations.push({
-      track,
-      position: initialPosition,
-      direction,
-      speed,
-      fullSetWidth,
+    // Reset all tracks to initial state
+    tracks.forEach((track) => {
+      track.style.transform = "translate3d(0, 0, 0)";
     });
-  });
 
-  // Main animation loop using requestAnimationFrame for smooth motion
-  let lastTime = 0;
-  const animate = (currentTime) => {
-    if (!lastTime) lastTime = currentTime;
-    const deltaTime = currentTime - lastTime;
-    lastTime = currentTime;
+    tracks.forEach((track, index) => {
+      // Clone cards for continuous scrolling if needed
+      const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
 
-    animations.forEach((animation) => {
-      // Calculate new position
-      animation.position += animation.direction * animation.speed * (deltaTime * 0.05);
+      // Calculate the width precisely
+      let trackWidth = 0;
+      originalCards.forEach((card) => {
+        const style = window.getComputedStyle(card);
+        const width =
+          card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
+        trackWidth += width;
+      });
 
-      // Create seamless loop based on direction
-      if (animation.direction < 0) {
-        // For left-moving tracks (negative direction)
-        if (animation.position <= -animation.fullSetWidth) {
-          animation.position += animation.fullSetWidth;
-        }
-      } else {
-        // For right-moving tracks (positive direction)
-        if (animation.position >= 0) {
-          animation.position -= animation.fullSetWidth;
+      // Add gap (24px between cards)
+      trackWidth += originalCards.length * 24;
+
+      // Create enough duplicates for smooth scrolling
+      const viewportWidth = window.innerWidth;
+      const requiredSets = Math.ceil((viewportWidth * 2) / trackWidth) + 1;
+
+      // Only clone if we don't already have enough cards
+      if (track.children.length < originalCards.length * requiredSets) {
+        for (let i = 0; i < requiredSets - 1; i++) {
+          originalCards.forEach((card) => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+          });
         }
       }
 
-      // Apply transform with hardware acceleration
-      animation.track.style.transform = `translate3d(${animation.position}px, 0, 0)`;
+      // Alternate direction and vary speed slightly by track index
+      const direction = index % 2 === 0 ? -1 : 1;
+      const speed = 0.3 + index * 0.1; // Less variation in speed to prevent sync issues
+
+      // Store precise values for animation
+      animations.push({
+        track,
+        position: direction > 0 ? -trackWidth : 0, // Start position
+        direction,
+        speed,
+        trackWidth,
+        lastTimestamp: 0, // Track last timestamp for each animation separately
+        initialPosition: direction > 0 ? -trackWidth : 0, // Store initial position for reset
+      });
+
+      // Set initial position
+      track.style.transform = `translate3d(${animations[index].position}px, 0, 0)`;
     });
 
-    requestAnimationFrame(animate);
-  };
+    // Main animation loop with more precise timing
+    let lastTime = 0;
+    const animate = (currentTime) => {
+      if (!lastTime) lastTime = currentTime;
+      const deltaTime = Math.min(currentTime - lastTime, 100); // Cap max delta to prevent jumps
+      lastTime = currentTime;
 
-  // Start the animation
-  requestAnimationFrame(animate);
+      let needsUpdate = false;
+
+      animations.forEach((animation) => {
+        // Calculate movement based on consistent time delta
+        const movement = animation.direction * animation.speed * (deltaTime * 0.05);
+        animation.position += movement;
+
+        // Reset position when needed for seamless loop
+        if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
+          // For left-moving tracks, reset precisely
+          animation.position = 0;
+          needsUpdate = true;
+        } else if (animation.direction > 0 && animation.position >= 0) {
+          // For right-moving tracks, reset precisely
+          animation.position = -animation.trackWidth;
+          needsUpdate = true;
+        }
+
+        // Apply transform with hardware acceleration
+        animation.track.style.transform = `translate3d(${
+          Math.round(animation.position * 100) / 100
+        }px, 0, 0)`;
+      });
+
+      // Store the animation frame reference for potential cancellation
+      window.testimonialAnimationFrame = requestAnimationFrame(animate);
+    };
+
+    // Start the animation
+    window.testimonialAnimationFrame = requestAnimationFrame(animate);
+
+    // Add event listener to pause animations when tab is not visible
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && window.testimonialAnimationFrame) {
+        cancelAnimationFrame(window.testimonialAnimationFrame);
+      } else if (!document.hidden) {
+        // Reset animation when returning to tab
+        lastTime = 0;
+        window.testimonialAnimationFrame = requestAnimationFrame(animate);
+      }
+    });
+  }, animationDelay);
+
+  // Reset on window resize to prevent glitches from layout changes
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      setupTestimonials();
+    }, 250)
+  );
 };
+
+// Add debounce function if not already defined
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
 const setupMasonryGrid = () => {
   // Get all necessary elements
