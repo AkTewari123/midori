@@ -217,6 +217,187 @@ const setupVideoControls = () => {
   video.addEventListener("pause", updateButtonState);
 };
 
+const setupTestimonials = () => {
+  const tracks = document.querySelectorAll(".testimonial-track");
+  const animations = []; // Store animation data for each track
+
+  tracks.forEach((track, index) => {
+    // Clone cards for continuous scrolling
+    const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
+    const trackWidth = originalCards.reduce((width, card) => width + card.offsetWidth + 24, 0); // 24px is the gap
+
+    // Create enough duplicates to fill viewport multiple times
+    const requiredSets = Math.ceil((window.innerWidth * 3) / trackWidth) + 1;
+
+    for (let i = 0; i < requiredSets; i++) {
+      originalCards.forEach((card) => {
+        const clone = card.cloneNode(true);
+        track.appendChild(clone);
+      });
+    }
+
+    // Set up animation data (direction and speed varies by track)
+    const direction = index % 2 === 0 ? -1 : 1; // Alternate direction
+    const speed = 0.5 + index * 0.15; // Vary speed slightly by track
+
+    // Measure the width of a complete set for looping calculation
+    const fullSetWidth = trackWidth;
+
+    // Set initial position - for right moving tracks, start from negative position
+    let initialPosition = 0;
+    if (direction === 1) {
+      initialPosition = -fullSetWidth;
+      track.style.transform = `translate3d(${initialPosition}px, 0, 0)`;
+    }
+
+    animations.push({
+      track,
+      position: initialPosition,
+      direction,
+      speed,
+      fullSetWidth,
+    });
+  });
+
+  // Main animation loop using requestAnimationFrame for smooth motion
+  let lastTime = 0;
+  const animate = (currentTime) => {
+    if (!lastTime) lastTime = currentTime;
+    const deltaTime = currentTime - lastTime;
+    lastTime = currentTime;
+
+    animations.forEach((animation) => {
+      // Calculate new position
+      animation.position += animation.direction * animation.speed * (deltaTime * 0.05);
+
+      // Create seamless loop based on direction
+      if (animation.direction < 0) {
+        // For left-moving tracks (negative direction)
+        if (animation.position <= -animation.fullSetWidth) {
+          animation.position += animation.fullSetWidth;
+        }
+      } else {
+        // For right-moving tracks (positive direction)
+        if (animation.position >= 0) {
+          animation.position -= animation.fullSetWidth;
+        }
+      }
+
+      // Apply transform with hardware acceleration
+      animation.track.style.transform = `translate3d(${animation.position}px, 0, 0)`;
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  // Start the animation
+  requestAnimationFrame(animate);
+};
+
+const setupMasonryGrid = () => {
+  // Get all necessary elements
+  const grid = document.querySelector(".dishes-grid");
+  const items = Array.from(document.querySelectorAll(".dish-item"));
+
+  // Configuration
+  const gap = 20; // Gap between items in pixels
+
+  // Function to get current column count based on viewport width
+  const getColumnCount = () => {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth <= 600) return 1;
+    if (viewportWidth <= 900) return 2;
+    if (viewportWidth <= 1200) return 3;
+    return 4;
+  };
+
+  // Function to layout the masonry grid
+  const layoutMasonry = () => {
+    if (!grid || items.length === 0) return;
+
+    // Get current column count based on viewport width
+    const columnCount = getColumnCount();
+
+    // Calculate column width (accounting for gaps)
+    const gridWidth = grid.clientWidth;
+    const columnWidth = (gridWidth - gap * (columnCount - 1)) / columnCount;
+
+    // Initialize arrays to track column heights
+    const columnHeights = Array(columnCount).fill(0);
+
+    // Position each item
+    items.forEach((item) => {
+      // Find the shortest column
+      const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+
+      // Calculate position
+      const x = shortestColumn * (columnWidth + gap);
+      const y = columnHeights[shortestColumn];
+
+      // Set item position and width
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+      item.style.width = `${columnWidth}px`;
+
+      // Get the image inside the item
+      const img = item.querySelector("img");
+
+      // Set the height of the card to maintain aspect ratio if possible
+      if (img.complete && img.naturalHeight > 0) {
+        const aspectRatio = img.naturalHeight / img.naturalWidth;
+        const cardHeight =
+          item.querySelector(".dish-card").offsetHeight || columnWidth * aspectRatio;
+
+        // Update column height
+        columnHeights[shortestColumn] += cardHeight + gap;
+      } else {
+        // For images that haven't loaded yet, use a default height
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+
+        // Add load event to recalculate once image loads
+        img.onload = () => {
+          layoutMasonry();
+        };
+      }
+    });
+
+    // Set the grid container height to the tallest column
+    grid.style.height = `${Math.max(...columnHeights)}px`;
+  };
+
+  // Debounce function to limit layout recalculations
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
+
+  // Initialize the layout
+  layoutMasonry();
+
+  // Recalculate on window resize with debounce
+  window.addEventListener("resize", debounce(layoutMasonry, 100));
+
+  // Recalculate when all images are loaded
+  window.addEventListener("load", layoutMasonry);
+
+  // Add MutationObserver to detect changes in the DOM
+  const observer = new MutationObserver(debounce(layoutMasonry, 100));
+  observer.observe(grid, { childList: true, subtree: true, attributes: true });
+
+  // Recalculate periodically in the first few seconds to handle any edge cases
+  const recalcIntervals = [100, 500, 1000, 2000];
+  recalcIntervals.forEach((interval) => {
+    setTimeout(layoutMasonry, interval);
+  });
+};
+
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
@@ -224,5 +405,7 @@ const main = () => {
   enableParallax();
   animateCharacters();
   setupVideoControls();
+  setupTestimonials();
+  setupMasonryGrid(); // Add this new function call
 };
 main();
