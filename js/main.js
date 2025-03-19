@@ -6,6 +6,12 @@ const enableParallax = () => {
   const blockTwo = document.getElementById("block-2");
   const video = document.querySelector("#block-2 video");
 
+  // Return early if any required elements don't exist
+  if (!blockOne || !blockTwo || !video) {
+    console.warn("Parallax elements not found. Skipping parallax setup.");
+    return;
+  }
+
   window.addEventListener("scroll", () => {
     let scrollY = window.scrollY;
     let blockOneHeight = blockOne.offsetHeight;
@@ -244,6 +250,247 @@ const setupVideoControls = () => {
   video.addEventListener("pause", updateButtonState);
 };
 
+const setupTestimonials = () => {
+  // Clear any existing animations first
+  if (window.testimonialAnimationFrame) {
+    cancelAnimationFrame(window.testimonialAnimationFrame);
+  }
+
+  // Delay starting animations if intro animation is playing
+  const animationDelay = skipAnimation ? 0 : 6000; // Wait for intro animation to complete
+
+  setTimeout(() => {
+    const tracks = document.querySelectorAll(".testimonial-track");
+    if (!tracks.length) return;
+
+    const animations = []; // Store animation data for each track
+
+    // Reset all tracks to initial state
+    tracks.forEach((track) => {
+      track.style.transform = "translate3d(0, 0, 0)";
+    });
+
+    tracks.forEach((track, index) => {
+      // Clone cards for continuous scrolling if needed
+      const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
+
+      // Calculate the width precisely
+      let trackWidth = 0;
+      originalCards.forEach((card) => {
+        const style = window.getComputedStyle(card);
+        const width =
+          card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
+        trackWidth += width;
+      });
+
+      // Add gap (24px between cards)
+      trackWidth += originalCards.length * 24;
+
+      // Create enough duplicates for smooth scrolling
+      const viewportWidth = window.innerWidth;
+      const requiredSets = Math.ceil((viewportWidth * 2) / trackWidth) + 1;
+
+      // Only clone if we don't already have enough cards
+      if (track.children.length < originalCards.length * requiredSets) {
+        for (let i = 0; i < requiredSets - 1; i++) {
+          originalCards.forEach((card) => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+          });
+        }
+      }
+
+      // Alternate direction and vary speed slightly by track index
+      const direction = index % 2 === 0 ? -1 : 1;
+      const speed = 0.3 + index * 0.1; // Less variation in speed to prevent sync issues
+
+      // Store precise values for animation
+      animations.push({
+        track,
+        position: direction > 0 ? -trackWidth : 0, // Start position
+        direction,
+        speed,
+        trackWidth,
+        lastTimestamp: 0, // Track last timestamp for each animation separately
+        initialPosition: direction > 0 ? -trackWidth : 0, // Store initial position for reset
+      });
+
+      // Set initial position
+      track.style.transform = `translate3d(${animations[index].position}px, 0, 0)`;
+    });
+
+    // Main animation loop with more precise timing
+    let lastTime = 0;
+    const animate = (currentTime) => {
+      if (!lastTime) lastTime = currentTime;
+      const deltaTime = Math.min(currentTime - lastTime, 100); // Cap max delta to prevent jumps
+      lastTime = currentTime;
+
+      let needsUpdate = false;
+
+      animations.forEach((animation) => {
+        // Calculate movement based on consistent time delta
+        const movement = animation.direction * animation.speed * (deltaTime * 0.05);
+        animation.position += movement;
+
+        // Reset position when needed for seamless loop
+        if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
+          // For left-moving tracks, reset precisely
+          animation.position = 0;
+          needsUpdate = true;
+        } else if (animation.direction > 0 && animation.position >= 0) {
+          // For right-moving tracks, reset precisely
+          animation.position = -animation.trackWidth;
+          needsUpdate = true;
+        }
+
+        // Apply transform with hardware acceleration
+        animation.track.style.transform = `translate3d(${
+          Math.round(animation.position * 100) / 100
+        }px, 0, 0)`;
+      });
+
+      // Store the animation frame reference for potential cancellation
+      window.testimonialAnimationFrame = requestAnimationFrame(animate);
+    };
+
+    // Start the animation
+    window.testimonialAnimationFrame = requestAnimationFrame(animate);
+
+    // Add event listener to pause animations when tab is not visible
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && window.testimonialAnimationFrame) {
+        cancelAnimationFrame(window.testimonialAnimationFrame);
+      } else if (!document.hidden) {
+        // Reset animation when returning to tab
+        lastTime = 0;
+        window.testimonialAnimationFrame = requestAnimationFrame(animate);
+      }
+    });
+  }, animationDelay);
+
+  // Reset on window resize to prevent glitches from layout changes
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      setupTestimonials();
+    }, 250)
+  );
+};
+
+// Add debounce function if not already defined
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+const setupMasonryGrid = () => {
+  // Get all necessary elements
+  const grid = document.querySelector(".dishes-grid");
+  const items = Array.from(document.querySelectorAll(".dish-item"));
+
+  // Configuration
+  const gap = 20; // Gap between items in pixels
+
+  // Function to get current column count based on viewport width
+  const getColumnCount = () => {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth <= 600) return 1;
+    if (viewportWidth <= 900) return 2;
+    if (viewportWidth <= 1200) return 3;
+    return 4;
+  };
+
+  // Function to layout the masonry grid
+  const layoutMasonry = () => {
+    if (!grid || items.length === 0) return;
+
+    // Get current column count based on viewport width
+    const columnCount = getColumnCount();
+
+    // Calculate column width (accounting for gaps)
+    const gridWidth = grid.clientWidth;
+    const columnWidth = (gridWidth - gap * (columnCount - 1)) / columnCount;
+
+    // Initialize arrays to track column heights
+    const columnHeights = Array(columnCount).fill(0);
+
+    // Position each item
+    items.forEach((item) => {
+      // Find the shortest column
+      const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+
+      // Calculate position
+      const x = shortestColumn * (columnWidth + gap);
+      const y = columnHeights[shortestColumn];
+
+      // Set item position and width
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+      item.style.width = `${columnWidth}px`;
+
+      // Get the image inside the item
+      const img = item.querySelector("img");
+
+      // Set the height of the card to maintain aspect ratio if possible
+      if (img.complete && img.naturalHeight > 0) {
+        const aspectRatio = img.naturalHeight / img.naturalWidth;
+        const cardHeight =
+          item.querySelector(".dish-card").offsetHeight || columnWidth * aspectRatio;
+
+        // Update column height
+        columnHeights[shortestColumn] += cardHeight + gap;
+      } else {
+        // For images that haven't loaded yet, use a default height
+        columnHeights[shortestColumn] += item.offsetHeight + gap;
+
+        // Add load event to recalculate once image loads
+        img.onload = () => {
+          layoutMasonry();
+        };
+      }
+    });
+
+    // Set the grid container height to the tallest column
+    grid.style.height = `${Math.max(...columnHeights)}px`;
+  };
+
+  // Debounce function to limit layout recalculations
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
+
+  // Initialize the layout
+  layoutMasonry();
+
+  // Recalculate on window resize with debounce
+  window.addEventListener("resize", debounce(layoutMasonry, 100));
+
+  // Recalculate when all images are loaded
+  window.addEventListener("load", layoutMasonry);
+
+  // Add MutationObserver to detect changes in the DOM
+  const observer = new MutationObserver(debounce(layoutMasonry, 100));
+  observer.observe(grid, { childList: true, subtree: true, attributes: true });
+
+  // Recalculate periodically in the first few seconds to handle any edge cases
+  const recalcIntervals = [100, 500, 1000, 2000];
+  recalcIntervals.forEach((interval) => {
+    setTimeout(layoutMasonry, interval);
+  });
+};
+
 const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
@@ -251,5 +498,7 @@ const main = () => {
   // enableParallax();
   animateCharactersAndImages();
   setupVideoControls();
+  setupTestimonials();
+  setupMasonryGrid(); // Add this new function call
 };
 main();
