@@ -1,5 +1,5 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = true;
+const skipAnimation = false;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
@@ -22,31 +22,56 @@ const enableParallax = () => {
   });
 };
 
-const animateCharacters = () => {
-  if (skipAnimation) return; // Skip if animations are disabled
-
-  const contentTitle = new SplitType("#midori-h1", { types: "chars" });
-  const contentText = new SplitType("#culinary-journey", { types: "chars" });
+const animateCharactersAndImages = () => {
+  const timeout = skipAnimation ? 0 : 7000;
+  // const contentTitle = new SplitType("#midori-h1", { types: "chars" });
+  const contentTitleTwo = new SplitType("#midori-h1-2", { types: "chars" });
+  // const contentText = new SplitType("#culinary-journey", { types: "chars" });
+  const images = document.querySelectorAll(".rotate-onload");
+  const rightText = document.getElementById("right-text");
+  const word = rightText.textContent.trim(); // Get the word "Right"
   // Animate characters using a js lib
   setTimeout(() => {
-    gsap.from(contentTitle.chars, {
+    setTimeout(() => {
+      console.log(document.getElementById("midori-h1").classList);
+      document.getElementById("midori-h1").style.transform = "rotateX(0deg)";
+      document.getElementById("midori-h1").style.color = "black";
+
+      console.log(document.getElementById("midori-h1"));
+    }, 2000);
+    const theText = document.getElementById("the-text");
+    theText.classList.add("active");
+
+    // Flip each character of "Right" one after another
+    rightText.innerHTML = "";
+    word.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.classList.add("flip-character");
+      rightText.appendChild(span);
+
+      // Delay each flip animation
+      setTimeout(() => {
+        span.classList.add("active");
+      }, index * 150); // 150ms delay per character
+    });
+    document.getElementById("bowl").style.transform =
+      "translateY(5px) scale(1)";
+    // Rotate "Way" in Y direction
+    document.getElementById("way-text").classList.add("active");
+    document.getElementById("the-text").classList.add("active");
+    images.forEach((img) => {
+      img.classList.add("rotated");
+    });
+    gsap.from(contentTitleTwo.chars, {
       opacity: 0,
-      y: 20,
+      y: 100,
       duration: 0.6,
       ease: "power2.out",
       stagger: 0.05,
     });
-
-    gsap.from(contentText.chars, {
-      opacity: 0,
-      y: 20,
-      duration: 0.3,
-      ease: "power2.out",
-      stagger: 0.01, // Gap between each character lifting up
-      delay: 0.3,
-    });
     console.log("Characters animated");
-  }, 7000);
+  }, timeout);
 };
 
 const hideMidoriOnload = () => {
@@ -88,10 +113,12 @@ const hideMidoriOnload = () => {
         postTransition.style.opacity = "1";
         document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
-          elem.style.transform = "translateY(5px)";
-          console.log(elem.style);
-        });
+        Array.from(document.getElementsByClassName("shiftDown")).forEach(
+          (elem) => {
+            elem.style.transform = "translateY(5px)";
+            console.log(elem.style);
+          }
+        );
       }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
@@ -180,10 +207,10 @@ const menuGreenTransition = () => {
     console.log(greenDot);
   });
 };
-
 const setupVideoControls = () => {
   const video = document.getElementById("hero-video");
   const playPauseBtn = document.getElementById("play-pause-btn");
+  video.play();
 
   if (!video || !playPauseBtn) return;
 
@@ -221,8 +248,8 @@ const main = () => {
   drawHorizontalLine();
   hideMidoriOnload();
   menuGreenTransition();
-  enableParallax();
-  animateCharacters();
+  // enableParallax();
+  animateCharactersAndImages();
   setupVideoControls();
 };
 main();
