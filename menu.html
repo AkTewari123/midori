@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midori</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/menu.css" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+
+  </head>
+
+  <nav
+  class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
+>
+  <ul class="flex items-center justify-between urbanist-regular text-xl">
+    <!-- Left Item -->
+    <li>
+      <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+      <a href="/" class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+        >Midori</a
+      >
+    </li>
+
+    <!-- Centered Items -->
+    <div class="flex w-[800px] h-[80px] py-2">
+      <ul class="flex w-full h-full bg-[#242425] rounded-xl">
+        <li
+          class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        >
+          <a href="#" class="w-full h-full flex justify-center items-center">Home</a>
+        </li>
+        <li
+          class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        >
+          <a href="#" class="w-full h-full flex justify-center items-center">About</a>
+        </li>
+        <li
+          class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        >
+          <a href="#" class="w-full h-full flex justify-center items-center">Contact</a>
+        </li>
+        <li
+          class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        >
+          <a href="#" class="w-full h-full flex justify-center items-center">Sources</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Item -->
+    <li class="relative inline-block">
+      <a
+        href="#"
+        class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+        id="menu"
+      >
+        <div
+          id="greendot"
+          class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+        ></div>
+        <p class="relative text-black transition-colors duration-300" id="menutext">Menu</p>
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="background"></div>
+    <div class="background-texture"></div>
+
+    <section class="carousel">
+      <h2 class="categories__title">Starters</h2>
+      <div class="carousel__container">
+        <div class="carousel-item">
+          <img
+            class="carousel-item__img"
+            src="https://images.pexels.com/photos/1071882/pexels-photo-1071882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="people"
+          />
+          <div class="carousel-item__details">
+            <div class="controls">
+              <span class="fas fa-play-circle"></span>
+              <span class="fas fa-plus-circle"></span>
+            </div>
+            <h5 class="carousel-item__details--title">Descriptive Title</h5>
+            <h6 class="carousel-item__details--subtitle">Date and Duration</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            class="carousel-item__img"
+            src="https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            alt="people"
+          />
+          <div class="carousel-item__details">
+            <div class="controls">
+              <span class="fas fa-play-circle"></span>
+              <span class="fas fa-plus-circle"></span>
+            </div>
+            <h5 class="carousel-item__details--title">Descriptive Title</h5>
+            <h6 class="carousel-item__details--subtitle">Date and Duration</h6>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            class="carousel-item__img"
+            src="https://images.pexels.com/photos/6945/sunset-summer-golden-hour-paul-filitchkin.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="people"
+          />
+          <div class="carousel-item__details">
+            <div class="controls">
+              <span class="fas fa-play-circle"></span>
+              <span class="fas fa-plus-circle"></span>
+            </div>
+            <h5 class="carousel-item__details--title">Descriptive Title</h5>
+            <h6 class="carousel-item__details--subtitle">Date and Duration</h6>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img
+            class="carousel-item__img"
+            src="https://images.pexels.com/photos/1964471/pexels-photo-1964471.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+            alt="people"
+          />
+          <div class="carousel-item__details">
+            <div class="controls">
+              <span class="fas fa-play-circle"></span>
+              <span class="fas fa-plus-circle"></span>
+            </div>
+            <h5 class="carousel-item__details--title">Descriptive Title</h5>
+            <h6 class="carousel-item__details--subtitle">Date and Duration</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+    
