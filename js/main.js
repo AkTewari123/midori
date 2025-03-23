@@ -1,5 +1,5 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = false;
+const skipAnimation = true;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
