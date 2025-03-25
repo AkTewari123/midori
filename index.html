@@ -15,35 +15,45 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   </head>
   <body data-barba="wrapper">
-    <div id="precursor" class="fixed bg-red-500 h-screen w-full">
+    <div id="precursor" class="fixed h-screen w-full">
+      <div
+        class="w-[300px] h-[300px] flex items-center justify-center bg-none fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+      >
+        <div>
+          <img
+            id="starter-icon"
+            src="images/favicon.ico"
+            class="w-[160px] h-[160px]"
+            alt="Centered Image"
+          />
+          <div class="text-center forum-extrabold text-emerald-800">
+            <h1 class="text-xl">Midori.</h1>
+            <p class="text-sm">Food Worth Savoring</p>
+          </div>
+        </div>
+      </div>
       <img
-        src="images/restaurant-one.jpg"
+        src="images/starter/restaurant-one.jpg"
         id="starter-one"
         class="onload-images w-[160px] h-[240px] absolute top-[50%] left-[50%]"
         alt=""
       />
       <img
-        src="images/restaurant-two.jpg"
+        src="images/starter/restaurant-two.jpg"
         id="starter-two"
         class="onload-images w-[160px] h-[240px] absolute top-[35%] left-[45%]"
         alt=""
       />
       <img
-        src="images/restaurant-three.jpg"
+        src="images/starter/restaurant-three.jpg"
         id="starter-three"
         class="onload-images w-[160px] h-[240px] absolute top-[25%] left-[50%]"
         alt=""
       />
       <img
-        src="images/restaurant-four.avif"
+        src="images/starter/restaurant-four.avif"
         id="starter-three"
         class="onload-images w-[160px] h-[240px] absolute top-[60%] left-[40%]"
-        alt=""
-      />
-      <img
-        src="images/noodles.png"
-        id="starter-three"
-        class="onload-images w-[160px] h-[240px] absolute top-[50%] left-[50%]"
         alt=""
       />
     </div>
@@ -52,6 +62,7 @@
       class="urbanist-regular hidden min-h-screen text-black"
     >
       <nav
+        id="navbar-starter"
         class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
       >
         <ul class="flex items-center justify-between urbanist-regular text-xl">

@@ -206,16 +206,16 @@ body {
   transform: scale(0);
   /* transform: translateY(-120px); */
 }
-/* 
-#starter-one {
-  animation: scaleUp 0.3s ease-in-out .1s forwards; /* 1s delay */
 
+#starter-icon {
+  transition: all 1s ease-out;
+}
 
 @keyframes scaleUp {
   0% {
     transform: scale(0);
   }
-  70% {
+  50% {
     transform: scale(1);
     
   }
