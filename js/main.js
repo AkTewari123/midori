@@ -61,7 +61,8 @@ const animateCharactersAndImages = () => {
         span.classList.add("active");
       }, index * 150); // 150ms delay per character
     });
-    document.getElementById("bowl").style.transform = "translateY(5px) scale(1)";
+    document.getElementById("bowl").style.transform =
+      "translateY(5px) scale(1)";
     // Rotate "Way" in Y direction
     document.getElementById("way-text").classList.add("active");
     document.getElementById("the-text").classList.add("active");
@@ -82,7 +83,7 @@ const animateCharactersAndImages = () => {
 const hideMidoriOnload = () => {
   console.log("JS Loaded");
 
-  const bg = document.getElementById("midori-background");
+  // const bg = document.getElementById("midori-background");
   document.getElementById("post-transition").style.color = "black";
   document.getElementById("post-transition").style.display = "none";
   document.getElementById("post-transition").style.opacity = "0";
@@ -91,17 +92,25 @@ const hideMidoriOnload = () => {
   // Skip animation if set to true
   if (skipAnimation) {
     // Immediately show the post-transition content
-    bg.style.display = "none";
-    document.getElementById("midori-background-2").style.display = "none";
-    const postTransition = document.getElementById("post-transition");
-    postTransition.style.display = "block";
-    postTransition.style.opacity = "1";
-    document.getElementById("precursor").style.display = "none";
-    postTransition.style.pointerEvents = "auto";
-    Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
-      elem.style.transform = "translateY(5px)";
-      console.log(elem.style);
-    });
+    // bg.style.display = "none";
+    // document.getElementById("midori-background-2").style.display = "none";
+    // const postTransition = document.getElementById("post-transition");
+    // postTransition.style.display = "block";
+    // postTransition.style.opacity = "1";
+    // document.getElementById("precursor").style.display = "none";
+
+    // postTransition.style.pointerEvents = "auto";
+    const startingImages = Array.from(
+      document.getElementsByClassName("onload-images")
+    );
+    console.log(startingImages);
+    for (let i = 0; i < startingImages.length; i++) {
+      setTimeout(() => {
+        startingImages[i].style.animation =
+          "scaleUp 2s ease-in-out .1s forwards";
+        console.log(startingImages[i].style.transform);
+      }, i * 1000);
+    }
     return;
   }
 
@@ -118,10 +127,12 @@ const hideMidoriOnload = () => {
         postTransition.style.opacity = "1";
         document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
-          elem.style.transform = "translateY(5px)";
-          console.log(elem.style);
-        });
+        Array.from(document.getElementsByClassName("shiftDown")).forEach(
+          (elem) => {
+            elem.style.transform = "translateY(5px)";
+            console.log(elem.style);
+          }
+        );
       }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
@@ -269,14 +280,18 @@ const setupTestimonials = () => {
 
     tracks.forEach((track, index) => {
       // Clone cards for continuous scrolling if needed
-      const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
+      const originalCards = Array.from(
+        track.querySelectorAll(".testimonial-card")
+      );
 
       // Calculate the width precisely
       let trackWidth = 0;
       originalCards.forEach((card) => {
         const style = window.getComputedStyle(card);
         const width =
-          card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
+          card.offsetWidth +
+          parseInt(style.marginLeft || 0) +
+          parseInt(style.marginRight || 0);
         trackWidth += width;
       });
 
@@ -327,11 +342,15 @@ const setupTestimonials = () => {
 
       animations.forEach((animation) => {
         // Calculate movement based on consistent time delta
-        const movement = animation.direction * animation.speed * (deltaTime * 0.05);
+        const movement =
+          animation.direction * animation.speed * (deltaTime * 0.05);
         animation.position += movement;
 
         // Reset position when needed for seamless loop
-        if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
+        if (
+          animation.direction < 0 &&
+          animation.position <= -animation.trackWidth
+        ) {
           // For left-moving tracks, reset precisely
           animation.position = 0;
           needsUpdate = true;

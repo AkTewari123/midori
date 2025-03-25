@@ -200,6 +200,30 @@ body {
   transform: scale(0.95);
 }
 
+.onload-images {
+  /* transition: all .4s ease-out; */
+  /* opacity: 0; */
+  transform: scale(0);
+  /* transform: translateY(-120px); */
+}
+/* 
+#starter-one {
+  animation: scaleUp 0.3s ease-in-out .1s forwards; /* 1s delay */
+
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1);
+    
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
 .video-control:focus {
   outline: none;
 }
