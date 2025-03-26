@@ -1,9 +1,4 @@
-#midori-background,
-#midori-background-2 {
-  transition-property: height, opacity;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
-}
+
 
 #white-line {
   transition-property: width;
@@ -16,49 +11,6 @@
   transition: transform 0.5s ease-in-out;
 }
 
-@keyframes imageAppearRestaurant {
-  0% {
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-    opacity: 0;
-  }
-  30% {
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-50%) scale(1) rotate(0deg);
-  }
-}
-
-@keyframes imageAppearNoodles {
-  0% {
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-    opacity: 0;
-  }
-  50.999% {
-    opacity: 1;
-  }
-  55% {
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-  }
-  75% {
-    transform: translateY(-50%) scale(1) rotate(0deg);
-  }
-}
-
-@keyframes imageAppearLeaf {
-  0% {
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-    transform: translateY(-50%) scale(0) rotate(-10deg);
-  }
-  30% {
-    transform: translateY(-50%) scale(1) rotate(0deg);
-  }
-}
 
 #leafintro {
   animation: imageAppearLeaf 5s ease-out;
@@ -128,17 +80,12 @@ video {
     height: 0vh;
   }
 }
-#post-transition {
-  opacity: 0;
-  pointer-events: none; /* Prevents interaction when hidden */
-  transition: all 500ms ease-in-out;
-  position: relative;
-  z-index: 10;
-  min-height: 100vh; /* Ensure it takes up full viewport height */
-}
+
 nav {
   position: relative;
   z-index: 20;
+  opacity: 0;
+  transition: all 1000ms ease-in-out;
 }
 .centeritem {
   margin: 0 30px;
@@ -188,7 +135,54 @@ body {
   padding: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
+#starter-icon {
+  transition: all 1s ease-out;
+  transition-delay: 2000ms;
+}
 
+@keyframes scaleUp {
+  0% {
+    transform: scale(0);
+  }
+  30% {
+    transform: scale(1.8);
+    
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+@keyframes finBackground {
+  0% {
+    transform: scale(2.2);
+}
+50% {
+    transform: scale(5);
+}
+100% {
+  width: 100%;
+  height: 100vh;
+  opacity: 1;
+}
+}
+#fin-section {
+  background-image: url("../images/starter/fin-background.jpeg");
+  z-index: 30;
+  width: 0px;
+  height: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: all .5s ease-in-out;
+}
+
+
+.onload-images {
+  /* transition: all .4s ease-out; */
+  /* opacity: 0; */
+  transform: scale(0);
+  /* transform: translateY(-120px); */
+}
 .video-control:hover {
   background-color: rgba(5, 121, 87, 1);
   transform: scale(1.1);
@@ -282,7 +276,6 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 .testimonial-track {
   will-change: transform;
   backface-visibility: hidden;

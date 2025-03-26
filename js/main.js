@@ -1,5 +1,5 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = true;
+const skipAnimation = false;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
@@ -26,153 +26,6 @@ const enableParallax = () => {
     // Slight parallax effect for video inside blockTwo
     video.style.transform = `translateY(${scrollY * 0.05}px)`;
   });
-};
-
-const animateCharactersAndImages = () => {
-  const timeout = skipAnimation ? 0 : 7000;
-  // const contentTitle = new SplitType("#midori-h1", { types: "chars" });
-  const contentTitleTwo = new SplitType("#midori-h1-2", { types: "chars" });
-  // const contentText = new SplitType("#culinary-journey", { types: "chars" });
-  const images = document.querySelectorAll(".rotate-onload");
-  const rightText = document.getElementById("right-text");
-  const word = rightText.textContent.trim(); // Get the word "Right"
-  // Animate characters using a js lib
-  setTimeout(() => {
-    setTimeout(() => {
-      console.log(document.getElementById("midori-h1").classList);
-      document.getElementById("midori-h1").style.transform = "rotateX(0deg)";
-      document.getElementById("midori-h1").style.color = "black";
-
-      console.log(document.getElementById("midori-h1"));
-    }, 2000);
-    const theText = document.getElementById("the-text");
-    theText.classList.add("active");
-
-    // Flip each character of "Right" one after another
-    rightText.innerHTML = "";
-    word.split("").forEach((char, index) => {
-      const span = document.createElement("span");
-      span.textContent = char;
-      span.classList.add("flip-character");
-      rightText.appendChild(span);
-
-      // Delay each flip animation
-      setTimeout(() => {
-        span.classList.add("active");
-      }, index * 150); // 150ms delay per character
-    });
-    document.getElementById("bowl").style.transform = "translateY(5px) scale(1)";
-    // Rotate "Way" in Y direction
-    document.getElementById("way-text").classList.add("active");
-    document.getElementById("the-text").classList.add("active");
-    images.forEach((img) => {
-      img.classList.add("rotated");
-    });
-    gsap.from(contentTitleTwo.chars, {
-      opacity: 0,
-      y: 100,
-      duration: 0.6,
-      ease: "power2.out",
-      stagger: 0.05,
-    });
-    console.log("Characters animated");
-  }, timeout);
-};
-
-const hideMidoriOnload = () => {
-  console.log("JS Loaded");
-
-  const bg = document.getElementById("midori-background");
-  document.getElementById("post-transition").style.color = "black";
-  document.getElementById("post-transition").style.display = "none";
-  document.getElementById("post-transition").style.opacity = "0";
-  console.log(document.getElementById("post-transition"));
-
-  // Skip animation if set to true
-  if (skipAnimation) {
-    // Immediately show the post-transition content
-    bg.style.display = "none";
-    document.getElementById("midori-background-2").style.display = "none";
-    const postTransition = document.getElementById("post-transition");
-    postTransition.style.display = "block";
-    postTransition.style.opacity = "1";
-    document.getElementById("precursor").style.display = "none";
-    postTransition.style.pointerEvents = "auto";
-    Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
-      elem.style.transform = "translateY(5px)";
-      console.log(elem.style);
-    });
-    return;
-  }
-
-  if (bg) {
-    // Trigger the transition after a slight delay to ensure the DOM is ready
-    setTimeout(() => {
-      bg.style.opacity = "0";
-      document.getElementById("midori-background-2").style.opacity = "0";
-      const postTransition = document.getElementById("post-transition");
-      postTransition.style.display = "block";
-      setTimeout(() => {
-        bg.style.display = "none";
-        document.getElementById("midori-background-2").style.display = "none";
-        postTransition.style.opacity = "1";
-        document.getElementById("precursor").style.display = "none";
-        postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
-          elem.style.transform = "translateY(5px)";
-          console.log(elem.style);
-        });
-      }, 2500);
-      console.log("Background height expanded");
-    }, 4500); // Delay to ensure the transition applies
-    setTimeout(() => {
-      console.log("All processes have completed");
-    }, 8000);
-  } else {
-    console.error("Background element not found");
-  }
-
-  // Initialize Barba.js transitions (optional, for page transitions)
-  barba.init({
-    transitions: [
-      {
-        name: "expand-background",
-        leave({ current }) {
-          // Collapse the background on leave
-          if (bg) {
-            bg.style.height = "0vh";
-          }
-          return new Promise((resolve) => {
-            bg.addEventListener("transitionend", resolve, { once: true });
-          });
-        },
-        beforeEnter() {
-          console.log("Page transition detected");
-          if (bg) {
-            bg.style.height = "0vh"; // Expand on transition
-          }
-        },
-      },
-    ],
-  });
-};
-
-const drawHorizontalLine = () => {
-  if (skipAnimation) return; // Skip if animations are disabled
-
-  console.log("Line Animation JS Loaded");
-
-  const whiteLine = document.getElementById("white-line");
-
-  if (whiteLine) {
-    // Trigger the transition after a slight delay to ensure the DOM is ready
-    setTimeout(() => {
-      whiteLine.style.width = "100%"; // Expand to full width
-      console.log("White line expanded");
-    }, 100); // Small delay to ensure the transition applies
-  } else {
-    console.error("White line element not found");
-  }
 };
 
 const menuGreenTransition = () => {
@@ -254,117 +107,122 @@ const setupTestimonials = () => {
   }
 
   // Delay starting animations if intro animation is playing
-  const animationDelay = skipAnimation ? 0 : 6000; // Wait for intro animation to complete
 
-  setTimeout(() => {
-    const tracks = document.querySelectorAll(".testimonial-track");
-    if (!tracks.length) return;
+  const tracks = document.querySelectorAll(".testimonial-track");
+  if (!tracks.length) return;
 
-    const animations = []; // Store animation data for each track
+  const animations = []; // Store animation data for each track
 
-    // Reset all tracks to initial state
-    tracks.forEach((track) => {
-      track.style.transform = "translate3d(0, 0, 0)";
+  // Reset all tracks to initial state
+  tracks.forEach((track) => {
+    track.style.transform = "translate3d(0, 0, 0)";
+  });
+
+  tracks.forEach((track, index) => {
+    // Clone cards for continuous scrolling if needed
+    const originalCards = Array.from(
+      track.querySelectorAll(".testimonial-card")
+    );
+
+    // Calculate the width precisely
+    let trackWidth = 0;
+    originalCards.forEach((card) => {
+      const style = window.getComputedStyle(card);
+      const width =
+        card.offsetWidth +
+        parseInt(style.marginLeft || 0) +
+        parseInt(style.marginRight || 0);
+      trackWidth += width;
     });
 
-    tracks.forEach((track, index) => {
-      // Clone cards for continuous scrolling if needed
-      const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
+    // Add gap (24px between cards)
+    trackWidth += originalCards.length * 24;
 
-      // Calculate the width precisely
-      let trackWidth = 0;
-      originalCards.forEach((card) => {
-        const style = window.getComputedStyle(card);
-        const width =
-          card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
-        trackWidth += width;
-      });
+    // Create enough duplicates for smooth scrolling
+    const viewportWidth = window.innerWidth;
+    const requiredSets = Math.ceil((viewportWidth * 2) / trackWidth) + 1;
 
-      // Add gap (24px between cards)
-      trackWidth += originalCards.length * 24;
+    // Only clone if we don't already have enough cards
+    if (track.children.length < originalCards.length * requiredSets) {
+      for (let i = 0; i < requiredSets - 1; i++) {
+        originalCards.forEach((card) => {
+          const clone = card.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+    }
 
-      // Create enough duplicates for smooth scrolling
-      const viewportWidth = window.innerWidth;
-      const requiredSets = Math.ceil((viewportWidth * 2) / trackWidth) + 1;
+    // Alternate direction and vary speed slightly by track index
+    const direction = index % 2 === 0 ? -1 : 1;
+    const speed = 0.3 + index * 0.1; // Less variation in speed to prevent sync issues
 
-      // Only clone if we don't already have enough cards
-      if (track.children.length < originalCards.length * requiredSets) {
-        for (let i = 0; i < requiredSets - 1; i++) {
-          originalCards.forEach((card) => {
-            const clone = card.cloneNode(true);
-            track.appendChild(clone);
-          });
-        }
+    // Store precise values for animation
+    animations.push({
+      track,
+      position: direction > 0 ? -trackWidth : 0, // Start position
+      direction,
+      speed,
+      trackWidth,
+      lastTimestamp: 0, // Track last timestamp for each animation separately
+      initialPosition: direction > 0 ? -trackWidth : 0, // Store initial position for reset
+    });
+
+    // Set initial position
+    track.style.transform = `translate3d(${animations[index].position}px, 0, 0)`;
+  });
+
+  // Main animation loop with more precise timing
+  let lastTime = 0;
+  const animate = (currentTime) => {
+    if (!lastTime) lastTime = currentTime;
+    const deltaTime = Math.min(currentTime - lastTime, 100); // Cap max delta to prevent jumps
+    lastTime = currentTime;
+
+    let needsUpdate = false;
+
+    animations.forEach((animation) => {
+      // Calculate movement based on consistent time delta
+      const movement =
+        animation.direction * animation.speed * (deltaTime * 0.05);
+      animation.position += movement;
+
+      // Reset position when needed for seamless loop
+      if (
+        animation.direction < 0 &&
+        animation.position <= -animation.trackWidth
+      ) {
+        // For left-moving tracks, reset precisely
+        animation.position = 0;
+        needsUpdate = true;
+      } else if (animation.direction > 0 && animation.position >= 0) {
+        // For right-moving tracks, reset precisely
+        animation.position = -animation.trackWidth;
+        needsUpdate = true;
       }
 
-      // Alternate direction and vary speed slightly by track index
-      const direction = index % 2 === 0 ? -1 : 1;
-      const speed = 0.3 + index * 0.1; // Less variation in speed to prevent sync issues
-
-      // Store precise values for animation
-      animations.push({
-        track,
-        position: direction > 0 ? -trackWidth : 0, // Start position
-        direction,
-        speed,
-        trackWidth,
-        lastTimestamp: 0, // Track last timestamp for each animation separately
-        initialPosition: direction > 0 ? -trackWidth : 0, // Store initial position for reset
-      });
-
-      // Set initial position
-      track.style.transform = `translate3d(${animations[index].position}px, 0, 0)`;
+      // Apply transform with hardware acceleration
+      animation.track.style.transform = `translate3d(${
+        Math.round(animation.position * 100) / 100
+      }px, 0, 0)`;
     });
 
-    // Main animation loop with more precise timing
-    let lastTime = 0;
-    const animate = (currentTime) => {
-      if (!lastTime) lastTime = currentTime;
-      const deltaTime = Math.min(currentTime - lastTime, 100); // Cap max delta to prevent jumps
-      lastTime = currentTime;
-
-      let needsUpdate = false;
-
-      animations.forEach((animation) => {
-        // Calculate movement based on consistent time delta
-        const movement = animation.direction * animation.speed * (deltaTime * 0.05);
-        animation.position += movement;
-
-        // Reset position when needed for seamless loop
-        if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
-          // For left-moving tracks, reset precisely
-          animation.position = 0;
-          needsUpdate = true;
-        } else if (animation.direction > 0 && animation.position >= 0) {
-          // For right-moving tracks, reset precisely
-          animation.position = -animation.trackWidth;
-          needsUpdate = true;
-        }
-
-        // Apply transform with hardware acceleration
-        animation.track.style.transform = `translate3d(${
-          Math.round(animation.position * 100) / 100
-        }px, 0, 0)`;
-      });
-
-      // Store the animation frame reference for potential cancellation
-      window.testimonialAnimationFrame = requestAnimationFrame(animate);
-    };
-
-    // Start the animation
+    // Store the animation frame reference for potential cancellation
     window.testimonialAnimationFrame = requestAnimationFrame(animate);
+  };
 
-    // Add event listener to pause animations when tab is not visible
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden && window.testimonialAnimationFrame) {
-        cancelAnimationFrame(window.testimonialAnimationFrame);
-      } else if (!document.hidden) {
-        // Reset animation when returning to tab
-        lastTime = 0;
-        window.testimonialAnimationFrame = requestAnimationFrame(animate);
-      }
-    });
-  }, animationDelay);
+  // Start the animation
+  window.testimonialAnimationFrame = requestAnimationFrame(animate);
+
+  // Add event listener to pause animations when tab is not visible
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && window.testimonialAnimationFrame) {
+      cancelAnimationFrame(window.testimonialAnimationFrame);
+    } else if (!document.hidden) {
+      // Reset animation when returning to tab
+      lastTime = 0;
+      window.testimonialAnimationFrame = requestAnimationFrame(animate);
+    }
+  });
 
   // Reset on window resize to prevent glitches from layout changes
   window.addEventListener(
@@ -383,7 +241,65 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
+const starterAnimation = () => {
+  document.getElementById("post-transition").style.display = "none";
+  document.getElementById("precursor").style.display = "block";
+  // Transition delay 2000ms
+  document.getElementById("starter-icon").style.transform = "translateY(-10px)";
+  document.getElementById("starter-icon").style.opacity = "0";
+  // Starts after starter-icon dissassembles
+  setTimeout(() => {
+    // Split text into characters using SplitType
+    const midoriSplit = new SplitType("#midori-header", { types: "chars" });
+    const foodSavingSplit = new SplitType("#food-saving", { types: "chars" });
 
+    gsap.to(midoriSplit.chars, {
+      y: -10, // Move up by 50px
+      opacity: 0, // Fade out
+      stagger: 0.05, // Stagger animation for each character
+      duration: 0.6,
+      ease: "power2.inOut",
+    });
+
+    gsap.to(foodSavingSplit.chars, {
+      y: -10,
+      opacity: 0,
+      stagger: 0.05,
+      duration: 0.6,
+      ease: "power2.inOut",
+      delay: 0.3, // Slight delay for a sequential effect
+    });
+  }, 2000);
+  // Does it after 2000ms + 1000ms
+  setTimeout(() => {
+    document.querySelector("nav").style.opacity = "1";
+  }, 3000);
+
+  const startingImages = Array.from(
+    document.getElementsByClassName("onload-images")
+  );
+  for (let i = 0; i < startingImages.length; i++) {
+    setTimeout(() => {
+      startingImages[i].style.animation = "scaleUp 2s ease-in-out .1s forwards";
+      console.log(startingImages[i].style.transform);
+    }, i * 500 + 3000);
+  }
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const finSection = document.getElementById("fin-section");
+  setTimeout(() => {
+    finSection.style.width = `${viewportWidth * 0.25}px`;
+    finSection.style.height = `${viewportHeight * 0.25}px`;
+  }, 500 * 6 + 3000);
+  setTimeout(() => {
+    // Set width and height to match the viewport
+    finSection.style.width = `${viewportWidth}px`;
+    finSection.style.height = `${viewportHeight}px`;
+    setTimeout(() => {
+      document.getElementById("post-transition").style.display = "block";
+    }, 2000);
+  }, 6000);
+};
 const setupMasonryGrid = () => {
   // Get all necessary elements
   const grid = document.querySelector(".dishes-grid");
@@ -572,29 +488,22 @@ const setupEnhancedVideoControls = () => {
 };
 
 const main = () => {
-  drawHorizontalLine();
-  hideMidoriOnload();
+  // hideMidoriOnload();
   menuGreenTransition();
-  // enableParallax();
-
-  // Replace the old video control setup with the new hero animations
-  // setupVideoControls();
-  initHeroAnimations();
 
   setupTestimonials();
-
+  starterAnimation();
   // Delay the masonry setup based on animation state
   if (skipAnimation) {
     // If animations are skipped, initialize immediately
-    setupMasonryGrid();
   } else {
     // If animations are playing, wait for them to complete
     // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
     setTimeout(() => {
       setupMasonryGrid();
       // Call again after a brief delay to account for any rendering delays
-      setTimeout(setupMasonryGrid, 1000);
-    }, 6000);
+      enableParallax();
+    }, 11000);
   }
 };
 main();
