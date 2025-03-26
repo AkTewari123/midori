@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midori about</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="js/about.js" type="module" defer></script>
+    <script src="js/main.js" type="module" defer></script>
+
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+
+    
+    
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background-color: white;
+        position: relative;
+      }
+
+      .step {
+        background-color: #057957;
+        position: absolute;
+        right: 0;
+        animation: shrinkHeight 2s ease-in-out forwards;
+      }
+
+      /* Positioning each step at different vertical levels */
+      .step:nth-child(1) {
+        width: 20%;
+
+        height: 100vh;
+        animation-delay: 0.2s;
+      }
+      .step:nth-child(2) {
+        width: 20%;
+        right: 20%;
+        height: 100vh;
+        animation-delay: 0.4s;
+      }
+      .step:nth-child(3) {
+        width: 20%;
+        right: 40%;
+
+        height: 100vh;
+        animation-delay: 0.6s;
+      }
+      .step:nth-child(4) {
+        width: 20%;
+        right: 60%;
+        height: 100vh;
+        animation-delay: 0.8s;
+      }
+      .step:nth-child(5) {
+        width: 20%;
+        right: 80%;
+
+        height: 100vh;
+        animation-delay: 1s;
+      }
+
+      @keyframes shrinkHeight {
+        0% {
+          height: 100vh;
+        }
+        100% {
+          height: 0vh;
+        }
+      }
+
+      #post-transition {
+        padding-top: 120px; /* Space for fixed nav */
+      }
+
+      .timeline-container {
+        padding-top: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body data-barba="wrapper">
+    <div id="precursor">
+      <div class="absolute w-full">
+        <div class="step w-1/5"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+        <div class="step"></div>
+      </div>
+      <div data-barba="container" data-barba-namespace="home">
+        <div
+          class="h-screen bottom-0 left-0 w-full absolute"
+          id="midori-background"
+        >
+          <div class="absolute bottom-0 left-0 p-4 text-white">
+            <h1
+              id="midori-header"
+              class="forum-extrabold text-[120px] inline-block decoration-black"
+            >
+              <b> Midori </b>
+            </h1>
+          </div>
+        </div>
+        <div id="midori-background-2" class="absolute w-full top-1/2 h-[2px]">
+          <!-- Preparing Text -->
+          <p
+            class="text-white urbanist-light ml-2 absolute -top-8 text-xl left-0"
+            id="preparing"
+          >
+            Preparing your menu...
+          </p>
+
+          <!-- White Line -->
+          <div
+            class="absolute top-1/2 left-0 h-[2px] bg-white transform -translate-y-1/2 w-0 transition-all duration-3000 ease-in-out"
+            id="white-line"
+          ></div>
+
+          <!-- Image Breaks -->
+          <img
+            src="images/leaf.png"
+            class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-[160px] onloadimages aspect-square"
+            alt="Leaf"
+            id="leafintro"
+          />
+          <img
+            src="images/curry.png"
+            class="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-48 onloadimages aspect-square"
+            alt="Restaurant"
+            id="restaurant-intro"
+          />
+          <img
+            src="images/noodles.png"
+            class="absolute top-1/2 left-3/4 transform -translate-y-1/2 w-48 onloadimages aspect-square"
+            alt="Noodles"
+            id="noodles-intro"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      id="post-transition"
+      class="urbanist-regular min-h-screen text-black"
+    >
+      <nav
+        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
+      >
+        <ul class="flex items-center justify-between urbanist-regular text-xl">
+          <!-- Left Item -->
+          <li>
+            <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+            <a
+              href="/"
+              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+              >Midori</a
+            >
+          </li>
+
+          <!-- Centered Items -->
+          <div class="flex w-[800px] h-[80px] py-2">
+            <ul class="flex w-full h-full bg-[#242425] rounded-xl">
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Home</a
+                >
+              </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="about.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >About</a
+                >
+              </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Contact</a
+                >
+              </li>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Sources</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right Item -->
+          <li class="relative inline-block">
+            <a
+              href="#"
+              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+              id="menu"
+            >
+              <div
+                id="greendot"
+                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+              ></div>
+              <p
+                class="relative text-black transition-colors duration-300"
+                id="menutext"
+              >
+                Menu
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+
+      <button class="toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  
+      <div class="timeline-container" id="timeline-container">
+        <div class="timeline-header">
+          <h2 class="timeline-title">Changelog from my journey</h2>
+          <p class="timeline-description">
+            I've been working on Aceternity for the past 2 years. Here's a timeline of my journey.
+          </p>
+        </div>
+    
+        <div class="timeline-content" id="timeline-content">
+          <!-- Timeline entries will be populated by JavaScript -->
+        </div>
+      </div>
+
+
+    <script src="about.js" defer></script>
+
+    <script>
+      // Timeline data
+      const timelineData = [
+        {
+          title: "Our Beginning",
+          content: `
+            <p>Started Midori with a vision to bring authentic Japanese cuisine to our community.</p>
+            <p>Gathered our initial team of passionate chefs and food enthusiasts.</p>
+          `
+        },
+        {
+          title: "Growth",
+          content: `
+            <p>Expanded our menu to include more traditional dishes.</p>
+            <p>Started sourcing ingredients directly from Japanese suppliers.</p>
+          `
+        },
+        {
+          title: "Innovation",
+          content: `
+            <p>Introduced modern fusion dishes while maintaining authenticity.</p>
+            <p>Launched our special seasonal menu featuring local ingredients.</p>
+          `
+        },
+        {
+          title: "Community",
+          content: `
+            <p>Started hosting Japanese cooking workshops.</p>
+            <p>Established partnerships with local farmers.</p>
+          `
+        }
+      ];
+
+      // Initialize timeline on page load
+      window.addEventListener('load', () => {
+        if (document.getElementById('timeline-content')) {
+          initTimeline();
+        }
+      });
+    </script>
+      
+  </body>
+</html>

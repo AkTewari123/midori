@@ -1,5 +1,5 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = false;
+const skipAnimation = true;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
@@ -61,8 +61,7 @@ const animateCharactersAndImages = () => {
         span.classList.add("active");
       }, index * 150); // 150ms delay per character
     });
-    document.getElementById("bowl").style.transform =
-      "translateY(5px) scale(1)";
+    document.getElementById("bowl").style.transform = "translateY(5px) scale(1)";
     // Rotate "Way" in Y direction
     document.getElementById("way-text").classList.add("active");
     document.getElementById("the-text").classList.add("active");
@@ -119,12 +118,10 @@ const hideMidoriOnload = () => {
         postTransition.style.opacity = "1";
         document.getElementById("precursor").style.display = "none";
         postTransition.style.pointerEvents = "auto"; // Enable interaction
-        Array.from(document.getElementsByClassName("shiftDown")).forEach(
-          (elem) => {
-            elem.style.transform = "translateY(5px)";
-            console.log(elem.style);
-          }
-        );
+        Array.from(document.getElementsByClassName("shiftDown")).forEach((elem) => {
+          elem.style.transform = "translateY(5px)";
+          console.log(elem.style);
+        });
       }, 2500);
       console.log("Background height expanded");
     }, 4500); // Delay to ensure the transition applies
@@ -392,6 +389,12 @@ const setupMasonryGrid = () => {
   const grid = document.querySelector(".dishes-grid");
   const items = Array.from(document.querySelectorAll(".dish-item"));
 
+  // Exit early if elements don't exist
+  if (!grid || items.length === 0) {
+    console.warn("Masonry grid elements not found");
+    return;
+  }
+
   // Configuration
   const gap = 20; // Gap between items in pixels
 
@@ -407,6 +410,12 @@ const setupMasonryGrid = () => {
   // Function to layout the masonry grid
   const layoutMasonry = () => {
     if (!grid || items.length === 0) return;
+
+    // Check if grid is actually visible and has width
+    if (grid.offsetParent === null || grid.clientWidth === 0) {
+      console.log("Grid not visible or has zero width, delaying layout");
+      return;
+    }
 
     // Get current column count based on viewport width
     const columnCount = getColumnCount();
@@ -436,39 +445,30 @@ const setupMasonryGrid = () => {
       const img = item.querySelector("img");
 
       // Set the height of the card to maintain aspect ratio if possible
-      if (img.complete && img.naturalHeight > 0) {
-        const aspectRatio = img.naturalHeight / img.naturalWidth;
-        const cardHeight =
-          item.querySelector(".dish-card").offsetHeight || columnWidth * aspectRatio;
+      let itemHeight = item.offsetHeight;
+      if (itemHeight <= 0) {
+        // Fallback if height not available
+        itemHeight = columnWidth * 0.8; // Default aspect ratio
+      }
 
-        // Update column height
-        columnHeights[shortestColumn] += cardHeight + gap;
-      } else {
-        // For images that haven't loaded yet, use a default height
-        columnHeights[shortestColumn] += item.offsetHeight + gap;
+      // Update column height
+      columnHeights[shortestColumn] += itemHeight + gap;
 
-        // Add load event to recalculate once image loads
+      // Add load event to recalculate once image loads if needed
+      if (!img.complete || img.naturalHeight === 0) {
         img.onload = () => {
-          layoutMasonry();
+          setTimeout(layoutMasonry, 50);
         };
       }
     });
 
     // Set the grid container height to the tallest column
-    grid.style.height = `${Math.max(...columnHeights)}px`;
-  };
+    const maxHeight = Math.max(...columnHeights);
+    if (maxHeight > 0) {
+      grid.style.height = `${maxHeight}px`;
+    }
 
-  // Debounce function to limit layout recalculations
-  const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
+    console.log("Masonry layout updated, height:", maxHeight);
   };
 
   // Initialize the layout
@@ -484,11 +484,91 @@ const setupMasonryGrid = () => {
   const observer = new MutationObserver(debounce(layoutMasonry, 100));
   observer.observe(grid, { childList: true, subtree: true, attributes: true });
 
-  // Recalculate periodically in the first few seconds to handle any edge cases
-  const recalcIntervals = [100, 500, 1000, 2000];
+  // Schedule multiple layout recalculations to ensure proper display
+  const recalcIntervals = [100, 500, 1000, 2000, 3000];
   recalcIntervals.forEach((interval) => {
     setTimeout(layoutMasonry, interval);
   });
+};
+
+// Add this new function for hero animations
+const initHeroAnimations = () => {
+  const timeout = skipAnimation ? 0 : 7000;
+
+  setTimeout(() => {
+    // Activate all animation elements
+    const textElements = document.querySelectorAll(".hero-text-reveal");
+    const descElement = document.querySelector(".hero-desc-reveal");
+    const buttonsElement = document.querySelector(".hero-buttons-reveal");
+    const videoContainer = document.querySelector(".hero-video-container");
+    const statsElement = document.querySelector(".hero-stats-reveal");
+    const borderElement = document.querySelector(".hero-border");
+
+    // Activate all elements with appropriate timing
+    if (textElements) {
+      textElements.forEach((el) => el.classList.add("active"));
+    }
+
+    if (descElement) descElement.classList.add("active");
+    if (buttonsElement) buttonsElement.classList.add("active");
+    if (videoContainer) videoContainer.classList.add("active");
+    if (statsElement) statsElement.classList.add("active");
+    if (borderElement) borderElement.classList.add("active");
+
+    // Enhanced video controls setup
+    setupEnhancedVideoControls();
+  }, timeout);
+};
+
+// Enhanced video controls with better UX
+const setupEnhancedVideoControls = () => {
+  const video = document.getElementById("hero-video");
+  const playPauseBtn = document.getElementById("play-pause-btn");
+
+  if (!video || !playPauseBtn) return;
+
+  // Add hover event to show controls more prominently
+  const videoContainer = document.querySelector(".hero-video-container");
+  if (videoContainer) {
+    videoContainer.addEventListener("mouseenter", () => {
+      playPauseBtn.style.opacity = "1";
+    });
+
+    videoContainer.addEventListener("mouseleave", () => {
+      if (!video.paused) {
+        // Only fade if video is playing
+        playPauseBtn.style.opacity = "0.7";
+      }
+    });
+  }
+
+  // Update button state based on video state
+  const updateButtonState = () => {
+    if (video.paused) {
+      playPauseBtn.classList.remove("video-playing");
+      if (playPauseBtn) playPauseBtn.style.opacity = "1";
+    } else {
+      playPauseBtn.classList.add("video-playing");
+      if (playPauseBtn) playPauseBtn.style.opacity = "0.7";
+    }
+  };
+
+  // Initial state
+  updateButtonState();
+
+  // Toggle play/pause on button click
+  playPauseBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    updateButtonState();
+  });
+
+  // Update button when video state changes
+  video.addEventListener("play", updateButtonState);
+  video.addEventListener("pause", updateButtonState);
 };
 
 const main = () => {
@@ -496,9 +576,25 @@ const main = () => {
   hideMidoriOnload();
   menuGreenTransition();
   // enableParallax();
-  animateCharactersAndImages();
-  setupVideoControls();
+
+  // Replace the old video control setup with the new hero animations
+  // setupVideoControls();
+  initHeroAnimations();
+
   setupTestimonials();
-  setupMasonryGrid(); // Add this new function call
+
+  // Delay the masonry setup based on animation state
+  if (skipAnimation) {
+    // If animations are skipped, initialize immediately
+    setupMasonryGrid();
+  } else {
+    // If animations are playing, wait for them to complete
+    // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
+    setTimeout(() => {
+      setupMasonryGrid();
+      // Call again after a brief delay to account for any rendering delays
+      setTimeout(setupMasonryGrid, 1000);
+    }, 6000);
+  }
 };
 main();
