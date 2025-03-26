@@ -19,17 +19,6 @@ const timelineData = [
       content: `
         <p>Launched the beta version with improved UI/UX and additional features.</p>
         <p>Started growing our community and addressing user feedback.</p>
-        <p>Launched the beta version with improved UI/UX and additional features.</p>
-        <p>Started growing our community and addressing user feedback.</p>
-        <p>Launched the beta version with improved UI/UX and additional features.</p>
-        <p>Started growing our community and addressing user feedback.</p>
-        <p>Launched the beta version with improved UI/UX and additional features.</p>
-        <p>Started growing our community and addressing user feedback.</p>
-        <p>Launched the beta version with improved UI/UX and additional features.</p>
-        <p>Started growing our community and addressing user feedback.</p>
-        <p>Launched the beta version with improved UI/UX and additional features.</p>
-        <p>Started growing our community and addressing user feedback.</p>
-        
       `
     },
     {
