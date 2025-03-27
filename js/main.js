@@ -274,15 +274,16 @@ const starterAnimation = () => {
   setTimeout(() => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
-
+  document.getElementById("loader").style.display = "none";
   const startingImages = Array.from(
     document.getElementsByClassName("onload-images")
   );
   for (let i = 0; i < startingImages.length; i++) {
     setTimeout(() => {
-      startingImages[i].style.animation = "scaleUp 2s ease-in-out .1s forwards";
+      startingImages[i].style.animation =
+        "scaleUp 1.5s ease-in-out .1s forwards";
       console.log(startingImages[i].style.transform);
-    }, i * 500 + 3000);
+    }, i * 500 + 4000);
   }
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
@@ -290,15 +291,19 @@ const starterAnimation = () => {
   setTimeout(() => {
     finSection.style.width = `${viewportWidth * 0.25}px`;
     finSection.style.height = `${viewportHeight * 0.25}px`;
-  }, 500 * 6 + 3000);
+  }, 500 * 6 + 4000);
   setTimeout(() => {
     // Set width and height to match the viewport
-    finSection.style.width = `${viewportWidth}px`;
-    finSection.style.height = `${viewportHeight}px`;
+    finSection.style.width = `100%`;
+    finSection.style.height = `100%`;
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "block";
+    }, 1000);
     setTimeout(() => {
       document.getElementById("post-transition").style.display = "block";
+      document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
-  }, 6000);
+  }, 7000);
 };
 const setupMasonryGrid = () => {
   // Get all necessary elements
