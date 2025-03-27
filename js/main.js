@@ -241,7 +241,7 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
-const starterAnimation = () => {
+const startingAnimation = () => {
   document.getElementById("post-transition").style.display = "none";
   document.getElementById("precursor").style.display = "block";
   // Transition delay 2000ms
@@ -289,9 +289,11 @@ const starterAnimation = () => {
   const viewportHeight = window.innerHeight;
   const finSection = document.getElementById("fin-section");
   setTimeout(() => {
-    finSection.style.width = `${viewportWidth * 0.25}px`;
-    finSection.style.height = `${viewportHeight * 0.25}px`;
+    finSection.style.transition = "all 1.2s cubic-bezier(0.7, 0, 0.3, 1)";
+    finSection.style.width = `${viewportWidth * 0.4}px`;
+    finSection.style.height = `${viewportHeight * 0.4}px`;
   }, 500 * 6 + 4000);
+
   setTimeout(() => {
     // Set width and height to match the viewport
     finSection.style.width = `100%`;
@@ -301,9 +303,12 @@ const starterAnimation = () => {
     }, 1000);
     setTimeout(() => {
       document.getElementById("post-transition").style.display = "block";
+      for (let i = 0; i < startingImages.length; i++) {
+        startingImages[i].style.display = "none";
+      }
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
-  }, 7000);
+  }, 8000);
 };
 const setupMasonryGrid = () => {
   // Get all necessary elements
@@ -497,7 +502,7 @@ const main = () => {
   menuGreenTransition();
 
   setupTestimonials();
-  starterAnimation();
+  startingAnimation();
   // Delay the masonry setup based on animation state
   if (skipAnimation) {
     // If animations are skipped, initialize immediately

@@ -177,7 +177,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  transition: all .5s ease-in-out;
+  transition: all 1s cubic-bezier(0.7, 0, 0.3, 1)  ;
+
+  ;
 }
 
 
