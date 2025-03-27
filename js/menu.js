@@ -6,20 +6,12 @@ addEventListener("scroll", () => {
     const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
 
-    // check scroll direction
-    const distance = scrollTop - lastScrollTop;
-    const currentTop = parseInt(
-        getComputedStyle(navbar).opacity.split("%")
-    );
+    // Calculate opacity as a value between 0 and 1
+    const maxScroll = 100; // Maximum scroll value for full opacity
+    const amount = Math.min(scrollTop / maxScroll, 1); // Clamp value between 0 and 1
 
-    // Clamp value between 0 and 100
-    let amount = Math.max(
-        Math.min(window.pageYOffset, 100), 0
-    );
-
-    console.log(window.pageYOffset, currentTop, Math.abs(distance));
-
-    navbar.style.opacity = `${amount}%`;
+    // Apply the calculated opacity
+    navbar.style.opacity = amount;
 
     lastScrollTop = scrollTop;
 });

@@ -1,5 +1,3 @@
-
-
 #white-line {
   transition-property: width;
   transition-duration: 4s;
@@ -92,6 +90,7 @@ nav {
 }
 
 .hoveritem {
+  background-color: rgba(5, 121, 87, 0.1); /* Add a slight green background */
   transition: all 0.25s ease-in-out;
   border-radius: 10px;
   color: white !important;
@@ -102,7 +101,7 @@ nav {
 }
 
 .hoveritem:hover {
-  background-color: #e2e8f0;
+  background-color: rgba(5, 121, 87, 0.2); /* Slightly darker green on hover */
 }
 li {
   color: black !important;
@@ -547,6 +546,10 @@ body {
   .dish-description {
     font-size: 0.85rem;
   }
+
+  .hoveritem {
+    background-color: transparent; /* Ensure no background color at smaller sizes */
+  }
 }
 
 /* Menu Link Styles - Updated for better integration with gradient */
@@ -895,4 +898,52 @@ footer button {
   .hero-video-container {
     margin-top: 2rem;
   }
+}
+
+.background-container {
+  height: 60vh; /* Set the height to 20% of the viewport */
+  position: relative;
+  overflow: hidden; /* Ensure content stays within the container */
+}
+
+.background-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1;
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+h1 {
+  font-family: "Urbanist", sans-serif; /* Match the font of menu cards */
+  font-weight: 700; /* Bold font for the title */
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center; /* Ensure text alignment is centered */
+}
+
+/* Ensure carousel items are positioned correctly */
+.carousel__container {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  /* Removed background color and border radius */
+}
+
+section.carousel h2.categories__title {
+  font-size: 2.5rem !important; /* Force the font size */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.categories__title {
+  font-size: 10.5rem; /* Increased font size */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
