@@ -36,14 +36,14 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
   }
-  
+
 .background {
-  background: url('https://images.pexels.com/photos/1095624/pexels-photo-1095624.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260')
-    center top no-repeat #252746;
+  background: url('images/starter/fin-background.avif')
+    bottom bottom no-repeat #252746;
   background-size: cover;
   display: block;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
   position: relative;
   z-index: 0;
   top: 0;
@@ -51,15 +51,14 @@ body {
 }
 
 .background-texture {
-  /* Removed outdated -webkit-gradient for modern browser compatibility */
-  background: linear-gradient(to top, #0f0140e6, rgba(255, 214, 117, 0.9));
+  background: url("/images/menu_bg.png");
   background-size: cover;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
   position: absolute;
-  z-index: 0;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .carousel {
@@ -74,14 +73,17 @@ body {
 
 .carousel__container {
   white-space: nowrap;
-  margin: 70px 0px;
+  margin: 30px 0px;/* 
   padding-bottom: 10px;
-  display: inline-block;
+  display: inline-block; */
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
 }
 
 .categories__title {
   color: rgb(77, 55, 102);
-  font-size: 100px;
+  font-size: 28px;
   position: absolute;
   padding-left: 30px;
 }
@@ -188,35 +190,6 @@ body {
   text-wrap: wrap;
 }
 
-body {
-  margin: 0;
-  font-family: 'Muli', sans-serif;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.background {
-  background: url('https://www.shutterstock.com/image-photo/various-asian-meals-on-rustic-600nw-1125066479.jpg')
-      center top no-repeat #252746;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  z-index: 0;
-}
-
-.background-texture {
-  background: url("/images/menu_bg.png");
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-
-
 /* Custom scrollbar styling */
 .carousel::-webkit-scrollbar {
   height: 8px;
@@ -229,19 +202,6 @@ body {
 .carousel::-webkit-scrollbar-thumb {
   background: #62dc9d;
   border-radius: 10px;
-}
-
-.carousel__container {
-  display: flex;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-.categories__title {
-  color: rgb(77, 55, 102);
-  font-size: 28px;
-  position: absolute;
-  padding-left: 30px;
 }
 
 .menu-container {

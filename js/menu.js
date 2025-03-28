@@ -1,7 +1,8 @@
 "use client";
-
+/* 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { consoleOrigin } from "firebase-tools/lib/api";
 
 export const InfiniteMovingCards = ({
   items,
@@ -65,8 +66,9 @@ export const InfiniteMovingCards = ({
         ))}
       </ul>
     </div>
-  );
-};
+  ); 
+};*/
+
 const navbar = document.getElementById("navbar");
 
 let lastScrollTop = 0;
@@ -79,6 +81,7 @@ addEventListener("scroll", () => {
     const maxScroll = 100; // Maximum scroll value for full opacity
     const amount = Math.min(scrollTop / maxScroll, 1); // Clamp value between 0 and 1
 
+    console.log(amount)
     // Apply the calculated opacity
     navbar.style.opacity = amount;
 
