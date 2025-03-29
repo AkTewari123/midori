@@ -142,17 +142,18 @@ body {
 
 @keyframes scaleUp {
   0% {
-    transform: scale(0);
+    transform: scale(1); /* Start at normal scale (adjust if needed) */
+    clip-path: inset(45% 40% 45% 40%); /* Small centered rectangle (adjust based on aspect ratio) */
   }
   30% {
-    transform: scale(1.8);
-    
+    transform: scale(1.8); /* Optional: Add scale for dramatic effect */
+    clip-path: inset(20% 15% 20% 15%); /* Expanding outward */
   }
   100% {
-    transform: scale(2);
+    transform: scale(2); /* Final scale */
+    clip-path: inset(0 0 0 0); /* Fully revealed */
   }
 }
-
 #white-gradient {
   transition: opacity 500ms ease-in-out;
 }
@@ -231,6 +232,22 @@ body {
 
   transform: rotateZ(0deg) translateY(0px);
 }
+.loader-header {
+  opacity: 0;
+  transition: all 800ms ease-out;
+  transition-delay: 500ms;
+  transform: rotateZ(30deg) translateX(-50px) translateY(-120px);
+  display: inline-block;
+
+}
+/* After JS applies the class */
+.loader-header.active {
+  opacity: 1;
+
+  transform: rotateZ(0deg) translateY(-120px);
+
+}
+
 
 /* Flip each character individually */
 .flip-character {
@@ -835,8 +852,9 @@ footer button {
   display: block;
 }
 .onload-images {
-  width: 140px;
-  height: auto; /* Maintain aspect ratio */
+  width: 140px;  
+  height: auto; 
+  /* object-fit: none; Image keeps its original size */
 }
 
 #centered-list {

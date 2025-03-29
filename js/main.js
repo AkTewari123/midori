@@ -299,6 +299,7 @@ const startingAnimation = () => {
     finSection.style.width = `100%`;
     finSection.style.height = `100%`;
     setTimeout(() => {
+      document.getElementById("loader").style.height = "100vh";
       document.getElementById("loader").style.display = "block";
     }, 1000);
     setTimeout(() => {
@@ -306,6 +307,10 @@ const startingAnimation = () => {
       for (let i = 0; i < startingImages.length; i++) {
         startingImages[i].style.display = "none";
       }
+      const loaderHeaders = Array.from(
+        document.getElementsByClassName("loader-header")
+      );
+      loaderHeaders.forEach((header) => header.classList.add("active"));
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
   }, 8000);
