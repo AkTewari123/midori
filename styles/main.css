@@ -294,8 +294,12 @@ body {
 
 /* Testimonial Section Styles */
 #testimonial-section {
-  position: relative;
-  overflow: hidden;
+  height: 900px;
+  width: 900px;
+  display: block;
+}
+#post-transition {
+  display: block;
 }
 .testimonial-track {
   will-change: transform;
