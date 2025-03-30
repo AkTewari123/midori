@@ -225,12 +225,12 @@ const setupTestimonials = () => {
   });
 
   // Reset on window resize to prevent glitches from layout changes
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      setupTestimonials();
-    }, 250)
-  );
+  // window.addEventListener(
+  //   "resize",
+  //   debounce(() => {
+  //     setupTestimonials();
+  //   }, 250)
+  // );
 };
 
 // Add debounce function if not already defined
