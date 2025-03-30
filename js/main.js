@@ -31,39 +31,42 @@ const enableParallax = () => {
 };
 
 const menuGreenTransition = () => {
-  document.getElementById("menu").addEventListener("mouseenter", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu");
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseenter", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    // Get the mouse X position relative to the "menu" element
-    const menuRect = menuElement.getBoundingClientRect();
-    const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
-    const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
-    console.log(menuRect);
-    // Position the green dot horizontally within "menu"
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
+      // Get the mouse X position relative to the "menu" element
+      const menuRect = menuElement.getBoundingClientRect();
+      const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
+      const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
+      console.log(menuRect);
+      // Position the green dot horizontally within "menu"
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
+      // Scale it by 20
+      greenDot.style.transform = "scale(20)";
 
-    // Scale it by 20
-    greenDot.style.transform = "scale(20)";
+      console.log(greenDot);
+    });
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseleave", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    console.log(greenDot);
-  });
-  document.getElementById("menu").addEventListener("mouseleave", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu");
+      const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
+      const relativeX = event.clientX - menuRect.left;
+      const relativeY = event.clientY - menuRect.top;
+      console.log(menuRect);
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
 
-    const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
-    const relativeX = event.clientX - menuRect.left;
-    const relativeY = event.clientY - menuRect.top;
-    console.log(menuRect);
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
+      greenDot.style.transform = "scale(.01)";
 
-    greenDot.style.transform = "scale(.01)";
-
-    console.log(greenDot);
-  });
+      console.log(greenDot);
+    });
 };
 const setupVideoControls = () => {
   const video = document.getElementById("hero-video");
