@@ -439,12 +439,6 @@ body {
   }
 }
 
-@media (max-width: 1150px) {
-  #centered-list {
-    width: 450px;
-    height: 80px;
-  }
-}
 @media (max-width: 900px) {
   .dish-item {
     width: calc(50% - 20px); /* 2 columns */
@@ -857,50 +851,21 @@ footer button {
   .hero-title {
     font-size: 3.5rem;
   }
-  .onload-images {
-    width: 120px;
-    height: auto; /* Maintain aspect ratio */
-  }
-  
-}
-
-@media (max-width: 850px) {
-  #main-nav {
-    margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  #centered-list {
-    display: none;
-  }
 }
 
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.75rem;
   }
-  .onload-images {
-    width: 100px;
-    height: auto; /* Maintain aspect ratio */
-  }
+
   .hero-description p {
     font-size: 1rem;
   }
- 
-  #left-midori {
-    width: 200px;
-  }
-  
-  
 }
 
 @media (max-width: 640px) {
   #hero .container {
     padding-top: 6rem;
-  }
-  .onload-images {
-    width: 80px;
-    height: auto; /* Maintain aspect ratio */
   }
 
   .hero-video-container {

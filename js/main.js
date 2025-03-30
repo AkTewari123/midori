@@ -275,17 +275,16 @@ const startingAnimation = () => {
   setTimeout(() => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
-  // document.getElementById("loader").style.display = "none";
+
   const startingImages = Array.from(
     document.getElementsByClassName("onload-images")
   );
   for (let i = 0; i < startingImages.length; i++) {
     const img = startingImages[i];
     setTimeout(() => {
-      img.style.clipPath = "inset(0)";
-      img.style.transform = "scale(2)";
-      img.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
-    }, i * 500 + 4000);
+      startingImages[i].style.animation = "scaleUp 2s ease-in-out .1s forwards";
+      console.log(startingImages[i].style.transform);
+    }, i * 500 + 3000);
   }
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
@@ -293,14 +292,15 @@ const startingAnimation = () => {
   finSection.style.width = `${viewportWidth * 0.4}px`;
   finSection.style.height = `${viewportHeight * 0.4}px`;
   setTimeout(() => {
-    finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
-    finSection.style.clipPath = "inset(0)";
-  }, 500 * 6 + 4000);
-
+    finSection.style.width = `${viewportWidth * 0.25}px`;
+    finSection.style.height = `${viewportHeight * 0.25}px`;
+  }, 500 * 6 + 3000);
   setTimeout(() => {
     finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
 
     // Set width and height to match the viewport
+    finSection.style.width = `${viewportWidth}px`;
+    finSection.style.height = `${viewportHeight}px`;
     finSection.style.width = `100%`;
     finSection.style.height = `100%`;
     setTimeout(() => {
@@ -327,7 +327,7 @@ const startingAnimation = () => {
       loaderHeaders.forEach((header) => header.classList.add("active"));
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
-  }, 8000);
+  }, 6000);
 };
 const setupMasonryGrid = () => {
   // Get all necessary elements
