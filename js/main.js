@@ -275,7 +275,7 @@ const startingAnimation = () => {
   setTimeout(() => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
-
+  // document.getElementById("loader").style.display = "none";
   const startingImages = Array.from(
     document.getElementsByClassName("onload-images")
   );
