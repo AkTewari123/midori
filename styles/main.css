@@ -12,16 +12,6 @@
 }
 
 
-#leafintro {
-  animation: imageAppearLeaf 5s ease-out;
-}
-#noodles-intro {
-  animation: imageAppearNoodles 5s ease-out;
-}
-#restaurant-intro {
-  animation: imageAppearRestaurant 5s ease-out;
-}
-
 video {
   top: 0;
   left: 0;
@@ -142,16 +132,20 @@ body {
 
 @keyframes scaleUp {
   0% {
-    transform: scale(1); /* Start at normal scale (adjust if needed) */
-    clip-path: inset(45% 40% 45% 40%); /* Small centered rectangle (adjust based on aspect ratio) */
+    clip-path: inset(45% 40% 45% 40%); /* Small centered box */
+    transform: scale(0.8);
   }
   30% {
-    transform: scale(1.8); /* Optional: Add scale for dramatic effect */
-    clip-path: inset(20% 15% 20% 15%); /* Expanding outward */
+    clip-path: inset(30% 25% 30% 25%); /* Faster early progress */
+    transform: scale(1.2);
+  }
+  70% {
+    clip-path: inset(10% 8% 10% 8%); /* Maintain speed through middle */
+    transform: scale(1.8);
   }
   100% {
-    transform: scale(2); /* Final scale */
-    clip-path: inset(0 0 0 0); /* Fully revealed */
+    clip-path: inset(0); /* Fully revealed */
+    transform: scale(2);
   }
 }
 #white-gradient {
@@ -179,15 +173,19 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   transition: all 1s cubic-bezier(0.7, 0, 0.3, 1)  ;
+  clip-path: inset(100%); /* Hides the image */
 
-  ;
 }
 
 
 .onload-images {
+  width: 140px;  
+  height: auto; 
   /* transition: all .4s ease-out; */
   /* opacity: 0; */
-  transform: scale(0);
+  clip-path: inset(100%); /* Hides the image */
+
+  /* transform: scale(1); */
   /* transform: translateY(-120px); */
 }
 .video-control:hover {
@@ -851,12 +849,6 @@ footer button {
 .video-playing .pause-icon {
   display: block;
 }
-.onload-images {
-  width: 140px;  
-  height: auto; 
-  /* object-fit: none; Image keeps its original size */
-}
-
 #centered-list {
   width: 800px;
   height: 80px;
