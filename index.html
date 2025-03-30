@@ -15,15 +15,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   </head>
+
   <body data-barba="wrapper">
     <div id="overall" class="urbanist-regular min-h-screen text-black">
       <nav
         id="main-nav"
-        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
+        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
       >
         <ul class="flex items-center justify-between urbanist-regular text-xl">
           <!-- Left Item -->
-          <li>
+          <li id="left-midori">
             <img src="./images/favicon.ico" class="w-8 inline" alt="" />
             <a
               href="/"
@@ -33,7 +34,7 @@
           </li>
 
           <!-- Centered Items -->
-          <div class="flex w-[800px] h-[80px] py-2">
+          <div id="centered-list" class="flex py-2">
             <ul class="flex w-full h-full bg-[#242425] rounded-xl">
               <li
                 class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
@@ -125,7 +126,7 @@
             />
             <div class="text-center forum-extrabold text-emerald-800">
               <h1 id="midori-header" class="text-xl">Midori.</h1>
-              <p id="food-saving" class="text-sm">Food Worth Savoring</p>
+              <p id="food-saving" class="text-sm">A Taste Worth Remembering</p>
             </div>
           </div>
         </div>
@@ -140,28 +141,28 @@
           />
         </div>
         <img
-          src="images/starter/restaurant-two.jpg"
-          class="onload-images w-[160px] h-[240px] absolute top-[35%] left-[45%]"
+          src="images/starter/restaurant-two.jpeg"
+          class="onload-images absolute top-[35%] left-[45%]"
           alt=""
         />
         <img
-          src="images/starter/restaurant-three.jpg"
-          class="onload-images w-[160px] h-[200px] absolute top-[25%] left-[50%]"
+          src="images/starter/restaurant-three.jpeg"
+          class="onload-images absolute top-[25%] left-[50%]"
           alt=""
         />
         <img
-          src="images/starter/restaurant-four.avif"
-          class="onload-images w-[160px] h-[240px] absolute top-[50%] left-[40%]"
+          src="images/starter/restaurant-four.jpeg"
+          class="onload-images absolute top-[50%] left-[40%]"
           alt=""
         />
         <img
-          src="images/starter/restaurant-five.jpg"
-          class="onload-images w-[260px] h-[160px] absolute top-[30%] left-[40%]"
+          src="images/starter/restaurant-five.jpeg"
+          class="onload-images absolute top-[30%] left-[40%]"
           alt=""
         />
         <img
-          src="images/starter/restaurant-six.png"
-          class="onload-images w-[260px] h-[160px] absolute top-[50%] left-[30%]"
+          src="images/starter/restaurant-six.jpeg"
+          class="onload-images absolute top-[50%] left-[30%]"
           alt=""
         />
         <div
@@ -219,14 +220,6 @@
           id="testimonial-section"
           class="h-screen bg-[#F9F7F3] relative overflow-hidden flex flex-col justify-center z-10"
         >
-          <div class="absolute top-0 left-0 w-full h-full z-0">
-            <img
-              src="images/leaf-pattern.png"
-              alt="Background pattern"
-              class="opacity-[0.07] object-cover w-full h-full"
-            />
-          </div>
-
           <!-- Section Header -->
           <div class="text-center mb-8 relative z-10">
             <h2 class="text-[#057957] text-6xl forum-extrabold mb-3">
@@ -560,7 +553,7 @@
         <!-- Featured Dishes Section -->
         <div
           id="dishes-section"
-          class="min-h-screen bg-white py-20 px-8 z-10 relative"
+          class="min-h-screen bg-[#F9F7F3] py-20 px-8 z-10 relative"
         >
           <!-- Section Header -->
           <div class="text-center mb-12 relative z-10">
