@@ -223,7 +223,18 @@ const setupTestimonials = () => {
       window.testimonialAnimationFrame = requestAnimationFrame(animate);
     }
   });
+  const section = document.getElementById("testimonial-section");
+  section.style.display = "block";
+  section.style.width = "900px"; // Fix: Add "px"
+  section.style.height = "auto"; // Fix: Add "px"
+  section.style.minHeight = "100vh";
 
+  console.log(section);
+  console.log(section.style.width); // Logs "900px"
+  console.log(window.getComputedStyle(section).position); // Logs actual computed position
+  console.log(section.style.display); // Logs "block"
+  console.log(section.style.height); // Logs "900px"
+  console.log(section.getBoundingClientRect()); // Logs "900px"
   // Reset on window resize to prevent glitches from layout changes
   window.addEventListener(
     "resize",
@@ -510,7 +521,6 @@ const main = () => {
   // hideMidoriOnload();
   menuGreenTransition();
 
-  setupTestimonials();
   startingAnimation();
   // Delay the masonry setup based on animation state
   if (skipAnimation) {
@@ -519,6 +529,8 @@ const main = () => {
     // If animations are playing, wait for them to complete
     // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
     setTimeout(() => {
+      setupTestimonials();
+
       setupMasonryGrid();
       // Call again after a brief delay to account for any rendering delays
       enableParallax();
