@@ -11,6 +11,10 @@
   transition: transform 0.5s ease-in-out;
 }
 
+#sources-container {
+  z-index: 90000;
+  clip-path: inset(0%);
+}
 
 video {
   top: 0;
@@ -231,18 +235,13 @@ body {
   transform: rotateZ(0deg) translateY(0px);
 }
 .loader-header {
-  opacity: 0;
   transition: all 800ms ease-out;
   transition-delay: 500ms;
-  transform: rotateZ(30deg) translateX(-50px) translateY(-120px);
-  display: inline-block;
 
 }
 /* After JS applies the class */
 .loader-header.active {
   opacity: 1;
-
-  transform: rotateZ(0deg) translateY(-120px);
 
 }
 
