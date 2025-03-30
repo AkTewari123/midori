@@ -279,26 +279,22 @@ const startingAnimation = () => {
     document.getElementsByClassName("onload-images")
   );
   for (let i = 0; i < startingImages.length; i++) {
-    const img = startingImages[i];
     setTimeout(() => {
-      img.style.clipPath = "inset(0)";
-      img.style.transform = "scale(2)";
-      img.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
+      startingImages[i].style.animation =
+        "scaleUp 1.5s ease-in-out .1s forwards";
+      console.log(startingImages[i].style.transform);
     }, i * 500 + 4000);
   }
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
   const finSection = document.getElementById("fin-section");
-  finSection.style.width = `${viewportWidth * 0.4}px`;
-  finSection.style.height = `${viewportHeight * 0.4}px`;
   setTimeout(() => {
-    finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
-    finSection.style.clipPath = "inset(0)";
+    finSection.style.transition = "all 1.2s cubic-bezier(0.7, 0, 0.3, 1)";
+    finSection.style.width = `${viewportWidth * 0.4}px`;
+    finSection.style.height = `${viewportHeight * 0.4}px`;
   }, 500 * 6 + 4000);
 
   setTimeout(() => {
-    finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
-
     // Set width and height to match the viewport
     finSection.style.width = `100%`;
     finSection.style.height = `100%`;
