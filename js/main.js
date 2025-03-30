@@ -1,4 +1,6 @@
 // Skip animation flag - set to true to bypass intro animations for development
+// Transitioning prop is for when you go to index.html from another page in the website
+// const skipAnimation = localStorage.getItem("pageTransition") === "home";
 const skipAnimation = false;
 
 const enableParallax = () => {
@@ -224,7 +226,6 @@ const setupTestimonials = () => {
     }
   });
 
-  // Reset on window resize to prevent glitches from layout changes
   // window.addEventListener(
   //   "resize",
   //   debounce(() => {
@@ -274,7 +275,7 @@ const startingAnimation = () => {
   setTimeout(() => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
-  document.getElementById("loader").style.display = "none";
+  // document.getElementById("loader").style.display = "none";
   const startingImages = Array.from(
     document.getElementsByClassName("onload-images")
   );
@@ -303,8 +304,17 @@ const startingAnimation = () => {
     finSection.style.width = `100%`;
     finSection.style.height = `100%`;
     setTimeout(() => {
-      document.getElementById("loader").style.height = "100vh";
-      document.getElementById("loader").style.display = "block";
+      // const loader = document.getElementById("loader");
+      // loader.style.opacity = 0;
+      // loader.style.transform = "translateY(50px";
+      // loader.style.display = "flex";
+      // loader.style.width = "50%";
+      // loader.style.alignItems = "center";
+      // loader.style.transition = "all .4s ease-out";
+      // Delay the opacity change slightly to allow the transition to apply
+      // setTimeout(() => {
+      //   loader.style.opacity = 1;
+      // }, 5);
     }, 1000);
     setTimeout(() => {
       document.getElementById("post-transition").style.display = "block";
@@ -511,18 +521,33 @@ const main = () => {
   menuGreenTransition();
 
   setupTestimonials();
-  startingAnimation();
-  // Delay the masonry setup based on animation state
-  if (skipAnimation) {
-    // If animations are skipped, initialize immediately
+  if (!skipAnimation) {
+    startingAnimation();
   } else {
-    // If animations are playing, wait for them to complete
-    // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
+    document.getElementById("post-transition").style.display = "block";
+    document.getElementById("fin-section").style.display = "block";
+    document.getElementById("main-nav").style.opacity = 1;
+    document.getElementById("fin-section").style.height = "100vh";
+    document.getElementById("fin-section").style.width = "100%";
+    document.getElementById("fin-section").style.clipPath = "inset(0)";
+    document.getElementById("starter-animation-container").style.display =
+      "none";
     setTimeout(() => {
+      document.getElementById("white-gradient").style.display = "block";
+      document.getElementById("white-gradient").style.opacity = "1";
+      // document.getElementById("loader").style.display = "block";
+      setupVideoControls();
+    }, 2000);
+  }
+  // If animations are playing, wait for them to complete
+  // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
+  setTimeout(
+    () => {
       setupMasonryGrid();
       // Call again after a brief delay to account for any rendering delays
       enableParallax();
-    }, 11000);
-  }
+    },
+    skipAnimation ? 0 : 11000
+  );
 };
 main();
