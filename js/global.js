@@ -1,4 +1,3 @@
-const container = document.getElementById("sources-container");
 const overlay = document.getElementById("white-nav-overlay");
 const menuGreenTransition = () => {
   document
@@ -39,38 +38,35 @@ const menuGreenTransition = () => {
     });
 };
 const main = () => {
-  document
-    .getElementById("sources-trigger-open")
-    .addEventListener("click", function () {
-      container.style.clipPath = "circle(135% at 0% 25%)";
-    });
-  document
-    .getElementById("sources-trigger-open-2")
-    .addEventListener("click", function () {
-      container.style.clipPath = "circle(135% at 0% 25%)";
-    });
+  const container = document.getElementById("sources-container");
 
-  document
-    .getElementById("sources-trigger-close")
-    .addEventListener("click", function () {
-      container.style.clipPath = "circle(0% at 0% 25%)";
-      document.getElementById("post-transition").style.display = "block";
-    });
+  const sourcesOpen1 = document.getElementById("sources-trigger-open");
+  const sourcesOpen2 = document.getElementById("sources-trigger-open-2");
+  const sourcesClose = document.getElementById("sources-trigger-close");
+  const toggleViewer = document.getElementById("toggle-viewer");
 
-  Array.from(document.getElementsByClassName("nav-hoveritem")).forEach(
-    (item) => {
-      item.onclick = () => {
-        localStorage.setItem("payload", item.innerText);
-      };
-    }
-  );
-  document.getElementById("toggle-viewer").onclick = () => {
-    overlay.style.clipPath = "inset(0 0 0 0)"; // Expand from top
+  sourcesOpen1.addEventListener("click", function () {
+    container.style.clipPath = "circle(135% at 0% 25%)";
+    console.log("Here");
+  });
+
+  sourcesClose.addEventListener("click", function () {
+    container.style.clipPath = "circle(0% at 0% 25%)";
+    document.getElementById("post-transition").style.display = "block";
+  });
+
+  toggleViewer.onclick = () => {
+    overlay.style.clipPath = "inset(0 0 0 0)";
   };
+
   document.getElementById("white-nav-close").onclick = () => {
-    overlay.style.clipPath = "inset(0 0 100% 0)"; // Expand from top
+    overlay.style.clipPath = "inset(0 0 100% 0)";
   };
+  sourcesOpen2.addEventListener("click", function () {
+    console.log("hereajf;dsjfk;las");
+    container.style.clipPath = "circle(135% at 0% 25%)";
+  });
   menuGreenTransition();
 };
 
-main();
+document.addEventListener("DOMContentLoaded", main);
