@@ -43,9 +43,11 @@ const main = () => {
     .getElementById("sources-trigger-open")
     .addEventListener("click", function () {
       container.style.clipPath = "circle(135% at 0% 25%)";
-      setTimeout(() => {
-        document.getElementById("post-transition").style.display = "none";
-      }, 10);
+    });
+  document
+    .getElementById("sources-trigger-open-2")
+    .addEventListener("click", function () {
+      container.style.clipPath = "circle(135% at 0% 25%)";
     });
 
   document
