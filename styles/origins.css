@@ -1,0 +1,37 @@
+#precursor {
+    
+    margin: 0rem;
+    /* background-color: black; */
+    overflow: hidden;
+}
+body {
+    /* background-color: black; */
+    overflow: hidden;
+}
+
+.image {
+    height: 40vmin;
+    width: 40vmin;
+    object-fit: cover;
+    object-position: center;
+    user-select: none; /* -- Prevent image highlighting -- */
+}
+.image {
+    border-radius: 20px;
+    /* padding: 4px;
+    border: 4px solid #057957; */
+}
+#image-track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: max-content;
+    /* overflow-x: auto; */
+    /* white-space: nowrap; */
+    position: absolute;
+    gap: 2vw;
+    top: 50%; 
+    left: 50%;
+    transform: translate(0%, -50%);
+    overflow: hidden;
+  }

@@ -7,107 +7,134 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="js/global.js" type="module" defer></script>
+    <script src="js/origins.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/origins.css" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <script src="https://unpkg.com/split-type" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   </head>
   <body data-barba="wrapper">
-    <div id="overall" class="urbanist-regular min-h-screen text-black">
-      <nav
-        id="main-nav"
-        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
-      >
-        <ul class="flex items-center justify-between urbanist-regular text-xl">
-          <!-- Left Item -->
-          <li id="left-midori">
-            <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a
-              href="/"
-              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-              >Midori</a
-            >
-          </li>
+    <nav
+      id="main-nav"
+      class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
+    >
+      <ul class="flex items-center justify-between urbanist-regular text-xl">
+        <!-- Left Item -->
+        <li id="left-midori">
+          <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+          <a
+            href="/"
+            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            >Midori</a
+          >
+        </li>
 
-          <!-- Centered Items -->
-          <div id="centered-list" class="flex py-2">
-            <ul class="flex h-full bg-[#242425] rounded-xl">
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        <!-- Centered Items -->
+        <div id="centered-list" class="flex py-2">
+          <ul class="flex h-full bg-[#242425] rounded-xl">
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="index.html"
+                class="w-full h-full flex justify-center items-center"
+                >Home</a
               >
-                <a
-                  href="index.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >Home</a
-                >
-              </li>
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="about.html"
+                class="w-full h-full flex justify-center items-center"
+                >About Us</a
               >
-                <a
-                  href="about.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >About Us</a
-                >
-              </li>
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="origins.html"
+                class="w-full h-full flex justify-center items-center"
+                >Where It&apos;s From</a
               >
-                <a
-                  href="origins.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >Where It&apos;s From</a
-                >
-              </li>
-              <li
-                id="sources-trigger-open"
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            </li>
+            <li
+              id="sources-trigger-open"
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Sources</a
               >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Sources</a
-                >
-              </li>
-            </ul>
-          </div>
+            </li>
+          </ul>
+        </div>
 
-          <!-- Right Item -->
-          <li class="nav-hoveritem relative inline-block">
-            <a
-              href="menu.html"
-              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-              id="menu-link-nav"
+        <!-- Right Item -->
+        <li class="nav-hoveritem relative inline-block">
+          <a
+            href="menu.html"
+            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+            id="menu-link-nav"
+          >
+            <div
+              id="greendot"
+              class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+            ></div>
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
             >
-              <div
-                id="greendot"
-                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
-              ></div>
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                Menu
-              </p>
-            </a>
-            <button
-              class="hidden py-4 px-8 rounded-xl overflow-hidden"
-              id="toggle-viewer"
+              Menu
+            </p>
+          </a>
+          <button
+            class="hidden py-4 px-8 rounded-xl overflow-hidden"
+            id="toggle-viewer"
+          >
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
             >
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                <i class="bi bi-filter-right text-[35px] text-white"></i>
-              </p>
-            </button>
-          </li>
-        </ul>
-      </nav>
+              <i class="bi bi-filter-right text-[35px] text-white"></i>
+            </p>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div id="overall" class="w-full urbanist-regular min-h-screen text-black">
+      <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+        <img
+          id="image-1"
+          class="image"
+          src="https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-2"
+          class="image"
+          src="https://images.unsplash.com/photo-1618202133208-2907bebba9e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-3"
+          class="image"
+          src="https://images.unsplash.com/photo-1495805442109-bf1cf975750b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-4"
+          class="image"
+          src="https://images.unsplash.com/photo-1548021682-1720ed403a5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+      </div>
+
       <div
         id="precursor"
-        class="h-screen flex items-center justify-center bg-white"
+        class="h-screen w-full flex items-center justify-center bg-white"
       >
         <div
           class="transition-everypage bg-white h-screen fixed w-full top-0 left-0"
