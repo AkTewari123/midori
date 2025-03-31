@@ -1,7 +1,7 @@
 // Skip animation flag - set to true to bypass intro animations for development
 // Transitioning prop is for when you go to index.html from another page in the website
 // const skipAnimation = localStorage.getItem("pageTransition") === "home";
-const skipAnimation = true;
+const skipAnimation = sessionStorage.getItem("payload") || true;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");

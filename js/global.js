@@ -67,6 +67,9 @@ const main = () => {
     container.style.clipPath = "circle(135% at 0% 25%)";
   });
   menuGreenTransition();
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.clear();
+  });
 };
 
 document.addEventListener("DOMContentLoaded", main);
