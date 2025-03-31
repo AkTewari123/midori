@@ -1,11 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Spicy+Rice&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 #white-nav-overlay {
-  z-index: 200;
-  clip-path: inset(100%)
+  /* Start fully hidden */
+  clip-path: inset(0 0 100% 0); 
+  transition: clip-path .8s cubic-bezier(.23,.54,.32,1);
+  z-index: 50;
 }
-#sources-trigger-close {
-  transition: background-color 0.3s ease-in-out;
+#centered-list {
+  height: 80px;
+  width: 800px;
+}
+.close-button {
+  transition: background-color .3s ease-in-out;
+}
+.close-button:hover {
+  background-color: #009966;
+}
+
+#toggle-viewer {
+  transition: .3s ease-in-out;
+}
+
+#toggle-viewer:hover {
+  background-color: #333;
 }
 
 html, body {
@@ -76,3 +93,58 @@ html, body {
     font-weight: 800;
     font-style: normal;
   }
+
+
+  @media (max-width: 850px) {
+    #centered-list {
+      display:none;
+    }
+    #toggle-viewer {
+      display: block;
+    }
+    #menu-link-nav {
+      display: none;
+    }
+  }
+  @media (max-width: 1000px) {
+    #centered-list li {
+      width: 120px !important;
+    }
+    #centered-list {
+      width: 480px !important;
+    }
+    #centered-list {
+      margin: auto;
+    }
+  }
+  @media (max-width: 1150px) {
+    #main-nav {
+      margin: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    
+    #centered-list li {
+      width: 150px;
+    }
+    #centered-list {
+      width: 600px;
+    }
+    #centered-list {
+      margin: auto;
+    }
+  }
+  
+  @media (min-width: 1151px) {
+    #toggle-viewer {
+      display: none;
+    }
+    #menu-link-nav {
+      display: block;
+    }
+    #centered-list {
+      display: block;
+  
+    }
+  }
+  

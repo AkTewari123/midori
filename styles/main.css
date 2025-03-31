@@ -14,7 +14,7 @@
 #sources-container {
   z-index: 50;
   clip-path: circle(0% at 10% center);
-  transition: clip-path linear .5s;
+  transition: clip-path linear .7s;
 }
 
 #sources-container.show {
@@ -169,6 +169,9 @@ body {
   opacity: 1;
 }
 }
+
+
+
 #fin-section {
   background-image: url("../images/starter/fin-background.jpeg");
   z-index: 30;
@@ -843,10 +846,7 @@ footer button {
 .video-playing .pause-icon {
   display: block;
 }
-#centered-list {
-  width: 800px;
-  height: 80px;
-}
+
 /* Responsive adjustments for hero */
 @media (max-width: 1024px) {
   .hero-title {
@@ -859,36 +859,7 @@ footer button {
   
 }
 
-@media (max-width: 1150px) {
-  #main-nav {
-    margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  #toggle-viewer {
-    display: block;
-  }
-  #menu-link-nav {
-    display: none;
-  }
-  #centered-list {
-    display: none;
 
-  }
-}
-
-@media (min-width: 1151px) {
-  #toggle-viewer {
-    display: none;
-  }
-  #menu-link-nav {
-    display: block;
-  }
-  #centered-list {
-    display: block;
-
-  }
-}
 
 @media (max-width: 768px) {
   .hero-title {
