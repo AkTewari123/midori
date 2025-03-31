@@ -1,5 +1,7 @@
 // Skip animation flag - set to true to bypass intro animations for development
-const skipAnimation = false;
+// Transitioning prop is for when you go to index.html from another page in the website
+// const skipAnimation = localStorage.getItem("pageTransition") === "home";
+const skipAnimation = true;
 
 const enableParallax = () => {
   const blockOne = document.getElementById("block-one");
@@ -29,39 +31,42 @@ const enableParallax = () => {
 };
 
 const menuGreenTransition = () => {
-  document.getElementById("menu").addEventListener("mouseenter", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu");
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseenter", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    // Get the mouse X position relative to the "menu" element
-    const menuRect = menuElement.getBoundingClientRect();
-    const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
-    const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
-    console.log(menuRect);
-    // Position the green dot horizontally within "menu"
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
+      // Get the mouse X position relative to the "menu" element
+      const menuRect = menuElement.getBoundingClientRect();
+      const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
+      const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
+      console.log(menuRect);
+      // Position the green dot horizontally within "menu"
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
+      // Scale it by 20
+      greenDot.style.transform = "scale(20)";
 
-    // Scale it by 20
-    greenDot.style.transform = "scale(20)";
+      console.log(greenDot);
+    });
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseleave", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    console.log(greenDot);
-  });
-  document.getElementById("menu").addEventListener("mouseleave", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu");
+      const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
+      const relativeX = event.clientX - menuRect.left;
+      const relativeY = event.clientY - menuRect.top;
+      console.log(menuRect);
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
 
-    const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
-    const relativeX = event.clientX - menuRect.left;
-    const relativeY = event.clientY - menuRect.top;
-    console.log(menuRect);
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
+      greenDot.style.transform = "scale(.01)";
 
-    greenDot.style.transform = "scale(.01)";
-
-    console.log(greenDot);
-  });
+      console.log(greenDot);
+    });
 };
 const setupVideoControls = () => {
   const video = document.getElementById("hero-video");
@@ -224,13 +229,12 @@ const setupTestimonials = () => {
     }
   });
 
-  // Reset on window resize to prevent glitches from layout changes
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      setupTestimonials();
-    }, 250)
-  );
+  // window.addEventListener(
+  //   "resize",
+  //   debounce(() => {
+  //     setupTestimonials();
+  //   }, 250)
+  // );
 };
 
 // Add debounce function if not already defined
@@ -241,7 +245,7 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
-const starterAnimation = () => {
+const startingAnimation = () => {
   document.getElementById("post-transition").style.display = "none";
   document.getElementById("precursor").style.display = "block";
   // Transition delay 2000ms
@@ -274,36 +278,59 @@ const starterAnimation = () => {
   setTimeout(() => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
-  document.getElementById("loader").style.display = "none";
+  // document.getElementById("loader").style.display = "none";
   const startingImages = Array.from(
     document.getElementsByClassName("onload-images")
   );
   for (let i = 0; i < startingImages.length; i++) {
+    const img = startingImages[i];
     setTimeout(() => {
-      startingImages[i].style.animation =
-        "scaleUp 1.5s ease-in-out .1s forwards";
-      console.log(startingImages[i].style.transform);
+      img.style.clipPath = "inset(0)";
+      img.style.transform = "scale(2)";
+      img.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
     }, i * 500 + 4000);
   }
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
   const finSection = document.getElementById("fin-section");
+  finSection.style.width = `${viewportWidth * 0.4}px`;
+  finSection.style.height = `${viewportHeight * 0.4}px`;
   setTimeout(() => {
-    finSection.style.width = `${viewportWidth * 0.25}px`;
-    finSection.style.height = `${viewportHeight * 0.25}px`;
+    finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
+    finSection.style.clipPath = "inset(0)";
   }, 500 * 6 + 4000);
+
   setTimeout(() => {
+    finSection.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
+
     // Set width and height to match the viewport
     finSection.style.width = `100%`;
     finSection.style.height = `100%`;
     setTimeout(() => {
-      document.getElementById("loader").style.display = "block";
+      // const loader = document.getElementById("loader");
+      // loader.style.opacity = 0;
+      // loader.style.transform = "translateY(50px";
+      // loader.style.display = "flex";
+      // loader.style.width = "50%";
+      // loader.style.alignItems = "center";
+      // loader.style.transition = "all .4s ease-out";
+      // Delay the opacity change slightly to allow the transition to apply
+      // setTimeout(() => {
+      //   loader.style.opacity = 1;
+      // }, 5);
     }, 1000);
     setTimeout(() => {
       document.getElementById("post-transition").style.display = "block";
+      for (let i = 0; i < startingImages.length; i++) {
+        startingImages[i].style.display = "none";
+      }
+      const loaderHeaders = Array.from(
+        document.getElementsByClassName("loader-header")
+      );
+      loaderHeaders.forEach((header) => header.classList.add("active"));
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
-  }, 7000);
+  }, 8000);
 };
 const setupMasonryGrid = () => {
   // Get all necessary elements
@@ -497,18 +524,33 @@ const main = () => {
   menuGreenTransition();
 
   setupTestimonials();
-  starterAnimation();
-  // Delay the masonry setup based on animation state
-  if (skipAnimation) {
-    // If animations are skipped, initialize immediately
+  if (!skipAnimation) {
+    startingAnimation();
   } else {
-    // If animations are playing, wait for them to complete
-    // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
+    document.getElementById("post-transition").style.display = "block";
+    document.getElementById("fin-section").style.display = "block";
+    document.getElementById("main-nav").style.opacity = 1;
+    document.getElementById("fin-section").style.height = "100vh";
+    document.getElementById("fin-section").style.width = "100%";
+    document.getElementById("fin-section").style.clipPath = "inset(0)";
+    document.getElementById("starter-animation-container").style.display =
+      "none";
     setTimeout(() => {
+      document.getElementById("white-gradient").style.display = "block";
+      document.getElementById("white-gradient").style.opacity = "1";
+      // document.getElementById("loader").style.display = "block";
+      setupVideoControls();
+    }, 2000);
+  }
+  // If animations are playing, wait for them to complete
+  // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
+  setTimeout(
+    () => {
       setupMasonryGrid();
       // Call again after a brief delay to account for any rendering delays
       enableParallax();
-    }, 11000);
-  }
+    },
+    skipAnimation ? 0 : 11000
+  );
 };
 main();

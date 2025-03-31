@@ -1,5 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Spicy+Rice&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+#centered-list li  {
+  text-align: center !important;
+}
+#white-nav-overlay {
+  /* Start fully hidden */
+  clip-path: inset(0 0 100% 0); 
+  transition: clip-path .8s cubic-bezier(.23,.54,.32,1);
+  z-index: 50;
+}
+#sources-container {
+  z-index: 50;
+  clip-path: circle(0% at 10% center);
+  transition: clip-path linear .7s;
+}
+.hoveritem {
+  transition: all 0.25s ease-in-out;
+  border-radius: 10px;
+  color: white !important;
+}
+#centered-list {
+  height: 80px;
+  width: 800px;
+}
+.close-button {
+  transition: background-color .3s ease-in-out;
+}
+.close-button:hover {
+  background-color: #009966;
+}
 
+#toggle-viewer {
+  transition: .3s ease-in-out;
+}
+
+.hover-nav-overlay {
+  transition: color .5s ease-in-out;
+  padding: 10px 16px 0px 16px;
+}
+.hover-nav-overlay:hover {
+  color: #009966;
+}
+
+#toggle-viewer:hover {
+  background-color: #333;
+}
 
 html, body {
   margin: 0;
@@ -69,3 +114,64 @@ html, body {
     font-weight: 800;
     font-style: normal;
   }
+
+  #menu-link-nav:hover #menutext {
+    color: white;
+  }
+  @media (max-width: 850px) {
+    #centered-list {
+      display:none;
+    }
+    #toggle-viewer {
+      display: block;
+    }
+    #menu-link-nav {
+      display: none;
+    }
+  }
+  @media (max-width: 1000px) {
+    #centered-list li {
+      font-size: 17px !important;
+
+      width: 120px !important;
+    }
+    #centered-list {
+      width: 480px !important;
+    }
+    #centered-list {
+      margin: auto;
+    }
+  }
+  @media (max-width: 1150px) {
+    #main-nav {
+      margin: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    
+    #centered-list li {
+      width: 150px;
+      font-size: 18px ;
+
+    }
+    #centered-list {
+      width: 600px;
+    }
+    #centered-list {
+      margin: auto;
+    }
+  }
+  
+  @media (min-width: 1151px) {
+    #toggle-viewer {
+      display: none;
+    }
+    #menu-link-nav {
+      display: block;
+    }
+    #centered-list {
+      display: block;
+  
+    }
+  }
+  

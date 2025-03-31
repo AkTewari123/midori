@@ -3,6 +3,7 @@
   transition-duration: 4s;
   transition-timing-function: linear;
 }
+
 .onloadimages {
   position: absolute;
   top: 50%;
@@ -10,14 +11,9 @@
 }
 
 
-#leafintro {
-  animation: imageAppearLeaf 5s ease-out;
-}
-#noodles-intro {
-  animation: imageAppearNoodles 5s ease-out;
-}
-#restaurant-intro {
-  animation: imageAppearRestaurant 5s ease-out;
+
+#sources-container.show {
+  clip-path: circle(120% at 10% center);
 }
 
 video {
@@ -96,7 +92,8 @@ nav {
   color: white !important;
 }
 
-#menu:hover #menutext {
+
+#menu-link-nav:hover #menutext {
   color: white;
 }
 
@@ -141,17 +138,22 @@ body {
 
 @keyframes scaleUp {
   0% {
-    transform: scale(0);
+    clip-path: inset(45% 40% 45% 40%); /* Small centered box */
+    transform: scale(0.8);
   }
   30% {
+    clip-path: inset(30% 25% 30% 25%); /* Faster early progress */
+    transform: scale(1.2);
+  }
+  70% {
+    clip-path: inset(10% 8% 10% 8%); /* Maintain speed through middle */
     transform: scale(1.8);
-    
   }
   100% {
+    clip-path: inset(0); /* Fully revealed */
     transform: scale(2);
   }
 }
-
 #white-gradient {
   transition: opacity 500ms ease-in-out;
 }
@@ -168,6 +170,9 @@ body {
   opacity: 1;
 }
 }
+
+
+
 #fin-section {
   background-image: url("../images/starter/fin-background.jpeg");
   z-index: 30;
@@ -176,14 +181,20 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  transition: all .5s ease-in-out;
+  transition: all 1s cubic-bezier(0.7, 0, 0.3, 1)  ;
+  clip-path: inset(100%); /* Hides the image */
+
 }
 
 
 .onload-images {
+  width: 140px;  
+  height: auto; 
   /* transition: all .4s ease-out; */
   /* opacity: 0; */
-  transform: scale(0);
+  clip-path: inset(100%); /* Hides the image */
+
+  /* transform: scale(1); */
   /* transform: translateY(-120px); */
 }
 .video-control:hover {
@@ -228,6 +239,17 @@ body {
 
   transform: rotateZ(0deg) translateY(0px);
 }
+.loader-header {
+  transition: all 800ms ease-out;
+  transition-delay: 500ms;
+
+}
+/* After JS applies the class */
+.loader-header.active {
+  opacity: 1;
+
+}
+
 
 /* Flip each character individually */
 .flip-character {
@@ -422,12 +444,6 @@ body {
   }
 }
 
-@media (max-width: 1150px) {
-  #centered-list {
-    width: 450px;
-    height: 80px;
-  }
-}
 @media (max-width: 900px) {
   .dish-item {
     width: calc(50% - 20px); /* 2 columns */
@@ -835,15 +851,7 @@ footer button {
 .video-playing .pause-icon {
   display: block;
 }
-.onload-images {
-  width: 140px;
-  height: auto; /* Maintain aspect ratio */
-}
 
-#centered-list {
-  width: 800px;
-  height: 80px;
-}
 /* Responsive adjustments for hero */
 @media (max-width: 1024px) {
   .hero-title {
@@ -856,16 +864,7 @@ footer button {
   
 }
 
-@media (max-width: 850px) {
-  #main-nav {
-    margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  #centered-list {
-    display: none;
-  }
-}
+
 
 @media (max-width: 768px) {
   .hero-title {

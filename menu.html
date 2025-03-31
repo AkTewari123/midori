@@ -15,62 +15,85 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
     <script src="js/menu.js" type="module" defer></script>
-
   </head>
-<body>
-  <nav class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl" id="navbar">
-    <ul class="flex items-center justify-between urbanist-regular text-xl">
-      <!-- Left Item -->
-      <li>
-        <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-        <a href="/" class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-          >Midori</a
-        >
-      </li>
+  <body>
+    <nav
+      class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
+      id="navbar"
+    >
+      <ul class="flex items-center justify-between urbanist-regular text-xl">
+        <!-- Left Item -->
+        <li>
+          <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+          <a
+            href="/"
+            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            >Midori</a
+          >
+        </li>
 
-      <!-- Centered Items -->
-      <div class="flex w-[800px] h-[80px] py-2">
-        <ul class="flex w-full h-full bg-[#242425] rounded-xl">
-          <li
-            class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-          >
-            <a href="#" class="w-full h-full flex justify-center items-center">Home</a>
-          </li>
-          <li
-            class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-          >
-            <a href="#" class="w-full h-full flex justify-center items-center">About</a>
-          </li>
-          <li
-            class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-          >
-            <a href="#" class="w-full h-full flex justify-center items-center">Contact</a>
-          </li>
-          <li
-            class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-          >
-            <a href="#" class="w-full h-full flex justify-center items-center">Sources</a>
-          </li>
-        </ul>
-      </div>
+        <!-- Centered Items -->
+        <div class="flex w-[800px] h-[80px] py-2">
+          <ul class="flex w-full h-full bg-[#242425] rounded-xl">
+            <li
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-gray-700"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Home</a
+              >
+            </li>
+            <li
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >About</a
+              >
+            </li>
+            <li
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Contact</a
+              >
+            </li>
+            <li
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Sources</a
+              >
+            </li>
+          </ul>
+        </div>
 
-      <!-- Right Item -->
-      <li class="relative inline-block">
-        <a href="#" class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block" id="menu">
-          <div id="greendot" class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"></div>
-          <p class="relative text-black transition-colors duration-300" id="menutext">Menu</p>
-        </a>
-      </li>
-    </ul>
-  </nav>
+        <!-- Right Item -->
+        <li class="relative inline-block">
+          <a
+            href="#"
+            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+            id="menu"
+          >
+            <div
+              id="greendot"
+              class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+            ></div>
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              Menu
+            </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-  <div class="background relative z-0">
-    <div class="background-texture absolute w-full h-full z-10">
-      <div class="w-full relative">
-        <h1 class="relative text-[10vh] text-white urbanist-bold">Menu</h1>
+    <div class="background relative h-[100vh] z-0"></div>
+    <div class="background-texture absolute h-[100vh] z-10">
+      <div class="h-full w-full relative">
+        <h1 class="absolute top-[60vh] text-[30vh] left-2 text-white">Menu</h1>
       </div>
     </div>
-  </div>
 
   <div class="menu-container"> 
     <section class="carousel bg-[#9be9c1] starters">
@@ -88,7 +111,12 @@
               <span class="fas fa-plus-circle"></span>
             </div>
             <h5 class="carousel-item__details--title">Vegetable Gyoza</h5>
-            <h6 class="carousel-item__details--subtitle urbanist-regular text-wrap">Pan-fried dumplings filled with seasonal vegetables and aromatic herbs</h6>
+            <h6
+              class="carousel-item__details--subtitle urbanist-regular text-wrap"
+            >
+              Pan-fried dumplings filled with seasonal vegetables and aromatic
+              herbs
+            </h6>
           </div>
         </div>
         <div class="carousel-item">
@@ -103,7 +131,10 @@
               <span class="fas fa-plus-circle"></span>
             </div>
             <h5 class="carousel-item__details--title">Mushroom Bao Buns</h5>
-            <h6 class="carousel-item__details--subtitle">Steamed fluffy buns filled with braised shiitake mushrooms and pickled vegetables</h6>
+            <h6 class="carousel-item__details--subtitle">
+              Steamed fluffy buns filled with braised shiitake mushrooms and
+              pickled vegetables
+            </h6>
           </div>
         </div>
         <div class="carousel-item">
@@ -118,8 +149,10 @@
               <span class="fas fa-plus-circle"></span>
             </div>
             <h5 class="carousel-item__details--title">Vegetable Tempura</h5>
-            <h6 class="carousel-item__details--subtitle">Light and crispy seasonal vegetables served with a delicate
-              dipping sauce</h6>
+            <h6 class="carousel-item__details--subtitle">
+              Light and crispy seasonal vegetables served with a delicate
+              dipping sauce
+            </h6>
           </div>
         </div>
 
@@ -135,7 +168,9 @@
               <span class="fas fa-plus-circle"></span>
             </div>
             <h5 class="carousel-item__details--title">Edamame</h5>
-            <h6 class="carousel-item__details--subtitle">Freshly steamed edamame seasoned with salt and sesame seeds</h6>
+            <h6 class="carousel-item__details--subtitle">
+              Freshly steamed edamame seasoned with salt and sesame seeds
+            </h6>
           </div>
         </div>
 
@@ -151,7 +186,9 @@
               <span class="fas fa-plus-circle"></span>
             </div>
             <h5 class="carousel-item__details--title">Seaweed Salad</h5>
-            <h6 class="carousel-item__details--subtitle">Wakame seaweed coated in a flavorful, savory dressing.</h6>
+            <h6 class="carousel-item__details--subtitle">
+              Wakame seaweed coated in a flavorful, savory dressing.
+            </h6>
           </div>
         </div>
       </div>
@@ -240,5 +277,5 @@
     </section>
   </div>
 
-</body>
+  </body>
 </html>
