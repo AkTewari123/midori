@@ -35,7 +35,7 @@
 
           <!-- Centered Items -->
           <div id="centered-list" class="flex py-2">
-            <ul class="flex w-full h-full bg-[#242425] rounded-xl">
+            <ul class="flex h-full bg-[#242425] rounded-xl">
               <li
                 class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
@@ -94,8 +94,7 @@
                 Menu
               </p>
             </a>
-            <div
-              href="menu.html"
+            <button
               class="hidden py-4 px-8 rounded-xl overflow-hidden block"
               id="toggle-viewer"
             >
@@ -105,7 +104,7 @@
               >
                 <i class="bi bi-filter-right text-[35px] text-white"></i>
               </p>
-            </div>
+            </button>
           </li>
         </ul>
       </nav>
@@ -188,7 +187,7 @@
         >
           <div
             id="sources-trigger-close"
-            class="bg-black p-4 rounded-lg absolute top-4 right-4 hover:bg-emerald-600 m-4"
+            class="bg-black p-4 rounded-lg absolute top-4 right-4 close-button m-4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -208,10 +207,29 @@
             </svg>
           </div>
         </div>
-        <!-- <div
-          class="w-full bg-white h-screen absolute"
-          id="white-nav-overlay"
-        ></div> -->
+        <div class="w-full bg-white h-screen absolute" id="white-nav-overlay">
+          <button
+            id="white-nav-close"
+            class="bg-black p-4 close-button rounded-lg absolute top-4 right-4 m-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M18 6l-12 12" />
+              <path d="M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div id="post-transition">

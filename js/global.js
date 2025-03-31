@@ -1,4 +1,6 @@
 const container = document.getElementById("sources-container");
+const overlay = document.getElementById("white-nav-overlay");
+
 const main = () => {
   document
     .getElementById("sources-trigger-open")
@@ -23,6 +25,12 @@ const main = () => {
       };
     }
   );
+  document.getElementById("toggle-viewer").onclick = () => {
+    overlay.style.clipPath = "inset(0 0 0 0)"; // Expand from top
+  };
+  document.getElementById("white-nav-close").onclick = () => {
+    overlay.style.clipPath = "inset(0 0 100% 0)"; // Expand from top
+  };
 };
 
 main();
