@@ -5,17 +5,14 @@
   transition-duration: 4s;
   transition-timing-function: linear;
 }
+
 .onloadimages {
   position: absolute;
   top: 50%;
   transition: transform 0.5s ease-in-out;
 }
 
-#sources-container {
-  z-index: 50;
-  clip-path: circle(0% at 10% center);
-  transition: clip-path linear .7s;
-}
+
 
 #sources-container.show {
   clip-path: circle(120% at 10% center);
@@ -90,11 +87,7 @@ nav {
   margin: 0 30px;
 }
 
-.hoveritem {
-  transition: all 0.25s ease-in-out;
-  border-radius: 10px;
-  color: white !important;
-}
+
 
 #menu-link-nav:hover #menutext {
   color: white;

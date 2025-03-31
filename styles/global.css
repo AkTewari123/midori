@@ -9,6 +9,16 @@
   transition: clip-path .8s cubic-bezier(.23,.54,.32,1);
   z-index: 50;
 }
+#sources-container {
+  z-index: 50;
+  clip-path: circle(0% at 10% center);
+  transition: clip-path linear .7s;
+}
+.hoveritem {
+  transition: all 0.25s ease-in-out;
+  border-radius: 10px;
+  color: white !important;
+}
 #centered-list {
   height: 80px;
   width: 800px;
@@ -105,7 +115,9 @@ html, body {
     font-style: normal;
   }
 
-
+  #menu-link-nav:hover #menutext {
+    color: white;
+  }
   @media (max-width: 850px) {
     #centered-list {
       display:none;
