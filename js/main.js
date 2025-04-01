@@ -31,38 +31,42 @@ const enableParallax = () => {
 };
 
 const menuGreenTransition = () => {
-  document.getElementById("menu-link-nav").addEventListener("mouseenter", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu-link-nav");
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseenter", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    // Get the mouse X position relative to the "menu" element
-    const menuRect = menuElement.getBoundingClientRect();
-    const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
-    const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
-    console.log(menuRect);
-    // Position the green dot horizontally within "menu"
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
-    // Scale it by 20
-    greenDot.style.transform = "scale(20)";
+      // Get the mouse X position relative to the "menu" element
+      const menuRect = menuElement.getBoundingClientRect();
+      const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
+      const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
+      console.log(menuRect);
+      // Position the green dot horizontally within "menu"
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
+      // Scale it by 20
+      greenDot.style.transform = "scale(20)";
 
-    console.log(greenDot);
-  });
-  document.getElementById("menu-link-nav").addEventListener("mouseleave", (event) => {
-    const greenDot = document.getElementById("greendot");
-    const menuElement = document.getElementById("menu-link-nav");
+      console.log(greenDot);
+    });
+  document
+    .getElementById("menu-link-nav")
+    .addEventListener("mouseleave", (event) => {
+      const greenDot = document.getElementById("greendot");
+      const menuElement = document.getElementById("menu-link-nav");
 
-    const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
-    const relativeX = event.clientX - menuRect.left;
-    const relativeY = event.clientY - menuRect.top;
-    console.log(menuRect);
-    greenDot.style.left = `${relativeX}px`;
-    greenDot.style.top = `${relativeY}px`;
+      const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
+      const relativeX = event.clientX - menuRect.left;
+      const relativeY = event.clientY - menuRect.top;
+      console.log(menuRect);
+      greenDot.style.left = `${relativeX}px`;
+      greenDot.style.top = `${relativeY}px`;
 
-    greenDot.style.transform = "scale(.01)";
+      greenDot.style.transform = "scale(.01)";
 
-    console.log(greenDot);
-  });
+      console.log(greenDot);
+    });
 };
 const setupVideoControls = () => {
   const video = document.getElementById("hero-video");
@@ -121,14 +125,18 @@ const setupTestimonials = () => {
 
   tracks.forEach((track, index) => {
     // Clone cards for continuous scrolling if needed
-    const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
+    const originalCards = Array.from(
+      track.querySelectorAll(".testimonial-card")
+    );
 
     // Calculate the width precisely
     let trackWidth = 0;
     originalCards.forEach((card) => {
       const style = window.getComputedStyle(card);
       const width =
-        card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
+        card.offsetWidth +
+        parseInt(style.marginLeft || 0) +
+        parseInt(style.marginRight || 0);
       trackWidth += width;
     });
 
@@ -179,11 +187,15 @@ const setupTestimonials = () => {
 
     animations.forEach((animation) => {
       // Calculate movement based on consistent time delta
-      const movement = animation.direction * animation.speed * (deltaTime * 0.05);
+      const movement =
+        animation.direction * animation.speed * (deltaTime * 0.05);
       animation.position += movement;
 
       // Reset position when needed for seamless loop
-      if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
+      if (
+        animation.direction < 0 &&
+        animation.position <= -animation.trackWidth
+      ) {
         // For left-moving tracks, reset precisely
         animation.position = 0;
         needsUpdate = true;
@@ -267,7 +279,9 @@ const startingAnimation = () => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
   // document.getElementById("loader").style.display = "none";
-  const startingImages = Array.from(document.getElementsByClassName("onload-images"));
+  const startingImages = Array.from(
+    document.getElementsByClassName("onload-images")
+  );
   for (let i = 0; i < startingImages.length; i++) {
     const img = startingImages[i];
     setTimeout(() => {
@@ -310,7 +324,9 @@ const startingAnimation = () => {
       for (let i = 0; i < startingImages.length; i++) {
         startingImages[i].style.display = "none";
       }
-      const loaderHeaders = Array.from(document.getElementsByClassName("loader-header"));
+      const loaderHeaders = Array.from(
+        document.getElementsByClassName("loader-header")
+      );
       loaderHeaders.forEach((header) => header.classList.add("active"));
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
@@ -473,7 +489,8 @@ const main = () => {
     document.getElementById("fin-section").style.height = "100vh";
     document.getElementById("fin-section").style.width = "100%";
     document.getElementById("fin-section").style.clipPath = "inset(0)";
-    document.getElementById("starter-animation-container").style.display = "none";
+    document.getElementById("starter-animation-container").style.display =
+      "none";
     setTimeout(() => {
       document.getElementById("white-gradient").style.display = "block";
       document.getElementById("white-gradient").style.opacity = "1";
