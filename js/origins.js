@@ -25,7 +25,7 @@ const handleOnMove = (e) => {
 
   track.animate(
     {
-      transform: `translate(${nextPercentage}%, -50%)`,
+      transform: `translateX(${nextPercentage}%)`,
     },
     { duration: 1200, fill: "forwards" }
   );
