@@ -28,10 +28,10 @@ body {
     width: max-content;
     /* overflow-x: auto; */
     /* white-space: nowrap; */
-    position: fixed;
+    position: absolute;
     gap: 2vw;
     top: 50%; 
     left: 50%;
-    transform: translate(0%, -50%);
+    transform: translate(0%, -20%);
     overflow: hidden;
   }

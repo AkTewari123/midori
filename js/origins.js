@@ -25,7 +25,7 @@ const handleOnMove = (e) => {
 
   track.animate(
     {
-      transform: `translate(${nextPercentage}%, -50%)`,
+      transform: `translate(${nextPercentage}%, -20%)`,
     },
     { duration: 1200, fill: "forwards" }
   );
@@ -53,3 +53,20 @@ window.ontouchend = (e) => handleOnUp(e.touches[0]);
 window.onmousemove = (e) => handleOnMove(e);
 
 window.ontouchmove = (e) => handleOnMove(e.touches[0]);
+let scrollPosition = 0;
+
+// Add event listener for scroll
+// window.addEventListener("scroll", () => {
+//   // Get the current scroll position
+//   const newScrollPosition = window.scrollY;
+
+//   // Calculate how much to translate based on scroll
+//   // You can adjust the division factor to control the speed of translation
+//   const translateY = -newScrollPosition; // Divide by 2 to make it move at half the scroll speed
+
+//   // Apply the translation to the element
+//   track.style.transform = `translateY(${translateY}px)`;
+
+//   // Update the scroll position
+//   scrollPosition = newScrollPosition;
+// });
