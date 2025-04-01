@@ -7,273 +7,131 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="js/global.js" type="module" defer></script>
+    <script src="js/origins.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/origins.css" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <script src="https://unpkg.com/split-type" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
   </head>
   <body data-barba="wrapper">
-    <div id="overall" class="urbanist-regular min-h-screen text-black">
-      <nav
-        id="main-nav"
-        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
-      >
-        <ul class="flex items-center justify-between urbanist-regular text-xl">
-          <!-- Left Item -->
-          <li id="left-midori">
-            <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a
-              href="/"
-              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-              >Midori</a
-            >
-          </li>
-
-          <!-- Centered Items -->
-          <div id="centered-list" class="flex py-2">
-            <ul class="flex h-full bg-[#242425] rounded-xl">
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Home</a
-                >
-              </li>
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="about.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >About Us</a
-                >
-              </li>
-              <li
-                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="origins.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >Where It&apos;s From</a
-                >
-              </li>
-              <li
-                id="sources-trigger-open"
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Sources</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Right Item -->
-          <li class="nav-hoveritem relative inline-block">
-            <a
-              href="menu.html"
-              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-              id="menu-link-nav"
-            >
-              <div
-                id="greendot"
-                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
-              ></div>
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                Menu
-              </p>
-            </a>
-            <button
-              class="hidden py-4 px-8 rounded-xl overflow-hidden"
-              id="toggle-viewer"
-            >
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                <i class="bi bi-filter-right text-[35px] text-white"></i>
-              </p>
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <div id="precursor" class="h-screen">
-        <div
-          class="bg-white h-screen fixed w-full top-0 left-0"
-          id="sources-container"
-        >
-          <div
-            id="sources-trigger-close"
-            class="bg-black p-4 rounded-lg absolute top-4 right-4 close-button m-4"
+    <nav
+      id="main-nav"
+      class="fixed top-[10px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
+    >
+      <ul class="flex items-center justify-between urbanist-regular text-xl">
+        <!-- Left Item -->
+        <li id="left-midori">
+          <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+          <a
+            href="/"
+            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            >Midori</a
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M18 6l-12 12" />
-              <path d="M6 6l12 12" />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="w-full bg-white h-screen fixed flex justify-center flex-col gap-4 items-center"
-          id="white-nav-overlay"
-        >
-          <button class="hover-nav-overlay">
-            <p class="inline text-[28px]">Home</p>
-            <svg
-              class="inline mb-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="36"
-              height="36"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-home"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-            </svg>
-          </button>
-          <button class="hover-nav-overlay">
-            <p class="inline text-[28px]">About Us</p>
-            <svg
-              class="mb-4 inline"
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-chef-hat"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151z"
-              />
-              <path d="M6.161 17.009l11.839 -.009" />
-            </svg>
-          </button>
-          <button class="hover-nav-overlay">
-            <p class="inline text-[28px]">Where It's From</p>
-            <svg
-              class="inline mb-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-wheat"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12.014 21.514v-3.75" />
-              <path
-                d="M5.93 9.504l-.43 1.604c-.712 2.659 .866 5.391 3.524 6.105c.997 .268 1.993 .535 2.99 .801v-3.44c-.164 -2.105 -1.637 -3.879 -3.676 -4.426l-2.408 -.644z"
-              />
-              <path
-                d="M13.744 11.164c.454 -.454 .815 -.994 1.061 -1.587c.246 -.594 .372 -1.23 .372 -1.873c0 -.643 -.126 -1.279 -.372 -1.872c-.246 -.594 -.606 -1.133 -1.061 -1.588l-1.73 -1.73l-1.73 1.73c-.454 .454 -.815 .994 -1.06 1.588c-.246 .594 -.372 1.23 -.373 1.872c0 .643 .127 1.279 .373 1.873c.246 .594 .606 1.133 1.06 1.587"
-              />
-              <path
-                d="M18.099 9.504l.43 1.604c.712 2.659 -.866 5.391 -3.525 6.105c-.997 .268 -1.994 .535 -2.99 .801v-3.44c.164 -2.105 1.637 -3.879 3.677 -4.426l2.408 -.644z"
-              />
-            </svg>
-          </button>
-          <button class="hover-nav-overlay">
-            <p class="inline text-[28px]">Sources</p>
-            <svg
-              class="mb-4 inline"
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"
-              />
-            </svg>
-          </button>
+        </li>
 
-          <button class="hover-nav-overlay">
-            <p class="inline text-[28px]">Menu</p>
-            <svg
-              class="inline mb-4"
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-bowl-chopsticks"
+        <!-- Centered Items -->
+        <div id="centered-list" class="flex py-2">
+          <ul class="flex h-full bg-[#242425] rounded-xl">
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"
-              />
-              <path d="M19 7l-14 1" />
-              <path d="M19 2l-14 3" />
-            </svg>
-          </button>
+              <a
+                href="index.html"
+                class="w-full h-full flex justify-center items-center"
+                >Home</a
+              >
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="about.html"
+                class="w-full h-full flex justify-center items-center"
+                >About Us</a
+              >
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="origins.html"
+                class="w-full h-full flex justify-center items-center"
+                >Where It&apos;s From</a
+              >
+            </li>
+            <li
+              id="sources-trigger-open"
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Sources</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Item -->
+        <li class="nav-hoveritem relative inline-block">
+          <a
+            href="menu.html"
+            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+            id="menu-link-nav"
+          >
+            <div
+              id="greendot"
+              class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+            ></div>
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              Menu
+            </p>
+          </a>
           <button
-            id="white-nav-close"
-            class="bg-black p-4 close-button rounded-lg absolute top-4 right-4 m-4"
+            class="hidden py-4 px-8 rounded-xl overflow-hidden"
+            id="toggle-viewer"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M18 6l-12 12" />
-              <path d="M6 6l12 12" />
-            </svg>
+              <i class="bi bi-filter-right text-[35px] text-white"></i>
+            </p>
           </button>
-        </div>
+        </li>
+      </ul>
+    </nav>
+    <div id="overall" class="w-full urbanist-regular min-h-screen text-black">
+      <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+        <img
+          id="image-1"
+          class="image"
+          src="https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-2"
+          class="image"
+          src="https://images.unsplash.com/photo-1618202133208-2907bebba9e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-3"
+          class="image"
+          src="https://images.unsplash.com/photo-1495805442109-bf1cf975750b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+        <img
+          id="image-4"
+          class="image"
+          src="https://images.unsplash.com/photo-1548021682-1720ed403a5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          draggable="false"
+        />
+      </div>
+      <div id="precursor" class="h-screen w-full flex bg-white">
         <div
           class="transition-everypage bg-white h-screen fixed w-full top-0 left-0"
           id="sources-container"
@@ -382,8 +240,8 @@
             </a>
           </button>
 
-          <button class="hover-nav-overlay">
-            <a href="sources.html">
+          <button id="sources-trigger-open-2" class="hover-nav-overlay">
+            <div>
               <p class="inline text-[28px]">Sources</p>
               <svg
                 class="mb-4 inline"
@@ -403,7 +261,7 @@
                   d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"
                 />
               </svg>
-            </a>
+            </div>
           </button>
 
           <button class="hover-nav-overlay">
@@ -452,6 +310,15 @@
               <path d="M6 6l12 12" />
             </svg>
           </button>
+        </div>
+        <div
+          id="header-container"
+          class="h-2/5 w-[100vw] flex items-center justify-center flex-col"
+        >
+          <h3 class="text-7xl mb-2">Our Ingredients</h3>
+          <p class="text-gray-500 text-sm">
+            Drag Left to See Where We Get Our Food From
+          </p>
         </div>
       </div>
     </div>
