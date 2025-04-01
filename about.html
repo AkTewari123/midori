@@ -6,292 +6,741 @@
     <title>Midori about</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@barba/core"></script>
-    <script src="js/about.js" type="module" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/motion/10.16.2/motion.min.js"></script>
+    <script src="about.js" defer></script>
     <script src="js/main.js" type="module" defer></script>
-
     <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/main.css" />
-
     <link rel="stylesheet" href="styles/about.css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
 
-    
-    
     <style>
+      :root {
+        --light-bg: #ffffff;
+        --dark-bg: #0a0a0a;
+        --light-text: #000000;
+        --dark-text: #ffffff;
+        --light-neutral-300: #d4d4d4;
+        --dark-neutral-700: #404040;
+        --light-neutral-200: #e5e5e5;
+        --dark-neutral-800: #262626;
+        --light-neutral-500: #737373;
+        --dark-neutral-500: #737373;
+        --light-neutral-700: #404040;
+        --dark-neutral-300: #d4d4d4;
+        --purple-500: #8b5cf6;
+        --blue-500: #3b82f6;
+        --teal-500: #14b8a6;
+        --pink-500: #ec4899;
+      }
+  
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+  
       body {
         margin: 0;
         padding: 0;
         min-height: 100vh;
-        background-color: white;
-        position: relative;
+        background-color: #f2f2f2;
+        display: block;
       }
-
-      .step {
-        background-color: #057957;
-        position: absolute;
-        right: 0;
-        animation: shrinkHeight 2s ease-in-out forwards;
+  
+      .dark {
+        background-color: var(--dark-bg);
+        color: var(--dark-text);
       }
-
-      /* Positioning each step at different vertical levels */
-      .step:nth-child(1) {
-        width: 20%;
-
-        height: 100vh;
-        animation-delay: 0.2s;
+  
+      nav {
+        z-index: 9999 !important;
+        position: fixed;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
       }
-      .step:nth-child(2) {
-        width: 20%;
-        right: 20%;
-        height: 100vh;
-        animation-delay: 0.4s;
-      }
-      .step:nth-child(3) {
-        width: 20%;
-        right: 40%;
-
-        height: 100vh;
-        animation-delay: 0.6s;
-      }
-      .step:nth-child(4) {
-        width: 20%;
-        right: 60%;
-        height: 100vh;
-        animation-delay: 0.8s;
-      }
-      .step:nth-child(5) {
-        width: 20%;
-        right: 80%;
-
-        height: 100vh;
-        animation-delay: 1s;
-      }
-
-      @keyframes shrinkHeight {
-        0% {
-          height: 100vh;
-        }
-        100% {
-          height: 0vh;
-        }
-      }
-
+  
       #post-transition {
-        padding-top: 120px; /* Space for fixed nav */
+        padding-top: 120px;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+        display: block !important;
+        opacity: 1 !important;
+        background-color: #f2f2f2;
+      }
+  
+      section {
+        width: 100%;
+        padding: 4rem 0;
+      }
+
+      /* Updated team section styles */
+      .team-section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        padding-top: 2rem;
+      }
+
+      .team-section-header h2 {
+        color: #057957;
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .team-section-header p {
+        color: #404245;
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Updated team member styles */
+      .team-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 6rem;
+        flex-wrap: wrap;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 4rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      }
+
+      .person {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        transition: transform 0.4s ease;
+      }
+
+      .person:hover {
+        transform: translateY(-15px);
+      }
+
+      .container {
+        position: relative;
+        border-radius: 50%;
+        height: 280px;
+        width: 280px;
+        overflow: hidden;
+        transform: scale(1);
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 30px rgba(5, 121, 87, 0.2);
+        border: 4px solid #057957;
+      }
+
+      .container:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.3);
+      }
+
+      .container-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .circle {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .container:hover .circle {
+        transform: scale(1.1);
+      }
+
+      .divider {
+        background: linear-gradient(90deg, transparent, #057957, transparent);
+        height: 2px;
+        width: 100px;
+        margin: 1.5rem 0;
+        opacity: 0.7;
+      }
+
+      .name {
+        color: #057957;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+        font-family: 'forum-extrabold', serif;
+      }
+
+      .title {
+        color: #404245;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 0.25rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
       }
 
       .timeline-container {
-        padding-top: 4rem;
+        width: 100%;
+        padding: 2rem 0;
+        margin-top: 2rem;
+        background-color: #fff;
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-container {
+          padding: 2rem 2.5rem;
+        }
+      }
+  
+      .timeline-header {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 5rem 1rem;
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-header {
+          padding: 5rem 2rem;
+        }
+      }
+  
+      @media (min-width: 1024px) {
+        .timeline-header {
+          padding: 5rem 2.5rem;
+        }
+      }
+  
+      .timeline-title {
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+        color: var(--light-text);
+        max-width: 64rem;
+      }
+  
+      .dark .timeline-title {
+        color: var(--dark-text);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-title {
+          font-size: 2.25rem;
+        }
+      }
+  
+      .timeline-description {
+        color: var(--light-neutral-700);
+        font-size: 0.875rem;
+        max-width: 24rem;
+      }
+  
+      .dark .timeline-description {
+        color: var(--dark-neutral-300);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-description {
+          font-size: 1rem;
+        }
+      }
+  
+      .timeline-content {
         position: relative;
-        z-index: 1;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding-bottom: 5rem;
+      }
+  
+      .timeline-entry {
+        display: flex;
+        justify-content: flex-start;
+        padding-top: 2.5rem;
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-entry {
+          padding-top: 10rem;
+          gap: 2.5rem;
+        }
+      }
+  
+      .timeline-marker {
+        position: sticky;
+        display: flex;
+        flex-direction: column;
+        z-index: 40;
+        align-items: center;
+        top: 10rem;
+        align-self: flex-start;
+        max-width: 20rem;
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-marker {
+          flex-direction: row;
+          width: 100%;
+        }
+  
+        @media (min-width: 1024px) {
+          .timeline-marker {
+            max-width: 24rem;
+          }
+        }
+      }
+  
+      .timeline-dot-container {
+        height: 2.5rem;
+        position: absolute;
+        left: 0.75rem;
+        width: 2.5rem;
+        border-radius: 9999px;
+        background-color: var(--light-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .dark .timeline-dot-container {
+        background-color: var(--dark-bg);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-dot-container {
+          left: 0.75rem;
+        }
+      }
+  
+      .timeline-dot {
+        height: 1rem;
+        width: 1rem;
+        border-radius: 9999px;
+        background-color: var(--light-neutral-200);
+        border: 1px solid var(--light-neutral-300);
+        padding: 0.5rem;
+      }
+  
+      .dark .timeline-dot {
+        background-color: var(--dark-neutral-800);
+        border-color: var(--dark-neutral-700);
+      }
+  
+      .timeline-marker-title {
+        display: none;
+        font-size: 1.25rem;
+        padding-left: 5rem;
+        font-weight: 700;
+        color: var(--light-neutral-500);
+      }
+  
+      .dark .timeline-marker-title {
+        color: var(--dark-neutral-500);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-marker-title {
+          display: block;
+          font-size: 3rem;
+        }
+      }
+  
+      .timeline-entry-content {
+        position: relative;
+        padding-left: 5rem;
+        padding-right: 1rem;
+        width: 100%;
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-entry-content {
+          padding-left: 1rem;
+        }
+      }
+  
+      .timeline-entry-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+        font-weight: 700;
+        color: var(--light-neutral-500);
+      }
+  
+      .dark .timeline-entry-title {
+        color: var(--dark-neutral-500);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-entry-title {
+          display: none;
+        }
+      }
+  
+      .timeline-line-container {
+        position: absolute;
+        left: 2rem;
+        top: 0;
+        overflow: hidden;
+        width: 2px;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+      }
+  
+      @media (min-width: 768px) {
+        .timeline-line-container {
+          left: 2rem;
+        }
+      }
+  
+      .timeline-progress-line {
+        position: absolute;
+        inset-x: 0;
+        top: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--purple-500) 10%,
+          var(--blue-500) 50%,
+          var(--teal-500) 90%,
+          transparent
+        );
+        border-radius: 9999px;
+        opacity: 0;
+        transform-origin: top;
+        filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.3));
+      }
+  
+      .timeline-background-line {
+        position: absolute;
+        inset-x: 0;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: var(--light-neutral-300);
+        border-radius: 9999px;
+        opacity: 0.3;
+      }
+  
+      .dark .timeline-background-line {
+        background: var(--dark-neutral-700);
+        opacity: 0.4;
+      }
+  
+      .toggle-dark-mode {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: var(--light-neutral-200);
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+  
+      .dark .toggle-dark-mode {
+        background-color: var(--dark-neutral-700);
+      }
+  
+      .timeline-entry-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
+
+      /* Updated sliding div styles */
+      .slide-in-left {
+        transform: translate(-100%, 50px) rotate(-5deg);
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.1);
+        border: 1px solid rgba(5, 121, 87, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(248, 250, 249, 0.8);
+      }
+
+      .slide-in-right {
+        transform: translate(100%, 50px) rotate(5deg);
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.1);
+        border: 1px solid rgba(5, 121, 87, 0.1);
+        backdrop-filter: blur(10px);
+        background: rgba(248, 250, 249, 0.8);
+      }
+
+      .slide-in-left.active,
+      .slide-in-right.active {
+        transform: translate(0, 0) rotate(0);
+        opacity: 1;
+      }
+
+      .slide-in-left:hover,
+      .slide-in-right:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(5, 121, 87, 0.15);
+      }
+
+      .philosophy-icon,
+      .promise-icon {
+        font-size: 2.5rem;
+        color: #057957;
+        margin-bottom: 1rem;
+        transform: scale(0);
+        transition: transform 0.5s ease 0.3s;
+      }
+
+      .active .philosophy-icon,
+      .active .promise-icon {
+        transform: scale(1);
+      }
+
+      /* Enhanced sliding cards styles */
+      .info-cards-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 3rem;
+        padding: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .info-cards-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .info-card-wrapper {
+        perspective: 1000px;
+      }
+
+      .slide-in-left,
+      .slide-in-right {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 3rem;
+        border-radius: 24px;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      .slide-in-left {
+        transform: translate(-100%, 50px) rotate(-15deg);
+      }
+
+      .slide-in-right {
+        transform: translate(100%, 50px) rotate(15deg);
+      }
+
+      .slide-in-left.active,
+      .slide-in-right.active {
+        transform: translate(0, 0) rotate(0);
+      }
+
+      .slide-in-left:hover,
+      .slide-in-right:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 35px 60px -15px rgba(5, 121, 87, 0.25);
+      }
+
+      .philosophy-icon,
+      .promise-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        transform: scale(0) rotate(-45deg);
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+        display: inline-block;
+        background: linear-gradient(135deg, #057957, #14b8a6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 8px rgba(5, 121, 87, 0.2));
+      }
+
+      .active .philosophy-icon,
+      .active .promise-icon {
+        transform: scale(1) rotate(0);
+      }
+
+      .info-card-title {
+        font-size: 2rem;
+        color: #057957;
+        margin-bottom: 1rem;
+        font-weight: 800;
+        line-height: 1.2;
+        font-family: 'forum-extrabold', serif;
+      }
+
+      .info-card-content {
+        color: #4b5563;
+        line-height: 1.7;
+        font-size: 1.1rem;
+      }
+
+      /* Add gradient background to section */
+      .info-section {
+        background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 8rem 2rem;
+      }
+
+      .info-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(5, 121, 87, 0.2), transparent);
+      }
+
+      .info-section::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(5, 121, 87, 0.1), transparent);
       }
     </style>
   </head>
   <body data-barba="wrapper">
-    <div id="precursor">
-      <div class="absolute w-full">
-        <div class="step w-1/5"></div>
-        <div class="step"></div>
-        <div class="step"></div>
-        <div class="step"></div>
-        <div class="step"></div>
-      </div>
-      <div data-barba="container" data-barba-namespace="home">
-        <div
-          class="h-screen bottom-0 left-0 w-full absolute"
-          id="midori-background"
-        >
-          <div class="absolute bottom-0 left-0 p-4 text-white">
-            <h1
-              id="midori-header"
-              class="forum-extrabold text-[120px] inline-block decoration-black"
-            >
-              <b> Midori </b>
-            </h1>
-          </div>
-        </div>
-        <div id="midori-background-2" class="absolute w-full top-1/2 h-[2px]">
-          <!-- Preparing Text -->
-          <p
-            class="text-white urbanist-light ml-2 absolute -top-8 text-xl left-0"
-            id="preparing"
-          >
-            Preparing your menu...
-          </p>
-
-          <!-- White Line -->
-          <div
-            class="absolute top-1/2 left-0 h-[2px] bg-white transform -translate-y-1/2 w-0 transition-all duration-3000 ease-in-out"
-            id="white-line"
-          ></div>
-
-          <!-- Image Breaks -->
-          <img
-            src="images/leaf.png"
-            class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-[160px] onloadimages aspect-square"
-            alt="Leaf"
-            id="leafintro"
-          />
-          <img
-            src="images/curry.png"
-            class="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-48 onloadimages aspect-square"
-            alt="Restaurant"
-            id="restaurant-intro"
-          />
-          <img
-            src="images/noodles.png"
-            class="absolute top-1/2 left-3/4 transform -translate-y-1/2 w-48 onloadimages aspect-square"
-            alt="Noodles"
-            id="noodles-intro"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      id="post-transition"
-      class="urbanist-regular min-h-screen text-black"
-    >
-      <nav
-        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
-      >
+    <div id="post-transition" class="urbanist-regular text-black">
+      <nav class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-[9999] bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl">
         <ul class="flex items-center justify-between urbanist-regular text-xl">
           <!-- Left Item -->
           <li>
             <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a
-              href="/"
-              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-              >Midori</a
-            >
+            <a href="/" class="inline text-white font-bold forum-extrabold ml-2 text-[24px]">Midori</a>
           </li>
 
           <!-- Centered Items -->
           <div class="flex w-[800px] h-[80px] py-2">
             <ul class="flex w-full h-full bg-[#242425] rounded-xl">
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Home</a
-                >
+              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
+                <a href="index.html" class="w-full h-full flex justify-center items-center">Home</a>
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="about.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >About</a
-                >
+              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
+                <a href="about.html" class="w-full h-full flex justify-center items-center">About Us</a>
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Contact</a
-                >
+              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
+                <a href="origins.html" class="w-full h-full flex justify-center items-center">Where It's From</a>
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Sources</a
-                >
+              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
+                <a href="#" class="w-full h-full flex justify-center items-center">Sources</a>
               </li>
             </ul>
           </div>
 
           <!-- Right Item -->
-          <li class="relative inline-block">
-            <a
-              href="#"
-              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-              id="menu"
-            >
-              <div
-                id="greendot"
-                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
-              ></div>
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                Menu
-              </p>
+          <li class="nav-hoveritem relative inline-block">
+            <a href="menu.html" class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block" id="menu-link-nav">
+              <div id="greendot" class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"></div>
+              <p class="relative text-black transition-colors duration-300" id="menutext">Menu</p>
             </a>
           </li>
         </ul>
       </nav>
 
-
-
-      <button class="toggle-dark-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  
-      <div class="timeline-container" id="timeline-container">
-        <div class="timeline-header">
-          <h2 class="timeline-title">Changelog from my journey</h2>
-          <p class="timeline-description">
-            I've been working on Aceternity for the past 2 years. Here's a timeline of my journey.
-          </p>
+      <!-- Team Section -->
+      <section class="bg-[#f8faf9] py-20">
+        <div class="team-section-header">
+          <h2 class="forum-extrabold">Our Team</h2>
+          <p class="urbanist-light">Meet the passionate individuals behind Midori's culinary excellence</p>
         </div>
-    
-        <div class="timeline-content" id="timeline-content">
-          <!-- Timeline entries will be populated by JavaScript -->
+
+        <div class="team-container">
+          <div class="person">
+            <div class="container">
+              <div class="container-inner">
+                <img 
+                  class="circle" 
+                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
+                  alt="Head Chef Anton"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Anton</div>
+            <div class="title">Head Chef</div>
+          </div>
+
+          <div class="person">
+            <div class="container">
+              <div class="container-inner">
+                <img 
+                  class="circle" 
+                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
+                  alt="Sous Chef Sarah"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Sarah</div>
+            <div class="title">Sous Chef</div>
+          </div>
+
+          <div class="person">
+            <div class="container">
+              <div class="container-inner">
+                <img 
+                  class="circle" 
+                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
+                  alt="Pastry Chef Mike"
+                />
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="name">Mike</div>
+            <div class="title">Pastry Chef</div>
+          </div>
         </div>
-      </div>
+      </section>
 
+      <!-- Sliding Divs Section -->
+      <section class="info-section">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl md:text-6xl forum-extrabold text-emerald-800 mb-4">Our Story</h2>
+            <div class="flex justify-center items-center gap-4">
+              <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
+              <p class="text-gray-600 urbanist-light text-lg">The principles that guide us</p>
+              <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
+            </div>
+          </div>
 
-    <script src="about.js" defer></script>
-
-    <script>
-      // Timeline data
-      const timelineData = [
-        {
-          title: "Our Beginning",
-          content: `
-            <p>Started Midori with a vision to bring authentic Japanese cuisine to our community.</p>
-            <p>Gathered our initial team of passionate chefs and food enthusiasts.</p>
-          `
-        },
-        {
-          title: "Growth",
-          content: `
-            <p>Expanded our menu to include more traditional dishes.</p>
-            <p>Started sourcing ingredients directly from Japanese suppliers.</p>
-          `
-        },
-        {
-          title: "Innovation",
-          content: `
-            <p>Introduced modern fusion dishes while maintaining authenticity.</p>
-            <p>Launched our special seasonal menu featuring local ingredients.</p>
-          `
-        },
-        {
-          title: "Community",
-          content: `
-            <p>Started hosting Japanese cooking workshops.</p>
-            <p>Established partnerships with local farmers.</p>
-          `
-        }
-      ];
-
-      // Initialize timeline on page load
-      window.addEventListener('load', () => {
-        if (document.getElementById('timeline-content')) {
-          initTimeline();
-        }
-      });
-    </script>
+          <div class="info-cards-container">
+            <!-- Cards will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
       
+    </div>
   </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </html>
