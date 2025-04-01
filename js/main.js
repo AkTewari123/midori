@@ -31,42 +31,38 @@ const enableParallax = () => {
 };
 
 const menuGreenTransition = () => {
-  document
-    .getElementById("menu-link-nav")
-    .addEventListener("mouseenter", (event) => {
-      const greenDot = document.getElementById("greendot");
-      const menuElement = document.getElementById("menu-link-nav");
+  document.getElementById("menu-link-nav").addEventListener("mouseenter", (event) => {
+    const greenDot = document.getElementById("greendot");
+    const menuElement = document.getElementById("menu-link-nav");
 
-      // Get the mouse X position relative to the "menu" element
-      const menuRect = menuElement.getBoundingClientRect();
-      const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
-      const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
-      console.log(menuRect);
-      // Position the green dot horizontally within "menu"
-      greenDot.style.left = `${relativeX}px`;
-      greenDot.style.top = `${relativeY}px`;
-      // Scale it by 20
-      greenDot.style.transform = "scale(20)";
+    // Get the mouse X position relative to the "menu" element
+    const menuRect = menuElement.getBoundingClientRect();
+    const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
+    const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
+    console.log(menuRect);
+    // Position the green dot horizontally within "menu"
+    greenDot.style.left = `${relativeX}px`;
+    greenDot.style.top = `${relativeY}px`;
+    // Scale it by 20
+    greenDot.style.transform = "scale(20)";
 
-      console.log(greenDot);
-    });
-  document
-    .getElementById("menu-link-nav")
-    .addEventListener("mouseleave", (event) => {
-      const greenDot = document.getElementById("greendot");
-      const menuElement = document.getElementById("menu-link-nav");
+    console.log(greenDot);
+  });
+  document.getElementById("menu-link-nav").addEventListener("mouseleave", (event) => {
+    const greenDot = document.getElementById("greendot");
+    const menuElement = document.getElementById("menu-link-nav");
 
-      const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
-      const relativeX = event.clientX - menuRect.left;
-      const relativeY = event.clientY - menuRect.top;
-      console.log(menuRect);
-      greenDot.style.left = `${relativeX}px`;
-      greenDot.style.top = `${relativeY}px`;
+    const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
+    const relativeX = event.clientX - menuRect.left;
+    const relativeY = event.clientY - menuRect.top;
+    console.log(menuRect);
+    greenDot.style.left = `${relativeX}px`;
+    greenDot.style.top = `${relativeY}px`;
 
-      greenDot.style.transform = "scale(.01)";
+    greenDot.style.transform = "scale(.01)";
 
-      console.log(greenDot);
-    });
+    console.log(greenDot);
+  });
 };
 const setupVideoControls = () => {
   const video = document.getElementById("hero-video");
@@ -125,18 +121,14 @@ const setupTestimonials = () => {
 
   tracks.forEach((track, index) => {
     // Clone cards for continuous scrolling if needed
-    const originalCards = Array.from(
-      track.querySelectorAll(".testimonial-card")
-    );
+    const originalCards = Array.from(track.querySelectorAll(".testimonial-card"));
 
     // Calculate the width precisely
     let trackWidth = 0;
     originalCards.forEach((card) => {
       const style = window.getComputedStyle(card);
       const width =
-        card.offsetWidth +
-        parseInt(style.marginLeft || 0) +
-        parseInt(style.marginRight || 0);
+        card.offsetWidth + parseInt(style.marginLeft || 0) + parseInt(style.marginRight || 0);
       trackWidth += width;
     });
 
@@ -187,15 +179,11 @@ const setupTestimonials = () => {
 
     animations.forEach((animation) => {
       // Calculate movement based on consistent time delta
-      const movement =
-        animation.direction * animation.speed * (deltaTime * 0.05);
+      const movement = animation.direction * animation.speed * (deltaTime * 0.05);
       animation.position += movement;
 
       // Reset position when needed for seamless loop
-      if (
-        animation.direction < 0 &&
-        animation.position <= -animation.trackWidth
-      ) {
+      if (animation.direction < 0 && animation.position <= -animation.trackWidth) {
         // For left-moving tracks, reset precisely
         animation.position = 0;
         needsUpdate = true;
@@ -279,9 +267,7 @@ const startingAnimation = () => {
     document.querySelector("nav").style.opacity = "1";
   }, 3000);
   // document.getElementById("loader").style.display = "none";
-  const startingImages = Array.from(
-    document.getElementsByClassName("onload-images")
-  );
+  const startingImages = Array.from(document.getElementsByClassName("onload-images"));
   for (let i = 0; i < startingImages.length; i++) {
     const img = startingImages[i];
     setTimeout(() => {
@@ -324,9 +310,7 @@ const startingAnimation = () => {
       for (let i = 0; i < startingImages.length; i++) {
         startingImages[i].style.display = "none";
       }
-      const loaderHeaders = Array.from(
-        document.getElementsByClassName("loader-header")
-      );
+      const loaderHeaders = Array.from(document.getElementsByClassName("loader-header"));
       loaderHeaders.forEach((header) => header.classList.add("active"));
       document.getElementById("white-gradient").style.opacity = 1;
     }, 2000);
@@ -439,84 +423,40 @@ const setupMasonryGrid = () => {
   });
 };
 
-// Add this new function for hero animations
-const initHeroAnimations = () => {
-  const timeout = skipAnimation ? 0 : 7000;
+// Add this new function for hero text animations
+const initHeroText = () => {
+  const timeout = skipAnimation ? 1000 : 9000; // Delay based on animation state
 
   setTimeout(() => {
-    // Activate all animation elements
+    // Activate hero text container
+    const heroTextContainer = document.getElementById("hero-text-container");
+    if (heroTextContainer) {
+      heroTextContainer.style.opacity = "1";
+    }
+
+    // Animate individual elements with staggered timing
     const textElements = document.querySelectorAll(".hero-text-reveal");
     const descElement = document.querySelector(".hero-desc-reveal");
     const buttonsElement = document.querySelector(".hero-buttons-reveal");
-    const videoContainer = document.querySelector(".hero-video-container");
-    const statsElement = document.querySelector(".hero-stats-reveal");
-    const borderElement = document.querySelector(".hero-border");
 
-    // Activate all elements with appropriate timing
+    // Text animation with slight delay between elements
     if (textElements) {
-      textElements.forEach((el) => el.classList.add("active"));
+      textElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add("active");
+        }, index * 150); // Stagger the text lines
+      });
     }
 
-    if (descElement) descElement.classList.add("active");
-    if (buttonsElement) buttonsElement.classList.add("active");
-    if (videoContainer) videoContainer.classList.add("active");
-    if (statsElement) statsElement.classList.add("active");
-    if (borderElement) borderElement.classList.add("active");
+    // Description and buttons with their own timing
+    setTimeout(() => {
+      if (descElement) descElement.classList.add("active");
+    }, textElements.length * 150 + 200);
 
-    // Enhanced video controls setup
-    setupEnhancedVideoControls();
+    setTimeout(() => {
+      if (buttonsElement) buttonsElement.classList.add("active");
+    }, textElements.length * 150 + 500);
   }, timeout);
-};
-
-// Enhanced video controls with better UX
-const setupEnhancedVideoControls = () => {
-  const video = document.getElementById("hero-video");
-  const playPauseBtn = document.getElementById("play-pause-btn");
-
-  if (!video || !playPauseBtn) return;
-
-  // Add hover event to show controls more prominently
-  const videoContainer = document.querySelector(".hero-video-container");
-  if (videoContainer) {
-    videoContainer.addEventListener("mouseenter", () => {
-      playPauseBtn.style.opacity = "1";
-    });
-
-    videoContainer.addEventListener("mouseleave", () => {
-      if (!video.paused) {
-        // Only fade if video is playing
-        playPauseBtn.style.opacity = "0.7";
-      }
-    });
-  }
-
-  // Update button state based on video state
-  const updateButtonState = () => {
-    if (video.paused) {
-      playPauseBtn.classList.remove("video-playing");
-      if (playPauseBtn) playPauseBtn.style.opacity = "1";
-    } else {
-      playPauseBtn.classList.add("video-playing");
-      if (playPauseBtn) playPauseBtn.style.opacity = "0.7";
-    }
-  };
-
-  // Initial state
-  updateButtonState();
-
-  // Toggle play/pause on button click
-  playPauseBtn.addEventListener("click", () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
-    updateButtonState();
-  });
-
-  // Update button when video state changes
-  video.addEventListener("play", updateButtonState);
-  video.addEventListener("pause", updateButtonState);
 };
 
 const main = () => {
@@ -533,8 +473,7 @@ const main = () => {
     document.getElementById("fin-section").style.height = "100vh";
     document.getElementById("fin-section").style.width = "100%";
     document.getElementById("fin-section").style.clipPath = "inset(0)";
-    document.getElementById("starter-animation-container").style.display =
-      "none";
+    document.getElementById("starter-animation-container").style.display = "none";
     setTimeout(() => {
       document.getElementById("white-gradient").style.display = "block";
       document.getElementById("white-gradient").style.opacity = "1";
@@ -542,6 +481,10 @@ const main = () => {
       setupVideoControls();
     }, 2000);
   }
+
+  // Initialize hero text animations
+  initHeroText();
+
   // If animations are playing, wait for them to complete
   // This needs to match or exceed the total animation duration (around 5.5s + 500ms safety margin)
   setTimeout(
