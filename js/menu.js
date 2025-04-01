@@ -1,4 +1,79 @@
 "use client";
+
+const starters = {
+  gyoza: {
+    title: "Vegetable Gyoza",
+    desc: "Pan-fried dumplings filled with seasonal vegetables and aromatic herbs"
+  },
+  baoBuns: {
+    title: "Mushroom Bao Buns",
+    desc: "Steamed fluffy buns filled with braised shiitake mushrooms and pickled vegetables"
+  }, 
+  tempura: {
+    title: "Vegetable Tempura",
+    desc: "Light and crispy seasonal vegetables served with a delicate dipping sauce"
+  }, 
+  edamame: {
+    title: "Edamame",
+    desc: "Freshly steamed edamame seasoned with salt and sesame seeds"
+  },
+  seaweedSalad: {
+    title: "Seaweed Salad",
+    desc: "Wakame seaweed coated in a flavorful, savory dressing."
+  }
+}
+
+const entrees = {
+  tofuCurry: {
+    title: "House Special Tofu Curry",
+    desc: "Stir-fried tofu coated in a spicy curry. Served with choice of white or brown rice."
+  },
+  ramen: {
+    title: "Mushroom Ramen",
+    desc: "Rich vegetable broth and freshly-made ramen noodles topped with wood ear mushrooms, bamboo shoot, impossible egg, scallions."
+  },
+  padThai: {
+    title: "Vegetable Pad Thai",
+    desc: "Sweet, savory, and sour noodles with tofu and stir-fried vegetables. Served with crushed peanuts and bean sprouts."
+  },
+  friedRice: {
+    title: "Vegetable Fried Rice",
+    desc: "Fried rice with stir-fried carrots, onions, scallion, and tomato"
+  },
+  redCurry: {
+    title: "Thai Red Curry",
+    desc: "Spicy red curry filled with freshly cooked vegetables. Served with choice of white or brown rice."
+  }
+}
+
+const addMenuItems = (items, section) => {
+
+  for (const item in items) {
+    console.log(item)
+
+    const title = document.createElement("h5")
+    title.innerText = items[item]['title']
+
+    const desc = document.createElement("h6")
+    desc.innerText = items[item]['desc']
+
+    // add classes
+    title.classList.add('item-title', 'urbanist-bold')
+    desc.classList.add('item-subtitle', 'mb-6')
+
+    section.appendChild(title)
+    section.appendChild(desc)
+
+  }
+}
+
+window.onload = () => {
+  const starterDiv = document.getElementById("starters")
+  const entreesDiv = document.getElementById("entrees")
+  addMenuItems(starters, starterDiv)
+  addMenuItems(entrees, entreesDiv)
+}
+
 /* 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";

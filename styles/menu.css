@@ -51,7 +51,7 @@ body {
 }
 
 .background-texture {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 75%, rgba(155, 233, 192, 1) 100%); 
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 75%, rgba(249, 247, 243, 1) 100%); 
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -83,7 +83,6 @@ body {
 .categories__title {
   color: rgb(77, 55, 102);
   font-size: 28px;
-  position: absolute;
   padding-left: 30px;
 }
 
@@ -173,14 +172,15 @@ body {
   margin: 5px 0;
 }
 
-.carousel-item__details--title {
+.item-title {
   font-family: "Urbanist", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  color: #252746;
 }
 
-.carousel-item__details--subtitle {
+.item-subtitle {
   font-family: "Urbanist", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
