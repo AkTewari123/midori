@@ -1,0 +1,16 @@
+Templates
+https://ramos-app.webflow.io/ - very nice 
+https://kyrote.github.io/TSA_WM_2025/ - Copy “Midori” name
+https://closdessens.com/la-table/ - Prob not this one
+https://tsa-webmaster-24-25-urban-harvest.vercel.app/ - good 3d model
+https://www.qudrix.com/ - I think they also have a 3d model
+https://mocaasianbistro.com/ - Nice hero video
+https://www.ayana.com/bali/hotels/ - Good transitions
+https://torredelsaracino.it/il-menu/ - White clean ui
+https://www.pinterest.com/pin/760615824600556674/ - Asian restaurant that has a good color theme
+https://www.pinterest.com/pin/169588742210535656/ - Good 3d models 
+https://ilimitado.studio/ - hella clean transitions
+
+Libraries
+https://barba.js.org/docs/getstarted/custom-code/ - good for animations
+https://modelviewer.dev/ - good for 3d models
