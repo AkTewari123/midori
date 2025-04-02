@@ -87,7 +87,6 @@ nav {
 }
 
 .hoveritem {
-  background-color: rgba(5, 121, 87, 0.1); /* Add a slight green background */
   transition: all 0.25s ease-in-out;
   border-radius: 10px;
   color: white !important;

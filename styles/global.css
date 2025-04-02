@@ -39,9 +39,7 @@
   transition: color .5s ease-in-out;
   padding: 10px 16px 0px 16px;
 }
-.hover-nav-overlay:hover {
-  color: #009966;
-}
+
 
 #toggle-viewer:hover {
   background-color: #333;
