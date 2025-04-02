@@ -1,204 +1,131 @@
-@import "tailwindcss";
-
-:root {
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
-}
-
-@keyframes scroll {
-  to {
-    transform: translate(calc(-50% - 0.5rem));
-  }
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-scroll {
-  animation: scroll 20s linear infinite;
-}
-
-/* Pause animation on hover */
-.hover\:animation-play-state\:paused:hover {
-  animation-play-state: paused;
-}
-
-
-body {
-    margin: 0;
-    font-family: 'Muli', sans-serif;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-
-.background {
-  background: url('/images/starter/fin-background-2.jpg')
-    center bottom no-repeat #252746;
-  background-size: cover;
-  display: block;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  z-index: 0;
-  top: 0;
-  left: 0;
-}
-
-.background-texture {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 75%, rgba(249, 247, 243, 1) 100%); 
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.carousel {
-  width: 100%;
-  overflow-x: auto;
-  padding: 30px;
-  padding-top: 80px;
-  position: relative;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-}
-
-.carousel__container {
-  white-space: nowrap;
-  margin: 30px 0px;/* 
-  padding-bottom: 10px;
-  display: inline-block; */
-  display: flex;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-.categories__title {
-  color: rgb(77, 55, 102);
-  font-size: 28px;
-  padding-left: 30px;
-}
-
-.carousel-item {
-  width: 20vw;
-  height: 250px;
-  border-radius: 20px;
-  background-color: #95bcd6;
-  overflow: hidden;
-  margin-right: 10px;
-  margin-top: 70px;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-transition: 1000ms all;
-  transition: 1000ms all;
-  -webkit-transform-origin: center left;
-  transform-origin: center left;
-  position: relative;
-}
-
-.carousel-item:hover ~ .carousel-item {
-  -webkit-transform: translate3d(100px, 0, 0);
-  transform: translate3d(100px, 0, 0);
-}
-
-.carousel__container:hover .carousel-item {
-  opacity: 1;
-}
-
-.carousel__container:hover .carousel-item:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
-  opacity: .95;
-  z-index: 10; 
-}
-
-
-.carousel-item__img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-
-.carousel-item__details {
-  background: -webkit-linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  font-size: 10px;
+#our-menu {
+  margin-bottom: 48px;  
+  transform: translateY(10px);
   opacity: 0;
-  -webkit-transition: 450ms opacity;
-  transition: 450ms opacity;
-  padding: 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  transition: all .5s ease ;
+}
+#menu-description {
+  line-height: 2em;
 }
 
-.carousel-item__details:hover {
+.menu-display {
+  border-radius: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.menu-display.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.carousel-item__details span {
-  /* width: 10px;
-  height: 10px; */
-  font-size: 0.9rem;
-  color: #2ecc71;
-  /* background-color: white; */
+#avocado-roll {
+  clip-path: inset(100%);
+  transform: scale(0);
+}
+#chow-mein {
+  clip-path: inset(100%);
+  transform: scale(0);
+  display: none;
+}
+.menu-item {
+  font-family: "Forum";
+  font-weight: 800;  
+}
+.description {
+  font-size: 18px;
+}
+.appetizer-item {
+  width: 100%;
+  padding: 15px;
+  position: relative;
+
+}
+.tooltip {
+  font-family: "Forum";
+}
+.menu-item-header {
+  font-size: 40px !important;
+  margin-bottom: 14px
+}
+.item-ingredients {
+  font-size: 22px ;
+}
+.menu-lg-container {
+  display: grid;
+  grid-template-columns: repeat(2, 50%); /* Single column */
 }
 
-.carousel-item__details .controls {
-  padding-top: 180px;
+@media (max-width: 1145px) {
+  #our-menu {
+    margin-bottom: 24px;
+  }
+}
+.image-caption {
+  margin-bottom: 4px;
+  font-weight: 700px;
+  font-size: 18px;
+}
+@media (max-width: 1050px) {
+  #menu-flex-container {
+    display: flex;
+    flex-direction: column-reverse;  /* Stacks the content in a single column */
+    width: 100%;             /* Ensures full width */
+    gap: 1rem;               /* Optional: Adds space between child elements */
+  }
+
+  .menu-flex-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  
+  #menu-description-container {
+    margin-top: 140px;
+    width: 90%;
+    
+  }
+
+  #image-intro-menu {
+    width: 80%;
+
+  }
+  
+  #menu-description {
+    width: 100%;
+  }
+  #our-menu {
+    margin-bottom: 14px;  }
+  #avocado-roll {
+    display: none ;
+  }
+  #chow-mein {
+    display: block;
+  }
 }
 
-.carousel-item__details .carousel-item__details--title,
-.carousel-item__details--subtitle {
-  color: #fff;
-  margin: 5px 0;
+@media (max-width: 992px) {
+  .section-header {
+    font-size: 60px !important;
+    text-align: center !important;
+    margin-top: 45px;
+    margin-bottom: 15px;
+  }
+  .menu-container  {
+    width: 100%;
+    text-align: center;
+  }
+  .second-container {
+    order: 2;
+  }
+  .first-container {
+    order: 1;
+  }
+  .menu-lg-container {
+    display: grid;  
+    grid-template-columns: repeat(1, 100%) !important; /* Single column */
+    gap: 1rem; /* Optional spacing */
+    width: 100%;
 }
-
-.item-title {
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  color: #252746;
-}
-
-.item-subtitle {
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-
-  text-wrap: wrap;
-}
-
-/* Custom scrollbar styling */
-.carousel::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel::-webkit-scrollbar-track {
-  background: #252746;
-}
-
-.carousel::-webkit-scrollbar-thumb {
-  background: #62dc9d;
-  border-radius: 10px;
 }

@@ -1,164 +1,181 @@
-"use client";
+function createResponsiveAnimatedLines() {
+  // Get the paragraph element
+  const paragraph = document.getElementById("menu-description");
+  const originalText = paragraph.innerText;
 
-const starters = {
-  gyoza: {
-    title: "Vegetable Gyoza",
-    desc: "Pan-fried dumplings filled with seasonal vegetables and aromatic herbs"
-  },
-  baoBuns: {
-    title: "Mushroom Bao Buns",
-    desc: "Steamed fluffy buns filled with braised shiitake mushrooms and pickled vegetables"
-  }, 
-  tempura: {
-    title: "Vegetable Tempura",
-    desc: "Light and crispy seasonal vegetables served with a delicate dipping sauce"
-  }, 
-  edamame: {
-    title: "Edamame",
-    desc: "Freshly steamed edamame seasoned with salt and sesame seeds"
-  },
-  seaweedSalad: {
-    title: "Seaweed Salad",
-    desc: "Wakame seaweed coated in a flavorful, savory dressing."
-  }
-}
+  // Store original text for reference
+  paragraph.setAttribute("data-original-text", originalText);
 
-const entrees = {
-  tofuCurry: {
-    title: "House Special Tofu Curry",
-    desc: "Stir-fried tofu coated in a spicy curry. Served with choice of white or brown rice."
-  },
-  ramen: {
-    title: "Mushroom Ramen",
-    desc: "Rich vegetable broth and freshly-made ramen noodles topped with wood ear mushrooms, bamboo shoot, impossible egg, scallions."
-  },
-  padThai: {
-    title: "Vegetable Pad Thai",
-    desc: "Sweet, savory, and sour noodles with tofu and stir-fried vegetables. Served with crushed peanuts and bean sprouts."
-  },
-  friedRice: {
-    title: "Vegetable Fried Rice",
-    desc: "Fried rice with stir-fried carrots, onions, scallion, and tomato"
-  },
-  redCurry: {
-    title: "Thai Red Curry",
-    desc: "Spicy red curry filled with freshly cooked vegetables. Served with choice of white or brown rice."
-  }
-}
+  // Initial split and animation
+  splitAndAnimateLines();
 
-const addMenuItems = (items, section) => {
+  // Add resize listener with debounce
+  let resizeTimeout;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function () {
+      splitAndAnimateLines(false); // false means don't animate on resize
+    }, 25); // Debounce resize events
+  });
 
-  for (const item in items) {
-    console.log(item)
+  function splitAndAnimateLines(animate = true) {
+    // Get original text
+    const text = paragraph.getAttribute("data-original-text");
 
-    const title = document.createElement("h5")
-    title.innerText = items[item]['title']
+    // Create a temporary element to measure text
+    const temp = document.createElement("span");
+    temp.style.visibility = "hidden";
+    temp.style.position = "absolute";
+    temp.style.whiteSpace = "nowrap";
+    temp.style.font = window.getComputedStyle(paragraph).font;
+    temp.style.fontSize = window.getComputedStyle(paragraph).fontSize;
+    document.body.appendChild(temp);
 
-    const desc = document.createElement("h6")
-    desc.innerText = items[item]['desc']
+    // Get paragraph width
+    const paragraphWidth = paragraph.clientWidth;
 
-    // add classes
-    title.classList.add('item-title', 'urbanist-bold')
-    desc.classList.add('item-subtitle', 'mb-6')
+    // Split text into words
+    const words = text.split(" ");
+    const lines = [];
+    let currentLine = "";
 
-    section.appendChild(title)
-    section.appendChild(desc)
-
-  }
-}
-
-window.onload = () => {
-  const starterDiv = document.getElementById("starters")
-  const entreesDiv = document.getElementById("entrees")
-  addMenuItems(starters, starterDiv)
-  addMenuItems(entrees, entreesDiv)
-}
-
-/* 
-import React, { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
-import { consoleOrigin } from "firebase-tools/lib/api";
-
-export const InfiniteMovingCards = ({
-  items,
-  speed = 2,
-  className
-}) => {
-  const containerRef = useRef(null);
-  const scrollerRef = useRef(null);
-  const [direction, setDirection] = useState(-1); // -1 for left, 1 for right
-  let position = 0;
-  let animationFrame;
-
-  useEffect(() => {
-    startAnimation();
-    return () => cancelAnimationFrame(animationFrame);
-  }, []);
-
-  const startAnimation = () => {
-    const animate = () => {
-      if (!containerRef.current || !scrollerRef.current) return;
-
-      const containerWidth = containerRef.current.offsetWidth;
-      const scrollerWidth = scrollerRef.current.scrollWidth;
-
-      position += direction * speed;
-
-      // Reverse direction when the last card reaches the left edge
-      if (position <= -(scrollerWidth - containerWidth)) {
-        position = -(scrollerWidth - containerWidth); // Ensure it stops exactly at the edge
-        setDirection(1); // Move right
+    // Measure each word and create lines
+    for (let i = 0; i < words.length; i++) {
+      const testLine = currentLine + (currentLine ? " " : "") + words[i];
+      temp.textContent = testLine;
+      console.log(temp.clientWidth);
+      if (temp.clientWidth > paragraphWidth) {
+        // This word would cause line wrap
+        lines.push(currentLine);
+        currentLine = words[i];
+        console.log(lines);
+      } else {
+        currentLine = testLine;
       }
-      // Reverse direction when the first card reaches the right edge
-      else if (position >= 0) {
-        position = 0; // Ensure it stops exactly at the edge
-        setDirection(-1); // Move left
+    }
+
+    // Add the last line
+    if (currentLine) {
+      lines.push(currentLine);
+    }
+
+    // Clean up
+    document.body.removeChild(temp);
+
+    // Clear the paragraph
+    paragraph.innerHTML = "";
+
+    // Create a wrapper for the animation
+    paragraph.style.overflow = "hidden";
+
+    // Create and append line elements with animation
+    lines.forEach((line, index) => {
+      const lineElement = document.createElement("div");
+      lineElement.textContent = line;
+
+      if (animate) {
+        // Apply animation only if animate is true
+        lineElement.style.opacity = "0";
+        lineElement.style.transform = "translateY(20px)";
+        lineElement.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      } else {
+        // No animation on resize
+        lineElement.style.opacity = "1";
+        lineElement.style.transform = "translateY(0)";
       }
 
-      scrollerRef.current.style.transform = `translateX(${position}px)`;
-      animationFrame = requestAnimationFrame(animate);
-    };
+      paragraph.appendChild(lineElement);
 
-    animate();
-  };
+      if (animate) {
+        // Stagger the animations by 0.1s per line
+        setTimeout(() => {
+          lineElement.style.opacity = "1";
+          lineElement.style.transform = "translateY(0)";
+        }, index * 100); // 100ms = 0.1s
+      }
+    });
 
-  return (
-    <div ref={containerRef} className={cn("overflow-hidden relative", className)}>
-      <ul ref={scrollerRef} className="flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4">
-        {items.map((item, idx) => (
-          <li key={idx} className="w-[350px] max-w-full shrink-0 rounded-2xl border border-zinc-200 bg-gray-200 p-6">
-            <blockquote>
-              <span className="text-sm font-normal text-neutral-800 dark:text-gray-100">
-                {item.quote}
-              </span>
-              <div className="mt-6 flex flex-row items-center">
-                <span className="text-sm font-normal text-neutral-500 dark:text-gray-400">
-                  {item.name}
-                </span>
-              </div>
-            </blockquote>
-          </li>
-        ))}
-      </ul>
-    </div>
-  ); 
-};*/
+    return lines;
+  }
+}
 
-const navbar = document.getElementById("navbar");
+// Initialize the responsive animated lines
+createResponsiveAnimatedLines();
+document.getElementById("our-menu").style.transform = "translateY(-10px)";
+document.getElementById("our-menu").style.opacity = 1;
+const chow_mein = document.getElementById("chow-mein");
+const avocado_roll = document.getElementById("avocado-roll");
+setTimeout(() => {
+  avocado_roll.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
+  avocado_roll.style.clipPath = "inset(0)";
+  avocado_roll.style.transform = "scale(1)";
+  chow_mein.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
+  chow_mein.style.clipPath = "inset(0)";
+  chow_mein.style.transform = "scale(1)";
+}, 10);
+document.addEventListener("DOMContentLoaded", function () {
+  const menuItems = document.querySelectorAll(".menu-item");
 
-let lastScrollTop = 0;
-addEventListener("scroll", () => {
-    // Current scroll position
-    const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+  menuItems.forEach((menuItem) => {
+    // Select all children except the tooltip text
+    const children = menuItem.querySelectorAll(
+      "h2, p, span:not(.group-hover\\:opacity-100)"
+    );
 
-    // Calculate opacity as a value between 0 and 1
-    const maxScroll = 100; // Maximum scroll value for full opacity
-    const amount = Math.min(scrollTop / maxScroll, 1); // Clamp value between 0 and 1
+    // Apply initial styles for each child element
+    children.forEach((child, index) => {
+      child.classList.add(
+        "opacity-0",
+        "translate-y-4",
+        "transition-all",
+        "duration-500"
+      );
+      child.style.transitionDelay = `${index * 100}ms`; // Add delay for staggered effect
+    });
 
-    console.log(amount)
-    // Apply the calculated opacity
-    navbar.style.opacity = amount;
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            children.forEach((child) => {
+              child.classList.add("opacity-100", "translate-y-0");
+              child.classList.remove("opacity-0", "translate-y-4");
+            });
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.2, // Trigger when 20% of the menu-item is visible
+      }
+    );
 
-    lastScrollTop = scrollTop;
+    observer.observe(menuItem);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Target all elements with class 'menu-display'
+  const menuDisplays = Array.from(
+    document.getElementsByClassName("menu-display")
+  );
+  // Configure Intersection Observer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log(entry);
+          entry.target.classList.add("visible"); // Trigger animation
+          observer.unobserve(entry.target); // Stop observing after animation
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the element is visible
+    }
+  );
+
+  // Observe each 'menu-display' element
+  menuDisplays.forEach((el) => observer.observe(el));
 });
