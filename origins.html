@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Midori</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="js/global.js" type="module" defer></script>
@@ -287,19 +297,23 @@
         </div>
         <div
           id="header-container"
-          class="h-[45vh] w-[100vw] flex items-center justify-center flex-col"
+          class="h-[35vh] w-[100vw] flex flex-col items-center justify-end pb-4"
         >
-          <h3 class="text-6xl text-center mb-2">Our Ingredients</h3>
-          <p class="text-gray-500 text-sm">
-            Drag Left to See Where We Get Our Food From
-          </p>
+          <div class="mb-4">
+            <h3 id="our-ingredients" class="text-6xl text-center mb-2">
+              Our Ingredients
+            </h3>
+            <p id="drag-left" class="text-gray-500 text-center">
+              Drag Left to See Where We Get Our Food From
+            </p>
+          </div>
         </div>
       </div>
       <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
         <img
           id="image-1"
           class="image"
-          src="images/origins/japanese-farm.webp"
+          src="images/origins/terrace-rice.jpeg"
           draggable="false"
         />
         <img
@@ -317,7 +331,7 @@
         <img
           id="image-4"
           class="image"
-          src="images/origins/eco-transport.png"
+          src="images/origins/eco-transport.png "
           draggable="false"
         />
         <img
@@ -327,8 +341,199 @@
           draggable="false"
         />
       </div>
+      <div class="text-center">
+        <p id="centered-image-idx" class="font-bold text-[15px] mt-4">1</p>
+        <p class="absolute origin-description text-center">
+          Our goal is to provide an East Asian dining experience for all to
+          enjoy. That experience starts with the ingredients. At Midori, our
+          menu is completely vegan, dedicating our efforts on quality over
+          quantity. Rather than stockpiling ingredients ahead of time,
+          consumables are bought daily from local farms and oversea producers
+          for natural freshness. Our suppliers methods are well-known and yield
+          their produce through organic means. In essence, we hope our work with
+          local farmers and producers will minimize the negative impact on the
+          environment and remove any ethical concerns. When you dine at Midori,
+          it embodies all the clean, hard work done by countless farmers.
+          It&apos;s an experience worth remembering.
+        </p>
+        <p class="absolute origin-description text-center">
+          Our commitment to sustainability stems from the grassroots. The rice
+          used in our sushi and famous bowls is cultivated in sustainable farms
+          across California and Japan for taste and quality. Our nori and kombu
+          seaweed products are handpicked from the clean waters of Japan,
+          enriching all our dishes with authentic umami flavor. We collaborate
+          with traditional artisans based in Japan and the USA for handcrafted
+          soba and udon noodles, even though such specialized craftsmanship is
+          rare. Fresh, organic, and locally sourced vegetables are purchased
+          from sustainable farms that use no harmful chemicals. Careful
+          attention is paid to ensure that every single ingredient is of the
+          highest possible quality while also simultaneously using sustainable
+          practices.
+        </p>
+        <p class="absolute origin-description text-center">
+          This tofu is made from non-GMO soybeans in a traditional wooden
+          workshop where workers prepare food at wooden tables and cooking
+          stations. Steam rises from cooking surfaces in this beautiful
+          timber-framed space with abundant natural light streaming through
+          large windows, creating an atmosphere that blends traditional
+          craftsmanship with modern, sustainable food production techniques. The
+          aroma of the freshly cooked meal permeates the room, creating a warm
+          feeling and a sense of authenticity.
+        </p>
+        <p class="absolute origin-description text-center">
+          Our premium ingredients travel from farm to table using our entirely
+          eco-friendly transport system. Our electrical-powered delivery trucks
+          and vehicles, which run on biofuel handle local distribution, while
+          our cargo ships use wind-assisted propulsion and solar panels to
+          reduce emissions during ocean . For time-sensitive deliveries, we
+          partner exclusively with airlines that utilize sustainable aviation
+          fuel, reducing carbon footprint by up to 80% compared to conventional
+          jet fuel. Our delivery scooters and forklifts run on electric power,
+          ensuring that from harvest to kitchen, our ingredients maintain both
+          quality and environmental integrity throughout their journey.
+        </p>
+        <p class="absolute origin-description text-center">
+          Our commitment to sustainability extends beyond food to how we power
+          our businesses. Each and every one of our restaurants fully runs on
+          renewable power. This energy is produced in wind farms like the one
+          pictured above. Wind turbines generate clean electricity that powers
+          everything from our cooking equipment to lighting. By teaming up with
+          wind energy suppliers, like Vestas and NextEra Energy, we've reduced
+          our carbon footprint over 75% in the last five years. The power
+          produced by these wind farms is delivered directly to our grid-connect
+          restaurants, and with every meal we serve, we're contributing to a
+          cleaner planet. This investment in wind power is our promise that it
+          is possible to make great food in ways that honor tradition and also
+          our green future.
+        </p>
+      </div>
     </div>
     <div></div>
-    <div id="another" class="bg-black h-screen"></div>
+    <div id="another" class="min-h-screen">
+      <div class="w-full mx-auto flex items-center">
+        <div class="inline-block mx-auto" id="header-info">
+          <p class="urbanist-regular text-5xl text-center">Specific Dishes</p>
+          <div class="divider"></div>
+        </div>
+      </div>
+      <div class="gap-8 w-3/4 mx-auto grid grid-cols-3" id="info-container">
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/tofu.jpg"
+            alt="Tofu Curry"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">Tofu Curry</h5>
+            <p class="text-gray-600 info-caption mb-4">
+              Our tofu curry is a rich and aromatic dish featuring tofu simmered
+              in a fragrant, spiced coconut or miso-based broth. The curry paste
+              includes ingredients like ginger, garlic, and fermented soy
+              products, from our farms & markers out in East Asia. Everything is
+              grown and processed naturally.
+            </p>
+          </div>
+        </div>
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/vegetable-dumpling.jpg"
+            alt="Vegetable Dumplings"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">
+              Vegetable Dumplings
+            </h5>
+            <p class="text-gray-600 info-caption mb-4">
+              These delicate dumplings are filled with a mix of finely chopped
+              cabbage, mushrooms, and tofu, all sourced from organic farms. The
+              fresh vegetables and soy-based ingredients are grown without
+              synthetic pesticides, preserving their natural flavors and
+              nutritional benefits.
+            </p>
+          </div>
+        </div>
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/spring-roll.jpg"
+            alt="Spring Roll"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">Spring Rolls</h5>
+            <p class="text-gray-600 info-caption mb-4">
+              Spring rolls are light and refreshing, made with rice paper
+              wrappers filled with crisp vegetables, herbs, and tofu. The
+              ingredients are organically grown in our organic markets, ensuring
+              that every bite is packed with fresh, pesticide-free produce and
+              the pure flavors of nature.
+            </p>
+          </div>
+        </div>
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/miso-soup.jpg"
+            alt="Miso Soup"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">Miso Soup</h5>
+            <p class="text-gray-600 info-caption mb-4">
+              Miso soup is a comforting and umami-packed broth made with miso
+              paste, seaweed, tofu, and scallions. The miso paste is crafted
+              from naturally fermented soybeans grown by our farmers, while the
+              seaweed and tofu are harvested through traditional, organic
+              farming methods.
+            </p>
+          </div>
+        </div>
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/zaru-soba.jpg"
+            alt="Zaru Soba"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">Zaru Soba</h5>
+            <p class="text-gray-600 info-caption mb-4">
+              Zaru soba is a refreshing Japanese dish consisting of chilled
+              buckwheat noodles served with a soy-based dipping sauce. The
+              buckwheat used for the noodles is organically cultivated in
+              Japanese markets, ensuring a clean, earthy taste free from
+              artificial additives.
+            </p>
+          </div>
+        </div>
+        <div
+          class="additional-info h-[360px] rounded-lg overflow-hidden shadow-lg bg-white border"
+        >
+          <img
+            class="w-full h-48 object-cover"
+            src="images/additional-info/kimchi.jpg"
+            alt="Kimchi"
+          />
+          <div class="p-4 card-content">
+            <h5 class="text-lg font-semibold mb-2 info-header">Kimchi</h5>
+            <p class="text-gray-600 info-caption mb-4">
+              Kimchi is a spicy, tangy, and probiotic-rich fermented dish made
+              with Napa cabbage, gochugaru (Korean red pepper flakes), and
+              garlic. Every ingredient is organically grown in Asian markets,
+              allowing the fermentation process to bring out the most natural
+              and vibrant flavors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

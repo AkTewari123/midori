@@ -1,37 +1,169 @@
 #precursor {
-    
-    margin: 0rem;
-    /* background-color: black; */
-    overflow: hidden;
+  margin: 0rem;
+  /* background-color: black; */
+  overflow: hidden;
 }
 body {
-    /* background-color: black; */
-    overflow: hidden;
+  /* background-color: black; */
+  overflow: hidden;
+}
+
+.origin-description {
+  transition: clip-path 0.4s cubic-bezier(0.79, 0.04, 0.84, 0.83);
+  font-size: 12px;
+  transform: translateX(15%);
+  width: 75%;
+  font-size: 14px;
+}
+
+.additional-info {
+  font-family: "Urbanist";
+  transition: all 0.3s ease-out;
+}
+.divider {
+  background: linear-gradient(90deg, transparent, #057957, transparent);
+  height: 2px;
+  width: 120%;
+  transform: translateX(-10%);
+  opacity: 0.7;
+  margin: 0 auto 2.5rem auto;
+}
+
+.additional-info:hover {
+  transform: scale(1.03);
+}
+
+.info-caption {
+  font-size: 12px;
+  overflow: auto;
 }
 
 .image {
-    height: 40vmin;
-    width: 40vmin;
-    object-fit: cover;
-    object-position: center;
-    user-select: none; /* -- Prevent image highlighting -- */
+  height: 40vmin;
+  width: 40vmin;
+  object-fit: cover;
+  object-position: center;
+  user-select: none; /* -- Prevent image highlighting -- */
 }
 .image {
-    border-radius: 20px;
-    /* padding: 4px;
+  border-radius: 20px;
+  /* padding: 4px;
     border: 4px solid #057957; */
 }
 #image-track {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: max-content;
-    /* overflow-x: auto; */
-    /* white-space: nowrap; */
-    gap: 2vw;
-    position: relative;
-    top: 0%; 
-    left: 50%;
-    /* transform: translate(0%, -20%); */
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  /* overflow-x: auto; */
+  /* white-space: nowrap; */
+  gap: 2vw;
+  position: relative;
+  top: 0%;
+  left: 50%;
+  /* transform: translate(0%, -20%); */
+  overflow: hidden;
+}
+#info-container {
+  margin-bottom: 5px;
+}
+@media (max-width: 1450px) {
+  #info-container {
+    margin: 0 auto;
+    width: 90%;
   }
+}
+@media (max-width: 1250px) {
+  .info-header {
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 1100px) {
+  .info-caption {
+    font-size: 11px;
+  }
+  info-header {
+    margin-bottom: 2px;
+  }
+}
+@media (max-width: 1000px) {
+  #info-container {
+    display: grid; /* Ensure the container is a grid */
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal columns */
+    gap: 20px; /* Optional: Adds spacing between grid items */
+  }
+  .info-caption {
+    font-size: 14px;
+  }
+}
+@media (max-width: 915px) {
+  .origin-description {
+    width: 90%;
+    transform: translateX(5%);
+    font-size: 12px;
+  }
+  .info-caption {
+    font-size: 12px;
+  }
+  .info-header {
+    margin-bottom: 1px;
+  }
+}
+
+@media (max-width: 686px) {
+    .info-caption {
+        font-size: 11px;
+      }
+      .info-header {
+        margin-top: 4px;
+      }
+      .card-content {
+        padding-top: 5px;
+      }
+}
+@media (max-width: 575px) {
+    .info-caption {
+        font-size: 10px;
+      }
+      .card-content {
+        padding-top: 6px;
+      }
+      .info-header {
+        margin-bottom: 2px;
+      }
+}
+@media (max-width: 550px) {
+  #our-ingredients {
+    font-size: 50px;
+  }
+  #drag-left {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+    #info-container {
+        display: grid; /* Ensure the container is a grid */
+        grid-template-columns: repeat(1, 1fr); /* Creates 2 equal columns */
+        gap: 20px; /* Optional: Adds spacing between grid items */
+      }
+      .info-caption {
+        font-size: 12px;
+      }
+      #info-container {
+        margin: 0 auto;
+        width: 80%;
+      }
+}
+@media (max-width: 400px) {
+  #our-ingredients {
+    font-size: 40px;
+  }
+.info-caption {
+    font-size: 11px;
+  }
+  .origin-description {
+    width: 95%;
+    transform: translateX(2.5%);
+  }
+}
