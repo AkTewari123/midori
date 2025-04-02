@@ -8,6 +8,10 @@
   line-height: 2em;
 }
 
+.menu-display {
+  border-radius: 15px;
+}
+
 #avocado-roll {
   clip-path: inset(100%);
   transform: scale(0);
