@@ -10,6 +10,14 @@
 
 .menu-display {
   border-radius: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.menu-display.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #avocado-roll {
@@ -44,12 +52,20 @@
 .item-ingredients {
   font-size: 22px ;
 }
-
+.menu-lg-container {
+  display: grid;
+  grid-template-columns: repeat(2, 50%); /* Single column */
+}
 
 @media (max-width: 1145px) {
   #our-menu {
     margin-bottom: 24px;
   }
+}
+.image-caption {
+  margin-bottom: 4px;
+  font-weight: 700px;
+  font-size: 18px;
 }
 @media (max-width: 1050px) {
   #menu-flex-container {
@@ -58,13 +74,17 @@
     width: 100%;             /* Ensures full width */
     gap: 1rem;               /* Optional: Adds space between child elements */
   }
+
   .menu-flex-item {
     width: 100%;
     text-align: center;
   }
+
+  
   #menu-description-container {
     margin-top: 140px;
     width: 90%;
+    
   }
 
   #image-intro-menu {
@@ -83,4 +103,29 @@
   #chow-mein {
     display: block;
   }
+}
+
+@media (max-width: 992px) {
+  .section-header {
+    font-size: 60px !important;
+    text-align: center !important;
+    margin-top: 45px;
+    margin-bottom: 15px;
+  }
+  .menu-container  {
+    width: 100%;
+    text-align: center;
+  }
+  .second-container {
+    order: 2;
+  }
+  .first-container {
+    order: 1;
+  }
+  .menu-lg-container {
+    display: grid;  
+    grid-template-columns: repeat(1, 100%) !important; /* Single column */
+    gap: 1rem; /* Optional spacing */
+    width: 100%;
+}
 }

@@ -296,13 +296,13 @@
           <div class="w-1/2 menu-flex-item" id="image-intro-menu">
             <img
               src="images/menu-items/avocado-roll.png"
-              class="mx-auto"
+              class="mx-auto menu-image"
               alt=""
               id="avocado-roll"
             />
             <img
               src="images/menu-items/chow-mein.png"
-              class="mx-auto"
+              class="mx-auto menu-image"
               alt=""
               id="chow-mein"
             />
@@ -327,13 +327,13 @@
       <div id="appetizers" class="min-h-screen">
         <div id="appetizer-container" class="px-16">
           <h3
-            id="appetizer-header"
-            class="font-bold text-7xl forum-extrabold mb-16"
+            id=""
+            class="section-header font-bold text-7xl forum-extrabold mb-16"
           >
             Appetizers
           </h3>
-          <div class="flex">
-            <div class="w-1/2 flex gap-4 flex-col">
+          <div class="grid menu-lg-container">
+            <div class="menu-container flex gap-4 flex-col">
               <div class="appetizer-item menu-item">
                 <h2
                   class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
@@ -504,11 +504,11 @@
                 </span>
               </div>
             </div>
-            <div class="w-1/2 flex items-center">
+            <div class="menu-container flex items-center">
               <div class="my-auto">
                 <img
                   src="images/menu-items/edamame.jpg"
-                  class="menu-display my-auto mx-auto w-4/5"
+                  class="menu-display my-auto mx-auto w-4/5 menu-image"
                   alt=""
                 />
                 <p class="text-center image-caption">Edamame</p>
@@ -526,24 +526,24 @@
       <div id="noodles" class="min-h-screen">
         <div id="appetizer-container" class="px-16">
           <h3
-            id="appetizer-header"
-            class="font-bold text-right text-7xl forum-extrabold mb-16"
+            id=""
+            class="section-header font-bold text-right text-7xl forum-extrabold mb-16"
           >
             Noodles
           </h3>
-          <div class="flex">
-            <div class="w-1/2">
-              <div class="flex items-center justify-center">
+          <div class="grid menu-lg-container rev-container">
+            <div class="menu-container second-container">
+              <div class="flex h-full items-center justify-center">
                 <div class="w-full my-auto flex justify-center flex-col">
                   <img
                     src="images/menu-items/pad-thai.jpg"
-                    class="menu-display my-auto mx-auto w-1/2"
+                    class="menu-display my-auto mx-auto xs:w-3/4 md:w-1/2"
                     alt=""
                   />
                   <p class="text-center image-caption">Pad Thai</p>
                   <img
                     src="images/menu-items/zaru-soba.png"
-                    class="menu-display mx-auto my-auto w-1/2"
+                    class="menu-display mx-auto my-auto xs:w-3/4 md:w-1/2"
                     alt=""
                   />
                   <p class="text-center image-caption">Zaru Soba</p>
@@ -551,7 +551,7 @@
               </div>
             </div>
 
-            <div class="w-1/2 flex gap-4 flex-col">
+            <div class="menu-container flex gap-4 flex-col first-container">
               <div class="appetizer-item menu-item">
                 <h2
                   class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
@@ -733,13 +733,13 @@
       <div id="rolls-dumplings" class="min-h-screen">
         <div id="appetizer-container" class="px-16">
           <h3
-            id="appetizer-header"
-            class="font-bold text-7xl forum-extrabold mb-16"
+            id=""
+            class="section-header font-bold text-7xl forum-extrabold mb-16"
           >
             Rolls/Dumplings
           </h3>
-          <div class="flex">
-            <div class="w-1/2 flex gap-4 flex-col">
+          <div class="grid menu-lg-container">
+            <div class="menu-container flex gap-4 flex-col">
               <div class="appetizer-item menu-item">
                 <h2
                   class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
@@ -857,245 +857,266 @@
                 </span>
               </div>
             </div>
-            <div class="w-1/2">
-              <img src="/" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="misc-curry" class="min-h-screen">
-        <div id="appetizer-container" class="px-16">
-          <h3
-            id="appetizer-header"
-            class="font-bold text-7xl text-right forum-extrabold mb-16"
-          >
-            Curry/Miscellaneous
-          </h3>
-          <div class="flex">
-            <div class="w-1/2">
-              <img id="menu-image" src="images/dishes/sticky-rice.png" alt="" />
-            </div>
-
-            <div class="w-1/2 flex gap-4 flex-col">
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Buddha Bowl
-                </h2>
-                <p class="item-ingredients">
-                  Cucumbers, pineapple, peppers, lima beans, Avocado,
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $12.50, Feeds one
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
-              </div>
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Tofu Curry
-                </h2>
-                <p class="item-ingredients">
-                  Tofu, coconut milk, curry powder, ginger, garlic, onions,
-                  carrots, bell peppers, soy sauce, cilantro
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $11.25, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
-              </div>
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Kimchi
-                </h2>
-                <p class="item-ingredients">
-                  Napa cabbage, daikon radish, green onions, garlic, ginger,
-                  gochugaru (Korean red pepper flakes), soy sauce, salt
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $6.50, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
-              </div>
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Mushroom Bao Buns
-                </h2>
-                <p class="item-ingredients">
-                  Bao buns, shiitake mushrooms, hoisin sauce, soy sauce, garlic,
-                  green onions, sesame seeds, cucumber slices
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $10.75, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
+            <div class="menu-container flex items-center">
+              <div>
+                <img
+                  src="/images/menu-items/veg-dumplings.jpg"
+                  class="menu-display"
+                  alt=""
+                />
+                <p class="image-caption text-center">Vegetarian Dumplings</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="desserts" class="min-h-screen">
-        <div id="appetizer-container" class="px-16">
-          <h3
-            id="appetizer-header"
-            class="font-bold text-7xl text-left forum-extrabold mb-16"
-          >
-            Desserts
-          </h3>
-          <div class="flex">
-            <div class="w-1/2 flex gap-4 flex-col">
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Mochi
-                </h2>
-                <p class="item-ingredients">
-                  Glutinous rice flour, sugar, water, cornstarch, red bean paste
-                  (or other fillings like matcha or fruit)
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $5.50, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
+        <div id="misc-curry" class="min-h-screen">
+          <div id="appetizer-container" class="px-16">
+            <h3
+              id=""
+              class="section-header font-bold text-7xl text-right forum-extrabold mb-16"
+            >
+              Curry/Miscellaneous
+            </h3>
+            <div class="grid menu-lg-container rev-container">
+              <div class="menu-container flex items-center second-container">
+                <div>
+                  <img
+                    id="menu-image"
+                    class="menu-display"
+                    src="images/menu-items/yellow-thai.jpg"
+                    alt=""
+                  />
+                  <p class="text-center image-caption">Yellow Thai Curry</p>
+                </div>
               </div>
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
+
+              <div class="menu-container first-container flex gap-4 flex-col">
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Buddha Bowl
+                  </h2>
+                  <p class="item-ingredients">
+                    Cucumbers, pineapple, peppers, lima beans, Avocado,
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $12.50, Feeds one
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Tofu Curry
+                  </h2>
+                  <p class="item-ingredients">
+                    Tofu, coconut milk, curry powder, ginger, garlic, onions,
+                    carrots, bell peppers, soy sauce, cilantro
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $11.25, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Yellow Thai Curry
+                  </h2>
+                  <p class="item-ingredients">
+                    Coconut milk, potatoes, carrots, onions, tofu, yellow curry
+                    paste, lemongrass, garlic, ginger, soy sauce
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $6.50, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Mushroom Bao Buns
+                  </h2>
+                  <p class="item-ingredients">
+                    Bao buns, shiitake mushrooms, hoisin sauce, soy sauce,
+                    garlic, green onions, sesame seeds, cucumber slices
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $10.75, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="desserts" class="min-h-screen">
+          <div id="appetizer-container" class="px-16">
+            <h3
+              id=""
+              class="section-header font-bold text-7xl text-left forum-extrabold mb-16"
+            >
+              Desserts
+            </h3>
+            <div class="grid menu-lg-container">
+              <div class="flex gap-4 flex-col">
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Mochi
+                  </h2>
+                  <p class="item-ingredients">
+                    Glutinous rice flour, sugar, water, cornstarch, red bean
+                    paste (or other fillings like matcha or fruit)
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $5.50, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Mango Sticky Rice
+                  </h2>
+                  <p class="item-ingredients">
+                    Glutinous rice, coconut milk, sugar, mango, sesame seeds
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $7.00, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+                <div class="appetizer-item menu-item">
+                  <h2
+                    class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                  >
+                    Matcha Tiramisu
+                  </h2>
+                  <p class="item-ingredients">
+                    Matcha powder, mascarpone cheese, heavy cream, sugar,
+                    ladyfinger biscuits, milk, vanilla extract
+                  </p>
+                  <span class="description text-emerald-600 inline">
+                    $8.00, Feeds two
+                  </span>
+                  <span class="relative group inline-flex items-center">
+                    <!-- Tooltip Icon -->
+                    <span
+                      class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                    >
+                      <span>?</span>
+                    </span>
+
+                    <!-- Tooltip Text -->
+                    <span
+                      class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                    >
+                      Click me for more information
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div class="">
+                <img
+                  class="menu-image menu-display"
+                  src="images/dishes/sticky-rice.png"
+                  alt=""
+                />
+                <p class="text-center image-caption sm:mb-8">
                   Mango Sticky Rice
-                </h2>
-                <p class="item-ingredients">
-                  Glutinous rice, coconut milk, sugar, mango, sesame seeds
                 </p>
-                <span class="description text-emerald-600 inline">
-                  $7.00, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
               </div>
-              <div class="appetizer-item menu-item">
-                <h2
-                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
-                >
-                  Matcha Tiramisu
-                </h2>
-                <p class="item-ingredients">
-                  Matcha powder, mascarpone cheese, heavy cream, sugar,
-                  ladyfinger biscuits, milk, vanilla extract
-                </p>
-                <span class="description text-emerald-600 inline">
-                  $8.00, Feeds two
-                </span>
-                <span class="relative group inline-flex items-center">
-                  <!-- Tooltip Icon -->
-                  <span
-                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
-                  >
-                    <span>?</span>
-                  </span>
-
-                  <!-- Tooltip Text -->
-                  <span
-                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
-                  >
-                    Click me for more information
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="w-1/2">
-              <img id="menu-image" src="images/dishes/sticky-rice.png" alt="" />
-              <p class="text-center image-caption">Mango Sticky Rice</p>
             </div>
           </div>
         </div>

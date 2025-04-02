@@ -154,3 +154,28 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(menuItem);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Target all elements with class 'menu-display'
+  const menuDisplays = Array.from(
+    document.getElementsByClassName("menu-display")
+  );
+  // Configure Intersection Observer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log(entry);
+          entry.target.classList.add("visible"); // Trigger animation
+          observer.unobserve(entry.target); // Stop observing after animation
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the element is visible
+    }
+  );
+
+  // Observe each 'menu-display' element
+  menuDisplays.forEach((el) => observer.observe(el));
+});
