@@ -6,122 +6,1294 @@
     <title>Midori</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@barba/core"></script>
-    <script src="js/main.js" type="module" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/motion/10.16.2/motion.min.js"></script>
+    <script src="js/menu.js" defer></script>
+    <script src="js/global.js" defer></script>
     <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/menu.css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
-    <script src="js/menu.js" type="module" defer></script>
   </head>
-  <body>
-    <nav
-      class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
-      id="navbar"
-    >
-      <ul class="flex items-center justify-between urbanist-regular text-xl">
-        <!-- Left Item -->
-        <li>
-          <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-          <a
-            href="/"
-            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-            >Midori</a
-          >
-        </li>
+  <body data-barba="wrapper">
+    <div id="precursor" class="urbanist-regular text-black">
+      <nav
+        id="main-nav"
+        class="fixed top-[10px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
+      >
+        <ul class="flex items-center justify-between urbanist-regular text-xl">
+          <!-- Left Item -->
+          <li id="left-midori">
+            <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+            <a
+              href="/"
+              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+              >Midori</a
+            >
+          </li>
 
-        <!-- Centered Items -->
-        <div class="flex w-[800px] h-[80px] py-2">
-          <ul class="flex w-full h-full bg-[#242425] rounded-xl">
-            <li
-              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-gray-700"
-            >
-              <a href="#" class="w-full h-full flex justify-center items-center"
-                >Home</a
+          <!-- Centered Items -->
+          <div id="centered-list" class="flex py-2">
+            <ul class="flex h-full bg-[#242425] rounded-xl">
+              <li
+                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-            </li>
-            <li
-              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-            >
-              <a href="#" class="w-full h-full flex justify-center items-center"
-                >About</a
+                <a
+                  href="index.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >Home</a
+                >
+              </li>
+              <li
+                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-            </li>
-            <li
-              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-            >
-              <a href="#" class="w-full h-full flex justify-center items-center"
-                >Contact</a
+                <a
+                  href="about.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >About Us</a
+                >
+              </li>
+              <li
+                class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-            </li>
-            <li
-              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-            >
-              <a href="#" class="w-full h-full flex justify-center items-center"
-                >Sources</a
+                <a
+                  href="origins.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >Where It&apos;s From</a
+                >
+              </li>
+              <li
+                id="sources-trigger-open"
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
               >
-            </li>
-          </ul>
-        </div>
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Sources</a
+                >
+              </li>
+            </ul>
+          </div>
 
-        <!-- Right Item -->
-        <li class="relative inline-block">
-          <a
-            href="#"
-            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-            id="menu"
-          >
-            <div
-              id="greendot"
-              class="absolute scale-[.01] left-[10px] bottom-[20px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
-            ></div>
-            <p
-              class="relative text-black transition-colors duration-300"
-              id="menutext"
+          <!-- Right Item -->
+          <li class="nav-hoveritem relative inline-block">
+            <a
+              href="menu.html"
+              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+              id="menu-link-nav"
             >
-              Menu
-            </p>
+              <div
+                id="greendot"
+                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+              ></div>
+              <p
+                class="relative text-black transition-colors duration-300"
+                id="menutext"
+              >
+                Menu
+              </p>
+            </a>
+            <button
+              class="hidden py-4 px-8 rounded-xl overflow-hidden"
+              id="toggle-viewer"
+            >
+              <p
+                class="relative text-black transition-colors duration-300"
+                id="menutext"
+              >
+                <i class="bi bi-filter-right text-[35px] text-white"></i>
+              </p>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="transition-everypage top-0 w-full bg-white h-screen fixed flex justify-center flex-col gap-4 items-center"
+        id="white-nav-overlay"
+      >
+        <button class="hover-nav-overlay">
+          <a href="index.html">
+            <p class="inline text-[28px]">Home</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-home"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+            </svg>
           </a>
-        </li>
-      </ul>
-    </nav>
+        </button>
+        <button class="hover-nav-overlay">
+          <a href="about.html">
+            <p class="inline text-[28px]">About Us</p>
+            <svg
+              class="mb-4 inline"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-chef-hat"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151z"
+              />
+              <path d="M6.161 17.009l11.839 -.009" />
+            </svg>
+          </a>
+        </button>
+        <button class="hover-nav-overlay">
+          <a href="origins.html">
+            <p class="inline text-[28px]">Where It's From</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-wheat"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12.014 21.514v-3.75" />
+              <path
+                d="M5.93 9.504l-.43 1.604c-.712 2.659 .866 5.391 3.524 6.105c.997 .268 1.993 .535 2.99 .801v-3.44c-.164 -2.105 -1.637 -3.879 -3.676 -4.426l-2.408 -.644z"
+              />
+              <path
+                d="M13.744 11.164c.454 -.454 .815 -.994 1.061 -1.587c.246 -.594 .372 -1.23 .372 -1.873c0 -.643 -.126 -1.279 -.372 -1.872c-.246 -.594 -.606 -1.133 -1.061 -1.588l-1.73 -1.73l-1.73 1.73c-.454 .454 -.815 .994 -1.06 1.588c-.246 .594 -.372 1.23 -.373 1.872c0 .643 .127 1.279 .373 1.873c.246 .594 .606 1.133 1.06 1.587"
+              />
+              <path
+                d="M18.099 9.504l.43 1.604c.712 2.659 -.866 5.391 -3.525 6.105c-.997 .268 -1.994 .535 -2.99 .801v-3.44c.164 -2.105 1.637 -3.879 3.677 -4.426l2.408 -.644z"
+              />
+            </svg>
+          </a>
+        </button>
 
-    <div class="background relative h-[100vh] z-0"></div>
-    <div class="background-texture absolute h-[100vh] z-10">
-      <div class="h-full w-full relative">
-        <h1 class="absolute top-[60vh] text-[30vh] left-2 text-white">Menu</h1>
+        <button id="sources-trigger-open-2" class="hover-nav-overlay">
+          <div>
+            <p class="inline text-[28px]">Sources</p>
+            <svg
+              class="mb-4 inline"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"
+              />
+            </svg>
+          </div>
+        </button>
+
+        <button class="hover-nav-overlay">
+          <a href="menu.html">
+            <p class="inline text-[28px]">Menu</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-bowl-chopsticks"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"
+              />
+              <path d="M19 7l-14 1" />
+              <path d="M19 2l-14 3" />
+            </svg>
+          </a>
+        </button>
+        <button
+          id="white-nav-close"
+          class="bg-black p-4 close-button rounded-lg absolute top-4 right-4 m-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="transition-everypage bg-white h-screen fixed w-full top-0 left-0"
+        id="sources-container"
+      >
+        <div
+          id="sources-trigger-close"
+          class="bg-black p-4 rounded-lg absolute top-4 right-4 close-button m-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="min-h-screen w-[90%] mx-auto" id="menu-intro">
+        <div
+          id="menu-flex-container"
+          class="mt-4 flex flex-row gap-8 items-center justify-center min-h-screen"
+        >
+          <div class="w-1/2 menu-flex-item" id="image-intro-menu">
+            <img
+              src="images/menu-items/avocado-roll.png"
+              class="mx-auto"
+              alt=""
+              id="avocado-roll"
+            />
+            <img
+              src="images/menu-items/chow-mein.png"
+              class="mx-auto"
+              alt=""
+              id="chow-mein"
+            />
+          </div>
+          <div class="w-1/2 menu-flex-item" id="menu-description-container">
+            <h3 id="our-menu" class="text-7xl text-gray-700 forum-extrabold">
+              Our Menu
+            </h3>
+            <p class="text-xl forum-extrabold" id="menu-description">
+              Our menu creates a superlative dining experience that honors East
+              Asian while embracing the future. Our chefs masterfully use
+              techniques of both the past and present to craft a taste and
+              sensation that leaves the customer fully satisfied. By getting all
+              of our ingredients from local Asian markets and farms, familiar
+              flavors invite guests on an unfamiliar but rewarding journey as
+              they savor the warmth of culinary tradition while supporting the
+              environment and their own health.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="appetizers" class="min-h-screen">
+        <div id="appetizer-container" class="px-16">
+          <h3
+            id="appetizer-header"
+            class="font-bold text-7xl forum-extrabold mb-16"
+          >
+            Appetizers
+          </h3>
+          <div class="flex">
+            <div class="w-1/2 flex gap-4 flex-col">
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Edamame
+                </h2>
+                <p class="item-ingredients">Soybeans, Salt, Chilli Flakes</p>
+                <span class="description text-emerald-600 inline">
+                  $7.65, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Agedashi Tofu
+                </h2>
+                <p class="item-ingredients">
+                  Tofu Cubes, Savory Dashi Broth, Grated Daikon, Ginger, Bonito
+                  Flakes
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $6.95, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Nasu Dengaku
+                </h2>
+                <p class="item-ingredients">
+                  Grilled eggplant, Sweet Miso Sauce
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $18, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Vegetable Tempura
+                </h2>
+                <p class="item-ingredients">
+                  Flour, egg, ice water, and vegetable overflow-hidden
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $9.95, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Miso Soup
+                </h2>
+                <p class="item-ingredients">
+                  Dashi broth, miso paste, tofu, wakame, green onions, seaweed,
+                  scallions, and mushroom
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $9.95, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Spring Rolls
+                </h2>
+                <p class="item-ingredients">
+                  Carrots, cabbage, green onions, lettuce, all-purpose flour,
+                  salt, vegetable oil, & soy sauce
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $9.95, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="w-1/2"></div>
+          </div>
+        </div>
+      </div>
+      <div id="noodles" class="min-h-screen">
+        <div id="appetizer-container" class="px-16">
+          <h3
+            id="appetizer-header"
+            class="font-bold text-right text-7xl forum-extrabold mb-16"
+          >
+            Noodles
+          </h3>
+          <div class="flex">
+            <div class="w-1/2"></div>
+
+            <div class="w-1/2 flex gap-4 flex-col">
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Vegetarian Pad Thai
+                </h2>
+                <p class="item-ingredients">
+                  Rice noodles, Tofu, Eggs (optional), Bean sprouts, Crushed
+                  peanuts, Tamarind paste, Lime, Soy sauce, Chili flakes
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $12.95, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Mushroom Ramen
+                </h2>
+                <p class="item-ingredients">
+                  Ramen noodles, Miso broth,Tofu, Shiitake Mushrooms, Green
+                  Onions, Seaweed, Seasame seeds, Soft-boiled egg (optional)
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $18.0, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Chow Mein
+                </h2>
+                <p class="item-ingredients">
+                  Egg noodles, Carrots, Cabbage, Bell peppers, Mushrooms, Soy
+                  sauce, Sesame oil, Garlic, Green onions
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $11.95, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Japchae
+                </h2>
+                <p class="item-ingredients">
+                  Glass noodles, Spinach, Carrots, Onion, Shiitake mushrooms,
+                  Garlic, Sesame oil, Soy sauce, Sugars
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $13.50, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Pho Chay
+                </h2>
+                <p class="item-ingredients">
+                  Daikon radish, Onion, Ginger, Corn, Carrots, Leek, Shiitake
+                  mushrooms, Tofu, Jalapeno, Lime, Bean Sprouts, Flat rice
+                  noodles
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $13.0 , Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Zaru Soba
+                </h2>
+                <p class="item-ingredients">
+                  Buckwheat noodles, Soy sauce, Seaweed, Wasabi
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $24.75, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="rolls-dumplings" class="min-h-screen">
+        <div id="appetizer-container" class="px-16">
+          <h3
+            id="appetizer-header"
+            class="font-bold text-7xl forum-extrabold mb-16"
+          >
+            Rolls/Dumplings
+          </h3>
+          <div class="flex">
+            <div class="w-1/2 flex gap-4 flex-col">
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Vegetarian Sushi Rolls
+                </h2>
+                <p class="item-ingredients">
+                  Sushi rice, Seaweed, Cucumber, Onion, Carrots, Wasabi , Soy
+                  Sauce
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $8.49, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Vegetarian Dumplings
+                </h2>
+                <p class="item-ingredients">
+                  Dumpling wrappers, Tofu, Cabbage, Mushrooms, Soy sauce, Sesame
+                  oil
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $9.95, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Vegetarian Gyoza
+                </h2>
+                <p class="item-ingredients">
+                  Dumpling wrappers, Cabbage, Tofu, Shiitake mushrooms, Garlic,
+                  Ginger, Soy sauce, Sesame oil, Green onions
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $10.50, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Bánh Bao
+                </h2>
+                <p class="item-ingredients">
+                  Steamed bun dough, Tofu, Mushrooms, Shiitake mushrooms, Soy
+                  sauce (Bread-like dumpling)
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $7.95, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="w-1/2"></div>
+          </div>
+        </div>
+      </div>
+      <div id="misc-curry" class="min-h-screen">
+        <div id="appetizer-container" class="px-16">
+          <h3
+            id="appetizer-header"
+            class="font-bold text-7xl text-right forum-extrabold mb-16"
+          >
+            Curry/Miscellaneous
+          </h3>
+          <div class="flex">
+            <div class="w-1/2">
+              <img id="menu-image" src="images/dishes/sticky-rice.png" alt="" />
+            </div>
+
+            <div class="w-1/2 flex gap-4 flex-col">
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Buddha Bowl
+                </h2>
+                <p class="item-ingredients">
+                  Cucumbers, pineapple, peppers, lima beans, Avocado,
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $12.50, Feeds one
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Tofu Curry
+                </h2>
+                <p class="item-ingredients">
+                  Tofu, coconut milk, curry powder, ginger, garlic, onions,
+                  carrots, bell peppers, soy sauce, cilantro
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $11.25, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Kimchi
+                </h2>
+                <p class="item-ingredients">
+                  Napa cabbage, daikon radish, green onions, garlic, ginger,
+                  gochugaru (Korean red pepper flakes), soy sauce, salt
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $6.50, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Mushroom Bao Buns
+                </h2>
+                <p class="item-ingredients">
+                  Bao buns, shiitake mushrooms, hoisin sauce, soy sauce, garlic,
+                  green onions, sesame seeds, cucumber slices
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $10.75, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="desserts" class="min-h-screen">
+        <div id="appetizer-container" class="px-16">
+          <h3
+            id="appetizer-header"
+            class="font-bold text-7xl text-left forum-extrabold mb-16"
+          >
+            Desserts
+          </h3>
+          <div class="flex">
+            <div class="w-1/2 flex gap-4 flex-col">
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Mochi
+                </h2>
+                <p class="item-ingredients">
+                  Glutinous rice flour, sugar, water, cornstarch, red bean paste
+                  (or other fillings like matcha or fruit)
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $5.50, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Mango Sticky Rice
+                </h2>
+                <p class="item-ingredients">
+                  Glutinous rice, coconut milk, sugar, mango, sesame seeds
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $7.00, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+              <div class="appetizer-item menu-item">
+                <h2
+                  class="text-gray-600 text-xl forum-extrabold font-bold menu-item-header"
+                >
+                  Matcha Tiramisu
+                </h2>
+                <p class="item-ingredients">
+                  Matcha powder, mascarpone cheese, heavy cream, sugar,
+                  ladyfinger biscuits, milk, vanilla extract
+                </p>
+                <span class="description text-emerald-600 inline">
+                  $8.00, Feeds two
+                </span>
+                <span class="relative group inline-flex items-center">
+                  <!-- Tooltip Icon -->
+                  <span
+                    class="learn-more bg-emerald-600 w-6 h-6 inline-flex items-center justify-center rounded-full text-white cursor-pointer"
+                  >
+                    <span>?</span>
+                  </span>
+
+                  <!-- Tooltip Text -->
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 top-full mt-1 opacity-0 translate-y-2 scale-95 bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100"
+                  >
+                    Click me for more information
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <img id="menu-image" src="images/dishes/sticky-rice.png" alt="" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <footer class="bg-[#1B1B1A] text-white pt-16 pb-8 px-6">
+      <div class="max-w-screen-xl mx-auto">
+        <!-- Top Section with Logo and Navigation -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"
+        >
+          <!-- Logo & About -->
+          <div>
+            <div class="flex items-center mb-6">
+              <img
+                src="./images/favicon.ico"
+                class="w-10 h-10"
+                alt="Midori Logo"
+              />
+              <h3 class="ml-3 text-xl forum-extrabold">Midori</h3>
+            </div>
+            <p class="text-gray-400 urbanist-light mb-6">
+              Authentic vegetarian cuisine inspired by traditional Asian
+              flavors, crafted with care and respect for nature.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
 
-  <div class="menu-container"> 
-    <section class="carousel bg-[#F9F7F3] starters">
-      <h2 class="categories__title urbanist-bold">Starters</h2>
-      <div class="grid grid-cols-2 grid-rows-1">
-        <div id="starters" class="col-span-1 row-span-1"></div>
-        <!-- Add animations and make them look good -->
-        <!-- they're supposed to overlap for aesthetic -->
-        <div id="starter-imgs" class="col-span-1 row-span-1 relative">
-          <img src="images/dishes/seaweed-salad.jpg" class="h-48 absolute top-[40%] left-[10%]">
-          <img src="images/dishes/tempura.jpg" class="h-64 absolute bottom-[40%] left-[50%]">
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Quick Links</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="menu.html"
+                  class="hover:text-[#057957] transition-colors"
+                  >Our Menu</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >Reservations</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Information -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Contact Us</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 mt-1 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+                <span
+                  >123 Vegan Street, Kyoto Garden<br />San Francisco, CA
+                  94122</span
+                >
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+                <span>(415) 555-6789</span>
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>hello@midori-cuisine.com</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Opening Hours -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Opening Hours</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex justify-between">
+                <span>Monday - Thursday:</span>
+                <span>11:30 AM - 10:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Friday - Saturday:</span>
+                <span>11:30 AM - 11:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday:</span>
+                <span>12:00 PM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="border-t border-gray-800 pt-8 pb-6 mb-6">
+          <div class="md:flex md:items-center md:justify-between">
+            <div class="mb-6 md:mb-0 md:w-1/2 max-w-md">
+              <h4 class="text-lg mb-2 urbanist-medium">
+                Subscribe to our newsletter
+              </h4>
+              <p class="text-gray-400 text-sm">
+                Stay updated with our seasonal menus and special events.
+              </p>
+            </div>
+            <form class="flex flex-col md:flex-row gap-2">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="bg-[#242425] text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#057957]"
+              />
+              <button
+                type="submit"
+                class="bg-[#057957] text-white py-2 px-6 rounded-lg hover:bg-[#046346] transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div
+          class="text-center text-gray-500 text-sm border-t border-gray-800 pt-6"
+        >
+          <p>
+            &copy; 2023 Midori. All rights reserved. Proudly serving plant-based
+            cuisine.
+          </p>
         </div>
       </div>
-      </section>
-    </section>
-    <section class="carousel bg-[#057957]">
-      <h2 class="categories__title urbanist-bold sticky inset-x-0 text-white">Entrees</h2>
-      <div class="grid grid-cols-2 grid-rows-1">
-        <!-- Add animations and make them look good -->
-        <!-- they're supposed to overlap for aesthetic -->
-        <div id="starter-imgs" class="col-span-1 row-span-1 relative">
-          <img src="images/dishes/seaweed-salad.jpg" class="h-48 absolute top-[40%] left-[10%]">
-          <img src="images/dishes/tempura.jpg" class="h-64 absolute bottom-[40%] left-[50%]">
-        </div>
-        <div id="entrees" class="col-span-1 row-span-1"></div>
-      </div>
-    </section>
-  </div>
-
+    </footer>
   </body>
 </html>

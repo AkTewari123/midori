@@ -8,7 +8,6 @@
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/motion/10.16.2/motion.min.js"></script>
     <script src="about.js" defer></script>
-    <script src="js/main.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/about.css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -35,14 +34,15 @@
         --teal-500: #14b8a6;
         --pink-500: #ec4899;
       }
-  
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
       }
-  
+
       body {
         margin: 0;
         padding: 0;
@@ -50,12 +50,12 @@
         background-color: #f2f2f2;
         display: block;
       }
-  
+
       .dark {
         background-color: var(--dark-bg);
         color: var(--dark-text);
       }
-  
+
       nav {
         z-index: 9999 !important;
         position: fixed;
@@ -64,7 +64,7 @@
         transform: translateX(-50%);
         width: 95%;
       }
-  
+
       #post-transition {
         padding-top: 120px;
         min-height: 100vh;
@@ -74,7 +74,7 @@
         opacity: 1 !important;
         background-color: #f2f2f2;
       }
-  
+
       section {
         width: 100%;
         padding: 4rem 0;
@@ -176,7 +176,7 @@
         font-size: 2rem;
         font-weight: 700;
         margin-top: 0.5rem;
-        font-family: 'forum-extrabold', serif;
+        font-family: "forum-extrabold", serif;
       }
 
       .title {
@@ -194,84 +194,84 @@
         margin-top: 2rem;
         background-color: #fff;
       }
-  
+
       @media (min-width: 768px) {
         .timeline-container {
           padding: 2rem 2.5rem;
         }
       }
-  
+
       .timeline-header {
         max-width: 80rem;
         margin: 0 auto;
         padding: 5rem 1rem;
       }
-  
+
       @media (min-width: 768px) {
         .timeline-header {
           padding: 5rem 2rem;
         }
       }
-  
+
       @media (min-width: 1024px) {
         .timeline-header {
           padding: 5rem 2.5rem;
         }
       }
-  
+
       .timeline-title {
         font-size: 1.125rem;
         margin-bottom: 1rem;
         color: var(--light-text);
         max-width: 64rem;
       }
-  
+
       .dark .timeline-title {
         color: var(--dark-text);
       }
-  
+
       @media (min-width: 768px) {
         .timeline-title {
           font-size: 2.25rem;
         }
       }
-  
+
       .timeline-description {
         color: var(--light-neutral-700);
         font-size: 0.875rem;
         max-width: 24rem;
       }
-  
+
       .dark .timeline-description {
         color: var(--dark-neutral-300);
       }
-  
+
       @media (min-width: 768px) {
         .timeline-description {
           font-size: 1rem;
         }
       }
-  
+
       .timeline-content {
         position: relative;
         max-width: 80rem;
         margin: 0 auto;
         padding-bottom: 5rem;
       }
-  
+
       .timeline-entry {
         display: flex;
         justify-content: flex-start;
         padding-top: 2.5rem;
       }
-  
+
       @media (min-width: 768px) {
         .timeline-entry {
           padding-top: 10rem;
           gap: 2.5rem;
         }
       }
-  
+
       .timeline-marker {
         position: sticky;
         display: flex;
@@ -282,20 +282,20 @@
         align-self: flex-start;
         max-width: 20rem;
       }
-  
+
       @media (min-width: 768px) {
         .timeline-marker {
           flex-direction: row;
           width: 100%;
         }
-  
+
         @media (min-width: 1024px) {
           .timeline-marker {
             max-width: 24rem;
           }
         }
       }
-  
+
       .timeline-dot-container {
         height: 2.5rem;
         position: absolute;
@@ -307,17 +307,17 @@
         align-items: center;
         justify-content: center;
       }
-  
+
       .dark .timeline-dot-container {
         background-color: var(--dark-bg);
       }
-  
+
       @media (min-width: 768px) {
         .timeline-dot-container {
           left: 0.75rem;
         }
       }
-  
+
       .timeline-dot {
         height: 1rem;
         width: 1rem;
@@ -326,12 +326,12 @@
         border: 1px solid var(--light-neutral-300);
         padding: 0.5rem;
       }
-  
+
       .dark .timeline-dot {
         background-color: var(--dark-neutral-800);
         border-color: var(--dark-neutral-700);
       }
-  
+
       .timeline-marker-title {
         display: none;
         font-size: 1.25rem;
@@ -339,31 +339,31 @@
         font-weight: 700;
         color: var(--light-neutral-500);
       }
-  
+
       .dark .timeline-marker-title {
         color: var(--dark-neutral-500);
       }
-  
+
       @media (min-width: 768px) {
         .timeline-marker-title {
           display: block;
           font-size: 3rem;
         }
       }
-  
+
       .timeline-entry-content {
         position: relative;
         padding-left: 5rem;
         padding-right: 1rem;
         width: 100%;
       }
-  
+
       @media (min-width: 768px) {
         .timeline-entry-content {
           padding-left: 1rem;
         }
       }
-  
+
       .timeline-entry-title {
         font-size: 1.5rem;
         margin-bottom: 1rem;
@@ -371,32 +371,38 @@
         font-weight: 700;
         color: var(--light-neutral-500);
       }
-  
+
       .dark .timeline-entry-title {
         color: var(--dark-neutral-500);
       }
-  
+
       @media (min-width: 768px) {
         .timeline-entry-title {
           display: none;
         }
       }
-  
+
       .timeline-line-container {
         position: absolute;
         left: 2rem;
         top: 0;
         overflow: hidden;
         width: 2px;
-        mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          black 10%,
+          black 90%,
+          transparent 100%
+        );
       }
-  
+
       @media (min-width: 768px) {
         .timeline-line-container {
           left: 2rem;
         }
       }
-  
+
       .timeline-progress-line {
         position: absolute;
         inset-x: 0;
@@ -415,7 +421,7 @@
         transform-origin: top;
         filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.3));
       }
-  
+
       .timeline-background-line {
         position: absolute;
         inset-x: 0;
@@ -426,12 +432,12 @@
         border-radius: 9999px;
         opacity: 0.3;
       }
-  
+
       .dark .timeline-background-line {
         background: var(--dark-neutral-700);
         opacity: 0.4;
       }
-  
+
       .toggle-dark-mode {
         position: fixed;
         top: 1rem;
@@ -442,11 +448,11 @@
         border-radius: 0.5rem;
         cursor: pointer;
       }
-  
+
       .dark .toggle-dark-mode {
         background-color: var(--dark-neutral-700);
       }
-  
+
       .timeline-entry-content p {
         margin-bottom: 1rem;
         line-height: 1.6;
@@ -572,7 +578,7 @@
         margin-bottom: 1rem;
         font-weight: 800;
         line-height: 1.2;
-        font-family: 'forum-extrabold', serif;
+        font-family: "forum-extrabold", serif;
       }
 
       .info-card-content {
@@ -590,59 +596,111 @@
       }
 
       .info-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(5, 121, 87, 0.2), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(5, 121, 87, 0.2),
+          transparent
+        );
       }
 
       .info-section::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 0;
         right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(5, 121, 87, 0.1), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(5, 121, 87, 0.1),
+          transparent
+        );
       }
     </style>
   </head>
   <body data-barba="wrapper">
     <div id="post-transition" class="urbanist-regular text-black">
-      <nav class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-[9999] bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl">
+      <nav
+        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-[9999] bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
+      >
         <ul class="flex items-center justify-between urbanist-regular text-xl">
           <!-- Left Item -->
           <li>
             <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a href="/" class="inline text-white font-bold forum-extrabold ml-2 text-[24px]">Midori</a>
+            <a
+              href="/"
+              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+              >Midori</a
+            >
           </li>
 
           <!-- Centered Items -->
           <div class="flex w-[800px] h-[80px] py-2">
             <ul class="flex w-full h-full bg-[#242425] rounded-xl">
-              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
-                <a href="index.html" class="w-full h-full flex justify-center items-center">Home</a>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="index.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >Home</a
+                >
               </li>
-              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
-                <a href="about.html" class="w-full h-full flex justify-center items-center">About Us</a>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="about.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >About Us</a
+                >
               </li>
-              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
-                <a href="origins.html" class="w-full h-full flex justify-center items-center">Where It's From</a>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="origins.html"
+                  class="w-full h-full flex justify-center items-center"
+                  >Where It's From</a
+                >
               </li>
-              <li class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]">
-                <a href="#" class="w-full h-full flex justify-center items-center">Sources</a>
+              <li
+                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+              >
+                <a
+                  href="#"
+                  class="w-full h-full flex justify-center items-center"
+                  >Sources</a
+                >
               </li>
             </ul>
           </div>
 
           <!-- Right Item -->
           <li class="nav-hoveritem relative inline-block">
-            <a href="menu.html" class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block" id="menu-link-nav">
-              <div id="greendot" class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"></div>
-              <p class="relative text-black transition-colors duration-300" id="menutext">Menu</p>
+            <a
+              href="menu.html"
+              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+              id="menu-link-nav"
+            >
+              <div
+                id="greendot"
+                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+              ></div>
+              <p
+                class="relative text-black transition-colors duration-300"
+                id="menutext"
+              >
+                Menu
+              </p>
             </a>
           </li>
         </ul>
@@ -652,15 +710,17 @@
       <section class="bg-[#f8faf9] py-20">
         <div class="team-section-header">
           <h2 class="forum-extrabold">Our Team</h2>
-          <p class="urbanist-light">Meet the passionate individuals behind Midori's culinary excellence</p>
+          <p class="urbanist-light">
+            Meet the passionate individuals behind Midori's culinary excellence
+          </p>
         </div>
 
         <div class="team-container">
           <div class="person">
             <div class="container">
               <div class="container-inner">
-                <img 
-                  class="circle" 
+                <img
+                  class="circle"
                   src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
                   alt="Head Chef Anton"
                 />
@@ -674,8 +734,8 @@
           <div class="person">
             <div class="container">
               <div class="container-inner">
-                <img 
-                  class="circle" 
+                <img
+                  class="circle"
                   src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
                   alt="Sous Chef Sarah"
                 />
@@ -689,8 +749,8 @@
           <div class="person">
             <div class="container">
               <div class="container-inner">
-                <img 
-                  class="circle" 
+                <img
+                  class="circle"
                   src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
                   alt="Pastry Chef Mike"
                 />
@@ -707,10 +767,16 @@
       <section class="info-section">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-20">
-            <h2 class="text-5xl md:text-6xl forum-extrabold text-emerald-800 mb-4">Our Story</h2>
+            <h2
+              class="text-5xl md:text-6xl forum-extrabold text-emerald-800 mb-4"
+            >
+              Our Story
+            </h2>
             <div class="flex justify-center items-center gap-4">
               <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
-              <p class="text-gray-600 urbanist-light text-lg">The principles that guide us</p>
+              <p class="text-gray-600 urbanist-light text-lg">
+                The principles that guide us
+              </p>
               <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
             </div>
           </div>
@@ -720,27 +786,28 @@
           </div>
         </div>
       </section>
-      
     </div>
   </body>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       const observerOptions = {
         threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: "0px 0px -100px 0px",
       };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+            entry.target.classList.add("active");
           }
         });
       }, observerOptions);
 
-      document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
-        observer.observe(el);
-      });
+      document
+        .querySelectorAll(".slide-in-left, .slide-in-right")
+        .forEach((el) => {
+          observer.observe(el);
+        });
     });
   </script>
 </html>
