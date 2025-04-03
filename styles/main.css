@@ -366,10 +366,19 @@ body {
   }
 }
 
+@media (max-width: 424px) {
+  .onload-images {
+    width: 60px;
+    height: auto;
+  }
+}
 @media (max-width: 768px) {
   .testimonial-card .text-gray-700 {
     font-size: 0.85rem;
     line-height: 1.4;
+  }
+  .onload-images {
+    width: 140px;
   }
 }
 

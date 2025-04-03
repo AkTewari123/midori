@@ -41,14 +41,11 @@ const menuGreenTransition = () => {
       const menuRect = menuElement.getBoundingClientRect();
       const relativeX = event.clientX - menuRect.left; // Adjust X coordinate
       const relativeY = event.clientY - menuRect.top; // Adjust X coordinate
-      console.log(menuRect);
       // Position the green dot horizontally within "menu"
       greenDot.style.left = `${relativeX}px`;
       greenDot.style.top = `${relativeY}px`;
       // Scale it by 20
       greenDot.style.transform = "scale(20)";
-
-      console.log(greenDot);
     });
   document
     .getElementById("menu-link-nav")
@@ -59,13 +56,10 @@ const menuGreenTransition = () => {
       const menuRect = menuElement.getBoundingClientRect(); // get pos of mouse relative to menu box
       const relativeX = event.clientX - menuRect.left;
       const relativeY = event.clientY - menuRect.top;
-      console.log(menuRect);
       greenDot.style.left = `${relativeX}px`;
       greenDot.style.top = `${relativeY}px`;
 
       greenDot.style.transform = "scale(.01)";
-
-      console.log(greenDot);
     });
 };
 const setupVideoControls = () => {
@@ -284,9 +278,11 @@ const startingAnimation = () => {
   );
   for (let i = 0; i < startingImages.length; i++) {
     const img = startingImages[i];
+    const factor = window.innerWidth > 500 ? 2 : 1.6;
+    // console.log(factor);
     setTimeout(() => {
       img.style.clipPath = "inset(0)";
-      img.style.transform = "scale(2)";
+      img.style.transform = `scale(${factor})`;
       img.style.transition = "all 1s cubic-bezier(0, 0.8, 0.2, 1)";
     }, i * 500 + 4000);
   }
@@ -361,7 +357,6 @@ const setupMasonryGrid = () => {
 
     // Check if grid is actually visible and has width
     if (grid.offsetParent === null || grid.clientWidth === 0) {
-      console.log("Grid not visible or has zero width, delaying layout");
       return;
     }
 
@@ -415,8 +410,6 @@ const setupMasonryGrid = () => {
     if (maxHeight > 0) {
       grid.style.height = `${maxHeight}px`;
     }
-
-    console.log("Masonry layout updated, height:", maxHeight);
   };
 
   // Initialize the layout
@@ -495,7 +488,7 @@ const main = () => {
       document.getElementById("white-gradient").style.display = "block";
       document.getElementById("white-gradient").style.opacity = "1";
       // document.getElementById("loader").style.display = "block";
-      setupVideoControls();
+      // setupVideoControls();
     }, 2000);
   }
 
@@ -508,9 +501,9 @@ const main = () => {
     () => {
       setupMasonryGrid();
       // Call again after a brief delay to account for any rendering delays
-      enableParallax();
+      // enableParallax();
     },
-    skipAnimation ? 0 : 11000
+    skipAnimation ? 0 : 10000
   );
 };
 main();

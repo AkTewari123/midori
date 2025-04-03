@@ -43,12 +43,10 @@ function createResponsiveAnimatedLines() {
     for (let i = 0; i < words.length; i++) {
       const testLine = currentLine + (currentLine ? " " : "") + words[i];
       temp.textContent = testLine;
-      console.log(temp.clientWidth);
       if (temp.clientWidth > paragraphWidth) {
         // This word would cause line wrap
         lines.push(currentLine);
         currentLine = words[i];
-        console.log(lines);
       } else {
         currentLine = testLine;
       }
@@ -165,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log(entry);
           entry.target.classList.add("visible"); // Trigger animation
           observer.unobserve(entry.target); // Stop observing after animation
         }
@@ -184,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log(entry);
           entry.target.classList.add("visible"); // Trigger animation
           observertwo.unobserve(entry.target); // Stop observing after animation
         }

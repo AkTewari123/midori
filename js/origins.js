@@ -48,7 +48,6 @@ const updateCenteredImage = () => {
   let prevIndex = sessionStorage.getItem("track-pos");
   let centeredIndex = getCenteredImageIndex() + 1;
   if (centeredIndex !== -1) {
-    console.log(`Centered Image Index: ${centeredIndex}`);
     document.getElementById("centered-image-idx").innerText = centeredIndex;
     sessionStorage.setItem("track-pos", centeredIndex);
   }
@@ -56,7 +55,6 @@ const updateCenteredImage = () => {
   if (prevIndex > centeredIndex) {
     centeredIndex--;
     prevIndex--;
-    console.log(originDescription[centeredIndex].innerText);
     // originDescription[prevIndex].style.opacity = 0;
     originDescription[prevIndex].style.clipPath = "inset(0 100% 0 0)";
     setTimeout(() => {
@@ -68,7 +66,6 @@ const updateCenteredImage = () => {
     centeredIndex--;
     prevIndex--;
 
-    console.log(originDescription[centeredIndex].innerText);
     // originDescription[prevIndex].style.opacity = 0;
     originDescription[prevIndex].style.clipPath = "inset(0 0 0 100%)";
     setTimeout(() => {
@@ -88,7 +85,6 @@ const handleOnUp = () => {
 const handleOnMove = (e) => {
   // const imageOne = document.querySelector("#image-one");
   if (track.dataset.mouseDownAt === "0") return;
-  // console.log(imageOne.getClientBoundingClientRect());
   const mouseDelta = (parseFloat(track.dataset.mouseDownAt) - e.clientX) / 3,
     maxDelta = window.innerWidth / 2;
 

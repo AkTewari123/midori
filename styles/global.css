@@ -10,8 +10,8 @@
   z-index: 50;
 }
 #sources-container {
-  z-index: 100;
-  clip-path: circle(0% at 10% center);
+  z-index: 10;
+  /* clip-path: circle(0% at 10% center); */
   transition: clip-path linear .7s;
   position:fixed;
 }

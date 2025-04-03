@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midori</title>
+    <script src="js/global.js" type="module" defer></script>
+    <link rel="stylesheet" href="styles/global.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav
+      id="main-nav"
+      class="fixed top-[10px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
+    >
+      <ul class="flex items-center justify-between urbanist-regular text-xl">
+        <!-- Left Item -->
+        <li id="left-midori">
+          <img
+            src="./images/favicon.ico"
+            class="w-8 inline"
+            alt="Midori Logo"
+          />
+          <a
+            href="/"
+            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            >Midori</a
+          >
+        </li>
+
+        <!-- Centered Items -->
+        <div id="centered-list" class="flex py-2">
+          <ul class="flex h-full bg-[#242425] rounded-xl">
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="index.html"
+                class="w-full h-full flex justify-center items-center"
+                >Home</a
+              >
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="about.html"
+                class="w-full h-full flex justify-center items-center"
+                >About Us</a
+              >
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="origins.html"
+                class="w-full h-full flex justify-center items-center"
+                >Where It&apos;s From</a
+              >
+            </li>
+            <li
+              id="sources-trigger-open"
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Sources</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Item -->
+        <li class="nav-hoveritem relative inline-block">
+          <a
+            href="menu.html"
+            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+            id="menu-link-nav"
+          >
+            <div
+              id="greendot"
+              class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+            ></div>
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              Menu
+            </p>
+          </a>
+          <button
+            class="hidden py-4 px-8 rounded-xl overflow-hidden"
+            id="toggle-viewer"
+          >
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              <i class="bi bi-filter-right text-[35px] text-white"></i>
+            </p>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="urbanist-regular p-16 bg-white flex items-center justify-center flex-col min-h-screen w-full"
+      id="sources-container"
+    >
+      <h3 class="mb-8 sm:text-5xl text-3xl font-bold">References Page</h3>
+      <div id="images-section" class="text-center">
+        <h1 class="text-2xl font-bold">Images</h1>
+        <h3 class="text-xl">
+          These pictures are all copyright free from
+          <a href="https://unsplash.com/" class="text-blue-700 underline"
+            >Unsplash</a
+          >,&nbsp;<a
+            href="https://www.pexels.com/"
+            class="text-blue-700 underline"
+            >Pexels</a
+          >, and license-free images from
+          <a href="https://www.freepik.com/" class="text-blue-700 underline"
+            >Freepik</a
+          >.
+        </h3>
+      </div>
+      <div id="info-res-section" class="text-center my-4">
+        <h1 class="text-2xl font-bold">Research</h1>
+        <h3 class="text-xl">
+          We took to the internet to find inspiration for our research. This
+          <a
+            class="text-blue-700 underline"
+            href="https://docs.google.com/document/d/1HkSe7SzGmTME0WJCu0E7FayAxyTaGY8r_cmxej8EmGw/edit?usp=sharing"
+            >Google Document</a
+          >
+          has all of the links used for Research and Images.
+        </h3>
+      </div>
+      <div id="info-res-section" class="text-center">
+        <h1 class="text-2xl font-bold">Forms</h1>
+        <h3 class="text-xl">
+          Here are our forms:
+          <a
+            class="text-blue-700 underline"
+            href="https://drive.google.com/file/d/1_RaoXmseV5H3_gltv_878W_gtn0tOXjd/view"
+            >Student Copyright Checklist</a
+          >
+          and
+          <a
+            href="https://drive.google.com/file/d/1VJyis4Q-cv2yAX2h9_OWis4i7Fp7KfYP/view?usp=sharing"
+            class="text-blue-700 underline"
+            >TSA Webmaster Work Log.</a
+          >
+        </h3>
+      </div>
+      <div id="info-res-section" class="text-center">
+        <h1 class="text-2xl font-bold mt-8">Complete References List</h1>
+        <p>
+          <a
+            class="text-blue-600 underline"
+            href="https://images.unsplash.com/photo-1734991861028-bf0ed81c60d9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            target="_blank"
+            >Image 1</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://unsplash.com/photos/windmills-on-green-field-under-white-sky-during-daytime-eIBTh5DXW9w"
+            target="_blank"
+            >Image 2</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/farmer-planting-rices-field_18655779.htm#fromView=search&page=1&position=32&uuid=1554bb85-baa3-4d23-b4f6-850f3eeaa089&query=rice+Farmer"
+            target="_blank"
+            >Image 3</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.pexels.com/photo/food-landscape-nature-water-6348019/"
+            target="_blank"
+            >Image 4</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-ai-image/delicious-food-table_72554188.htm#fromView=search&page=1&position=2&uuid=f0d0a9a5-44f8-42fe-a11f-221b4590ef27&query=tofu+curry"
+            target="_blank"
+            >Image 5</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/high-angle-japanese-dumplings-assortment_11827366.htm#fromView=search&page=1&position=1&uuid=a2cfd421-e624-48f2-9b3f-31d0b87bae95&query=vegetable+dumpling"
+            target="_blank"
+            >Image 6</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/fried-spring-rolls-cutting-board_5490671.htm#fromView=search&page=1&position=0&uuid=4ee83fc1-2c25-4dd2-8bca-664ca6b301d7&query=Jianbing"
+            target="_blank"
+            >Image 7</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/steaming-bowl-miso-soup-with-tofu-green-onions-black-background_385491676.htm#fromView=search&page=1&position=0&uuid=03daf309-f485-498d-896a-a4d19a3e43fc&query=Miso+Soup"
+            target="_blank"
+            >Image 8</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/food-organic-buckwheat-healthy-close_1042723.htm#fromView=search&page=1&position=2&uuid=b28787e1-bf35-4c58-9a73-c6ae2bc9fc61&query=Zaru+Soba"
+            target="_blank"
+            >Image 9</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/chinese-cabbage-kimchi-cabbage-korean-traditional-food_6733637.htm#fromView=search&page=1&position=0&uuid=5b573ca7-0eb1-4fc2-8576-00abc0d7b6d5&query=Kimchi"
+            target="_blank"
+            >Image 10</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/sushi-set-with-ginger-top-view_7359203.htm#fromView=search&page=1&position=8&uuid=596ebde8-736a-49b4-820e-19a74435b13e&query=avocado+sushi+roll"
+            target="_blank"
+            >Image 11</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/top-view-delicious-noodles-concept_11381863.htm#fromView=search&page=1&position=1&uuid=8ce6752c-753f-4e1a-8f69-45c6a24e0ddb&query=Vegetarian+Chow+Mein"
+            target="_blank"
+            >Image 12</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/top-view-noodles-bowl_11741036.htm#fromView=search&page=1&position=5&uuid=b0ea291b-923d-4fce-a003-874195800e9b&query=Mushroom+Ramen"
+            target="_blank"
+            >Image 13</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/high-angle-japanese-dumplings-composition_11827379.htm#fromView=search&page=1&position=7&uuid=68a67fc6-09f9-4d04-b3df-2e05aab112ad&query=Vegetable+Gyoza"
+            target="_blank"
+            >Image 14</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.pexels.com/photo/meat-and-vegetable-bun-1893569/"
+            target="_blank"
+            >Image 15</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-ai-image/delicious-food-table_72554188.htm#fromView=search&page=1&position=2&uuid=eef36e31-f33c-441d-a4b6-116aa7df935d&query=tofu+curry"
+            target="_blank"
+            >Image 16</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://unsplash.com/photos/cooked-food-in-brown-wooden-bowl-FMjoqc4p8WE"
+            target="_blank"
+            >Image 17</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            target="_blank"
+            >Image 18</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.dinegreen.com/post/announcing-the-2024-green-restaurant-awards"
+            target="_blank"
+            >Image 19</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://img.freepik.com/free-photo/rice-with-fruits_1203-352.jpg?t=st=1743645167~exp=1743648767~hmac=9e44a96000c9e621e02444f28b9be0f5a97f161c29c880492622c99e7847053a&w=2000"
+            target="_blank"
+            >Image 20</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://img.freepik.com/free-photo/fresh-ripe-mango-sticky-rice-with-coconut-milk-dark-surface_1150-41941.jpg?t=st=1743645691~exp=1743649291~hmac=98c2649df95cdcfe9966ad2f042089257582de3281420b7f58c5db56d0921ae9&w=2000"
+            target="_blank"
+            >Image 21</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://images.unsplash.com/photo-1680137248903-7af5d51a3350?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            target="_blank"
+            >Image 22</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://images.unsplash.com/photo-1695837390040-ea8077f56205?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            target="_blank"
+            >Image 23</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-ai-image/delicious-dessert-indoors_394972911.htm#fromView=search&page=1&position=1&uuid=6ed8bdcd-5698-4a94-82d2-ca8aa6e57df0&query=Matcha+Desert"
+            target="_blank"
+            >Image 25</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/fresh-ripe-mango-sticky-rice-with-coconut-milk-dark-surface_13804525.htm#fromView=search&page=1&position=0&uuid=44b138e9-14fd-4ef8-bc46-818be57bb62e&query=Mango+Sticky+Rice"
+            target="_blank"
+            >Image 26</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/bowl-miso-soup-with-tofu-green-onions-garnished-with-chopped-green-onions-served-with-chopsticks-rustic-background_385492481.htm#fromView=search&page=1&position=7&uuid=068d31bb-6139-4cc8-a17c-bad630825b0f&query=Tofu+Curry"
+            target="_blank"
+            >Image 27</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.freepik.com/free-photo/flat-lay-edamame-beans-bowl_6161124.htm#fromView=search&page=1&position=0&uuid=40711f79-e0d4-4d66-9fdd-501e64f1e0fb&query=Edamame"
+            target="_blank"
+            >Image 28</a
+          >,
+          <a
+            class="text-blue-600 underline"
+            href="https://www.pexels.com/photo/chairs-and-tables-in-hotel-3201921/"
+            target="_blank"
+            >Image 29</a
+          >
+        </p>
+      </div>
+    </div>
+    <div
+      class="transition-everypage w-full bg-white h-screen fixed flex justify-center flex-col gap-4 items-center"
+      id="white-nav-overlay"
+    >
+      <button class="hover-nav-overlay">
+        <a href="index.html">
+          <p class="inline text-[28px] urbanist-regular">Home</p>
+          <svg
+            class="inline mb-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-home"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+          </svg>
+        </a>
+      </button>
+      <button class="hover-nav-overlay">
+        <a href="about.html">
+          <p class="inline text-[28px] urbanist-regular">About Us</p>
+          <svg
+            class="mb-4 inline"
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-chef-hat"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151z"
+            />
+            <path d="M6.161 17.009l11.839 -.009" />
+          </svg>
+        </a>
+      </button>
+      <button class="hover-nav-overlay">
+        <a href="origins.html">
+          <p class="inline text-[28px] urbanist-regular">Where It's From</p>
+          <svg
+            class="inline mb-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-wheat"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12.014 21.514v-3.75" />
+            <path
+              d="M5.93 9.504l-.43 1.604c-.712 2.659 .866 5.391 3.524 6.105c.997 .268 1.993 .535 2.99 .801v-3.44c-.164 -2.105 -1.637 -3.879 -3.676 -4.426l-2.408 -.644z"
+            />
+            <path
+              d="M13.744 11.164c.454 -.454 .815 -.994 1.061 -1.587c.246 -.594 .372 -1.23 .372 -1.873c0 -.643 -.126 -1.279 -.372 -1.872c-.246 -.594 -.606 -1.133 -1.061 -1.588l-1.73 -1.73l-1.73 1.73c-.454 .454 -.815 .994 -1.06 1.588c-.246 .594 -.372 1.23 -.373 1.872c0 .643 .127 1.279 .373 1.873c.246 .594 .606 1.133 1.06 1.587"
+            />
+            <path
+              d="M18.099 9.504l.43 1.604c.712 2.659 -.866 5.391 -3.525 6.105c-.997 .268 -1.994 .535 -2.99 .801v-3.44c.164 -2.105 1.637 -3.879 3.677 -4.426l2.408 -.644z"
+            />
+          </svg>
+        </a>
+      </button>
+
+      <button class="hover-nav-overlay">
+        <a id="sources-trigger-open-2">
+          <a href="/references.html">
+            <p class="inline text-[28px] urbanist-regular">Sources</p>
+          </a>
+          <svg
+            class="mb-4 inline"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"
+            />
+          </svg>
+        </a>
+      </button>
+
+      <button class="hover-nav-overlay">
+        <a href="menu.html">
+          <p class="inline text-[28px] urbanist-regular">Menu</p>
+          <svg
+            class="inline mb-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-bowl-chopsticks"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"
+            />
+            <path d="M19 7l-14 1" />
+            <path d="M19 2l-14 3" />
+          </svg>
+        </a>
+      </button>
+      <button
+        id="white-nav-close"
+        class="bg-black p-4 close-button rounded-lg absolute top-4 right-4 m-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
