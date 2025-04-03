@@ -3,811 +3,831 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Midori about</title>
+    <title>Midori</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add this to your <head> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/motion/10.16.2/motion.min.js"></script>
-    <script src="about.js" defer></script>
+    <script src="js/about.js" defer></script>
+    <script src="js/global.js" defer></script>
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/about.css" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/split-type"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
-
-    <style>
-      :root {
-        --light-bg: #ffffff;
-        --dark-bg: #0a0a0a;
-        --light-text: #000000;
-        --dark-text: #ffffff;
-        --light-neutral-300: #d4d4d4;
-        --dark-neutral-700: #404040;
-        --light-neutral-200: #e5e5e5;
-        --dark-neutral-800: #262626;
-        --light-neutral-500: #737373;
-        --dark-neutral-500: #737373;
-        --light-neutral-700: #404040;
-        --dark-neutral-300: #d4d4d4;
-        --purple-500: #8b5cf6;
-        --blue-500: #3b82f6;
-        --teal-500: #14b8a6;
-        --pink-500: #ec4899;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        background-color: #f2f2f2;
-        display: block;
-      }
-
-      .dark {
-        background-color: var(--dark-bg);
-        color: var(--dark-text);
-      }
-
-      nav {
-        z-index: 9999 !important;
-        position: fixed;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 95%;
-      }
-
-      #post-transition {
-        padding-top: 120px;
-        min-height: 100vh;
-        position: relative;
-        z-index: 1;
-        display: block !important;
-        opacity: 1 !important;
-        background-color: #f2f2f2;
-      }
-
-      section {
-        width: 100%;
-        padding: 4rem 0;
-      }
-
-      /* Updated team section styles */
-      .team-section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-        padding-top: 2rem;
-      }
-
-      .team-section-header h2 {
-        color: #057957;
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-      }
-
-      .team-section-header p {
-        color: #404245;
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      /* Updated team member styles */
-      .team-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 6rem;
-        flex-wrap: wrap;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 4rem;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 30px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-      }
-
-      .person {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        width: 280px;
-        transition: transform 0.4s ease;
-      }
-
-      .person:hover {
-        transform: translateY(-15px);
-      }
-
-      .container {
-        position: relative;
-        border-radius: 50%;
-        height: 280px;
-        width: 280px;
-        overflow: hidden;
-        transform: scale(1);
-        transition: all 0.4s ease;
-        box-shadow: 0 10px 30px rgba(5, 121, 87, 0.2);
-        border: 4px solid #057957;
-      }
-
-      .container:hover {
-        transform: scale(1.05);
-        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.3);
-      }
-
-      .container-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-      }
-
-      .circle {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-      }
-
-      .container:hover .circle {
-        transform: scale(1.1);
-      }
-
-      .divider {
-        background: linear-gradient(90deg, transparent, #057957, transparent);
-        height: 2px;
-        width: 100px;
-        margin: 1.5rem 0;
-        opacity: 0.7;
-      }
-
-      .name {
-        color: #057957;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-top: 0.5rem;
-        font-family: "forum-extrabold", serif;
-      }
-
-      .title {
-        color: #404245;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-top: 0.25rem;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-      }
-
-      .timeline-container {
-        width: 100%;
-        padding: 2rem 0;
-        margin-top: 2rem;
-        background-color: #fff;
-      }
-
-      @media (min-width: 768px) {
-        .timeline-container {
-          padding: 2rem 2.5rem;
-        }
-      }
-
-      .timeline-header {
-        max-width: 80rem;
-        margin: 0 auto;
-        padding: 5rem 1rem;
-      }
-
-      @media (min-width: 768px) {
-        .timeline-header {
-          padding: 5rem 2rem;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .timeline-header {
-          padding: 5rem 2.5rem;
-        }
-      }
-
-      .timeline-title {
-        font-size: 1.125rem;
-        margin-bottom: 1rem;
-        color: var(--light-text);
-        max-width: 64rem;
-      }
-
-      .dark .timeline-title {
-        color: var(--dark-text);
-      }
-
-      @media (min-width: 768px) {
-        .timeline-title {
-          font-size: 2.25rem;
-        }
-      }
-
-      .timeline-description {
-        color: var(--light-neutral-700);
-        font-size: 0.875rem;
-        max-width: 24rem;
-      }
-
-      .dark .timeline-description {
-        color: var(--dark-neutral-300);
-      }
-
-      @media (min-width: 768px) {
-        .timeline-description {
-          font-size: 1rem;
-        }
-      }
-
-      .timeline-content {
-        position: relative;
-        max-width: 80rem;
-        margin: 0 auto;
-        padding-bottom: 5rem;
-      }
-
-      .timeline-entry {
-        display: flex;
-        justify-content: flex-start;
-        padding-top: 2.5rem;
-      }
-
-      @media (min-width: 768px) {
-        .timeline-entry {
-          padding-top: 10rem;
-          gap: 2.5rem;
-        }
-      }
-
-      .timeline-marker {
-        position: sticky;
-        display: flex;
-        flex-direction: column;
-        z-index: 40;
-        align-items: center;
-        top: 10rem;
-        align-self: flex-start;
-        max-width: 20rem;
-      }
-
-      @media (min-width: 768px) {
-        .timeline-marker {
-          flex-direction: row;
-          width: 100%;
-        }
-
-        @media (min-width: 1024px) {
-          .timeline-marker {
-            max-width: 24rem;
-          }
-        }
-      }
-
-      .timeline-dot-container {
-        height: 2.5rem;
-        position: absolute;
-        left: 0.75rem;
-        width: 2.5rem;
-        border-radius: 9999px;
-        background-color: var(--light-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .dark .timeline-dot-container {
-        background-color: var(--dark-bg);
-      }
-
-      @media (min-width: 768px) {
-        .timeline-dot-container {
-          left: 0.75rem;
-        }
-      }
-
-      .timeline-dot {
-        height: 1rem;
-        width: 1rem;
-        border-radius: 9999px;
-        background-color: var(--light-neutral-200);
-        border: 1px solid var(--light-neutral-300);
-        padding: 0.5rem;
-      }
-
-      .dark .timeline-dot {
-        background-color: var(--dark-neutral-800);
-        border-color: var(--dark-neutral-700);
-      }
-
-      .timeline-marker-title {
-        display: none;
-        font-size: 1.25rem;
-        padding-left: 5rem;
-        font-weight: 700;
-        color: var(--light-neutral-500);
-      }
-
-      .dark .timeline-marker-title {
-        color: var(--dark-neutral-500);
-      }
-
-      @media (min-width: 768px) {
-        .timeline-marker-title {
-          display: block;
-          font-size: 3rem;
-        }
-      }
-
-      .timeline-entry-content {
-        position: relative;
-        padding-left: 5rem;
-        padding-right: 1rem;
-        width: 100%;
-      }
-
-      @media (min-width: 768px) {
-        .timeline-entry-content {
-          padding-left: 1rem;
-        }
-      }
-
-      .timeline-entry-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        text-align: left;
-        font-weight: 700;
-        color: var(--light-neutral-500);
-      }
-
-      .dark .timeline-entry-title {
-        color: var(--dark-neutral-500);
-      }
-
-      @media (min-width: 768px) {
-        .timeline-entry-title {
-          display: none;
-        }
-      }
-
-      .timeline-line-container {
-        position: absolute;
-        left: 2rem;
-        top: 0;
-        overflow: hidden;
-        width: 2px;
-        mask-image: linear-gradient(
-          to bottom,
-          transparent 0%,
-          black 10%,
-          black 90%,
-          transparent 100%
-        );
-      }
-
-      @media (min-width: 768px) {
-        .timeline-line-container {
-          left: 2rem;
-        }
-      }
-
-      .timeline-progress-line {
-        position: absolute;
-        inset-x: 0;
-        top: 0;
-        width: 2px;
-        background: linear-gradient(
-          to bottom,
-          transparent,
-          var(--purple-500) 10%,
-          var(--blue-500) 50%,
-          var(--teal-500) 90%,
-          transparent
-        );
-        border-radius: 9999px;
-        opacity: 0;
-        transform-origin: top;
-        filter: drop-shadow(0 0 4px rgba(139, 92, 246, 0.3));
-      }
-
-      .timeline-background-line {
-        position: absolute;
-        inset-x: 0;
-        top: 0;
-        width: 2px;
-        height: 100%;
-        background: var(--light-neutral-300);
-        border-radius: 9999px;
-        opacity: 0.3;
-      }
-
-      .dark .timeline-background-line {
-        background: var(--dark-neutral-700);
-        opacity: 0.4;
-      }
-
-      .toggle-dark-mode {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        padding: 0.5rem 1rem;
-        background-color: var(--light-neutral-200);
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-      }
-
-      .dark .toggle-dark-mode {
-        background-color: var(--dark-neutral-700);
-      }
-
-      .timeline-entry-content p {
-        margin-bottom: 1rem;
-        line-height: 1.6;
-      }
-      @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Sumana:wght@700&display=swap");
-
-      /* Updated sliding div styles */
-      .slide-in-left {
-        transform: translate(-100%, 50px) rotate(-5deg);
-        opacity: 0;
-        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.1);
-        border: 1px solid rgba(5, 121, 87, 0.1);
-        backdrop-filter: blur(10px);
-        background: rgba(248, 250, 249, 0.8);
-      }
-
-      .slide-in-right {
-        transform: translate(100%, 50px) rotate(5deg);
-        opacity: 0;
-        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 20px 40px rgba(5, 121, 87, 0.1);
-        border: 1px solid rgba(5, 121, 87, 0.1);
-        backdrop-filter: blur(10px);
-        background: rgba(248, 250, 249, 0.8);
-      }
-
-      .slide-in-left.active,
-      .slide-in-right.active {
-        transform: translate(0, 0) rotate(0);
-        opacity: 1;
-      }
-
-      .slide-in-left:hover,
-      .slide-in-right:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 30px 60px rgba(5, 121, 87, 0.15);
-      }
-
-      .philosophy-icon,
-      .promise-icon {
-        font-size: 2.5rem;
-        color: #057957;
-        margin-bottom: 1rem;
-        transform: scale(0);
-        transition: transform 0.5s ease 0.3s;
-      }
-
-      .active .philosophy-icon,
-      .active .promise-icon {
-        transform: scale(1);
-      }
-
-      /* Enhanced sliding cards styles */
-      .info-cards-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 1400px;
-        margin: 0 auto;
-        gap: 3rem;
-        padding: 2rem;
-      }
-
-      @media (max-width: 768px) {
-        .info-cards-container {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .info-card-wrapper {
-        perspective: 1000px;
-      }
-
-      .slide-in-left,
-      .slide-in-right {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 3rem;
-        border-radius: 24px;
-        height: 100%;
-        transform-style: preserve-3d;
-      }
-
-      .slide-in-left {
-        transform: translate(-100%, 50px) rotate(-15deg);
-      }
-
-      .slide-in-right {
-        transform: translate(100%, 50px) rotate(15deg);
-      }
-
-      .slide-in-left.active,
-      .slide-in-right.active {
-        transform: translate(0, 0) rotate(0);
-      }
-
-      .slide-in-left:hover,
-      .slide-in-right:hover {
-        transform: translateY(-15px) scale(1.03);
-        box-shadow: 0 35px 60px -15px rgba(5, 121, 87, 0.25);
-      }
-
-      .philosophy-icon,
-      .promise-icon {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        transform: scale(0) rotate(-45deg);
-        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
-        display: inline-block;
-        background: linear-gradient(135deg, #057957, #14b8a6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 0 8px rgba(5, 121, 87, 0.2));
-      }
-
-      .active .philosophy-icon,
-      .active .promise-icon {
-        transform: scale(1) rotate(0);
-      }
-
-      .info-card-title {
-        font-size: 2rem;
-        color: #057957;
-        margin-bottom: 1rem;
-        font-weight: 800;
-        line-height: 1.2;
-        font-family: "forum-extrabold", serif;
-      }
-
-      .info-card-content {
-        color: #4b5563;
-        line-height: 1.7;
-        font-size: 1.1rem;
-      }
-
-      /* Add gradient background to section */
-      .info-section {
-        background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
-        position: relative;
-        overflow: hidden;
-        padding: 8rem 2rem;
-      }
-
-      .info-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(5, 121, 87, 0.2),
-          transparent
-        );
-      }
-
-      .info-section::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(5, 121, 87, 0.1),
-          transparent
-        );
-      }
-    </style>
   </head>
   <body data-barba="wrapper">
-    <div id="post-transition" class="urbanist-regular text-black">
-      <nav
-        class="fixed top-[15px] left-1/2 transform -translate-x-1/2 z-[9999] bg-[#1B1B1A] py-0 px-4 w-[95%] rounded-xl"
-      >
-        <ul class="flex items-center justify-between urbanist-regular text-xl">
-          <!-- Left Item -->
-          <li>
-            <img src="./images/favicon.ico" class="w-8 inline" alt="" />
-            <a
-              href="/"
-              class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
-              >Midori</a
-            >
-          </li>
+    <nav
+      id="main-nav"
+      class="fixed top-[10px] left-1/2 transform -translate-x-1/2 z-50 bg-[#1B1B1A] px-4 w-[95%] rounded-xl"
+    >
+      <ul class="flex items-center justify-between urbanist-regular text-xl">
+        <!-- Left Item -->
+        <li id="left-midori">
+          <img src="./images/favicon.ico" class="w-8 inline" alt="" />
+          <a
+            href="/"
+            class="inline text-white font-bold forum-extrabold ml-2 text-[24px]"
+            >Midori</a
+          >
+        </li>
 
-          <!-- Centered Items -->
-          <div class="flex w-[800px] h-[80px] py-2">
-            <ul class="flex w-full h-full bg-[#242425] rounded-xl">
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+        <!-- Centered Items -->
+        <div id="centered-list" class="flex py-2">
+          <ul class="flex h-full bg-[#242425] rounded-xl">
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="index.html"
+                class="w-full h-full flex justify-center items-center"
+                >Home</a
               >
-                <a
-                  href="index.html"
-                  class="w-full h-full flex justify-center items-center"
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="about.html"
+                class="w-full h-full flex justify-center items-center"
+                >About Us</a
+              >
+            </li>
+            <li
+              class="hoveritem nav-hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a
+                href="origins.html"
+                class="w-full h-full flex justify-center items-center"
+                >Where It&apos;s From</a
+              >
+            </li>
+            <li
+              id="sources-trigger-open"
+              class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
+            >
+              <a href="#" class="w-full h-full flex justify-center items-center"
+                >Sources</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Item -->
+        <li class="nav-hoveritem relative inline-block">
+          <a
+            href="menu.html"
+            class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
+            id="menu-link-nav"
+          >
+            <div
+              id="greendot"
+              class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
+            ></div>
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              Menu
+            </p>
+          </a>
+          <button
+            class="hidden py-4 px-8 rounded-xl overflow-hidden"
+            id="toggle-viewer"
+          >
+            <p
+              class="relative text-black transition-colors duration-300"
+              id="menutext"
+            >
+              <i class="bi bi-filter-right text-[35px] text-white"></i>
+            </p>
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <div id="precursor">
+      <div
+        class="transition-everypage top-0 w-full bg-white h-screen fixed flex justify-center flex-col gap-4 items-center"
+        id="white-nav-overlay"
+      >
+        <button class="hover-nav-overlay">
+          <a href="index.html">
+            <p class="inline urbanist-regular text-[28px]">Home</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-home"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+            </svg>
+          </a>
+        </button>
+        <button class="hover-nav-overlay">
+          <a href="about.html">
+            <p class="inline urbanist-regular text-[28px]">About Us</p>
+            <svg
+              class="mb-4 inline"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-chef-hat"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151z"
+              />
+              <path d="M6.161 17.009l11.839 -.009" />
+            </svg>
+          </a>
+        </button>
+        <button class="hover-nav-overlay">
+          <a href="origins.html">
+            <p class="inline text-[28px] urbanist-regular">Where It's From</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-wheat"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12.014 21.514v-3.75" />
+              <path
+                d="M5.93 9.504l-.43 1.604c-.712 2.659 .866 5.391 3.524 6.105c.997 .268 1.993 .535 2.99 .801v-3.44c-.164 -2.105 -1.637 -3.879 -3.676 -4.426l-2.408 -.644z"
+              />
+              <path
+                d="M13.744 11.164c.454 -.454 .815 -.994 1.061 -1.587c.246 -.594 .372 -1.23 .372 -1.873c0 -.643 -.126 -1.279 -.372 -1.872c-.246 -.594 -.606 -1.133 -1.061 -1.588l-1.73 -1.73l-1.73 1.73c-.454 .454 -.815 .994 -1.06 1.588c-.246 .594 -.372 1.23 -.373 1.872c0 .643 .127 1.279 .373 1.873c.246 .594 .606 1.133 1.06 1.587"
+              />
+              <path
+                d="M18.099 9.504l.43 1.604c.712 2.659 -.866 5.391 -3.525 6.105c-.997 .268 -1.994 .535 -2.99 .801v-3.44c.164 -2.105 1.637 -3.879 3.677 -4.426l2.408 -.644z"
+              />
+            </svg>
+          </a>
+        </button>
+
+        <button id="sources-trigger-open-2" class="hover-nav-overlay">
+          <div>
+            <p class="inline text-[28px] urbanist-regular">Sources</p>
+            <svg
+              class="mb-4 inline"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5"
+              />
+            </svg>
+          </div>
+        </button>
+
+        <button class="hover-nav-overlay">
+          <a href="menu.html">
+            <p class="inline text-[28px] urbanist-regular">Menu</p>
+            <svg
+              class="inline mb-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-bowl-chopsticks"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"
+              />
+              <path d="M19 7l-14 1" />
+              <path d="M19 2l-14 3" />
+            </svg>
+          </a>
+        </button>
+        <button
+          id="white-nav-close"
+          class="bg-black p-4 close-button rounded-lg absolute top-4 right-4 m-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="transition-everypage urbanist-regular p-16 bg-white h-screen fixed w-full top-0 left-0"
+        id="sources-container"
+      >
+        <div id="images-section" class="text-center">
+          <h1 class="text-2xl font-bold">Images</h1>
+          <h3 class="text-xl">
+            These pictures are all copyright free from
+            <a href="https://unsplash.com/" class="text-blue-700 underline"
+              >Unsplash</a
+            >,&nbsp;<a
+              href="https://www.pexels.com/"
+              class="text-blue-700 underline"
+              >Pexels</a
+            >, and license-free images from
+            <a href="https://www.freepik.com/" class="text-blue-700 underline"
+              >Freepik</a
+            >
+          </h3>
+        </div>
+        <div
+          id="sources-trigger-close"
+          class="bg-black p-4 rounded-lg absolute top-4 right-4 close-button m-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="post-transition" class="bg-[#F6FAF8]">
+      <div id="team-container" class="mt-24 p-8 min-h-screen">
+        <div id="team-header" class="text-center mb-8">
+          <h3 id="meet-team" class="forum-extrabold text-emerald-800 text-5xl">
+            Meet Our Team
+          </h3>
+          <p id="brilliant-minds" class="text-muted forum-regular">
+            Meet the brilliant minds behind Midori.
+          </p>
+        </div>
+        <div
+          id="members-container"
+          class="rounded-[80px] bg-white gap-8 items-center justify-center p-4 py-8 drop-shadow-lg flex flex-row"
+        >
+          <div class="member-container">
+            <img
+              src="images/our-chefs/sarah-liu.png"
+              alt="Sarah Liu"
+              class="chef-image rounded-full border-emerald-700 border-4 shadow-2xl shadow-emerald-500/50"
+            />
+            <div class="divider"></div>
+            <div class="text-center forum-bold">
+              <p class="text-2xl text-muted chef-name">Sarah Liu</p>
+              <p class="text-lg text-muted chef-role">Executive Chef</p>
+              <p class="text-sm w-4/5 mx-auto text-muted chef-caption">
+                "Cooking is an art of balance—fresh vegetables, bold flavors,
+                and tradition come together to nourish both body and soul."
+              </p>
+            </div>
+          </div>
+
+          <div class="member-container">
+            <img
+              src="images/our-chefs/eric-wu.png"
+              alt="Eric Wu"
+              class="chef-image rounded-full border-emerald-700 border-4 shadow-2xl shadow-emerald-500/50"
+            />
+            <div class="divider"></div>
+            <div class="text-center forum-bold">
+              <p class="text-2xl text-muted chef-name">Eric Wu</p>
+              <p class="text-lg text-muted chef-role">Founder</p>
+              <p class="text-sm w-4/5 mx-auto text-muted chef-caption">
+                "In every dish, we honor nature&apos;s gifts—simple ingredients,
+                prepared with care, to bring harmony to the table."
+              </p>
+            </div>
+          </div>
+
+          <div class="member-container">
+            <img
+              src="images/our-chefs/anton-ross.jpg"
+              alt="Anton Ross"
+              class="chef-image rounded-full border-emerald-700 border-4 shadow-2xl shadow-emerald-500/50"
+            />
+            <div class="divider"></div>
+            <div class="text-center forum-bold">
+              <p class="text-2xl text-muted chef-name">Anton Ross</p>
+              <p class="text-lg text-muted chef-role">General Manager</p>
+              <p class="text-sm w-4/5 mx-auto text-muted chef-caption">
+                "Great vegetarian cuisine isn&apos;t just about taste—it&apos;s
+                about sustainability, honoring the land, and cooking with
+                respect for future generations."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="timeline" class="min-h-screen relative">
+        <div id="timeline-header" class="forum-extrabold text-center">
+          <h3 id="timeline-title" class="text-emerald-800 text-5xl">
+            Our Timeline
+          </h3>
+          <p class="text-muted text-sm">
+            Scroll down to view Midori's Past & Details
+          </p>
+        </div>
+        <div
+          id="timeline-box"
+          class="w-[90%] mx-auto px-16 bg-white rounded-3xl drop-shadow-lg mt-4 grid grid-cols-1 min-h-screen"
+        >
+          <div id="inner-container" class="mx-auto grid grid-cols-2 gap-4">
+            <div class="event event-l">
+              <div
+                id="card-1"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Origins
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Midori, the Japanese word for "Green", was an inspiration
+                    for Eric Wu and two of his friends (Sarah Liu & Anton Ross)
+                    from culinary school to found a restaurant. Each of these
+                    people is interested in making the world a happier, more
+                    sustainable place via vegetarian cuisine.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2014</div>
+            </div>
+
+            <div class="event event-r">
+              <div
+                id="card-2"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Scaling up
+                  </h5>
+                  <p class="info-caption mb-4">
+                    In 2015, Eric Wu & his friends started his adventure to
+                    scale up the restaurant. They started hiring qualified chefs
+                    who could cook Authentic East Asian Food in a timely manner.
+                    From a humble beginning in 2015, they started to turn a
+                    profit.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2015</div>
+            </div>
+            <div class="event event-l">
+              <div class="time-stamp">2016</div>
+
+              <div
+                id="card-3"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    An Expanding Menu
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Sarah decided to expand the menu by diversifying the
+                    cuisine. Pho Chay was a Korean Cuisine that she remembered
+                    growing up. By knowing organic buckwheat farmers in Japan,
+                    the restaurant was able to get fresh & organic noodles. With
+                    this, they also added Japchae & more recognizable menu
+                    items.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="event event-r">
+              <div
+                id="card-4"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Delivery System
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Up until 2017, they decided to use gas-powered deliveries to
+                    engage customers who wanted to order in. It's when Anton put
+                    his foot down that they made a decision to sacrifice profits
+                    while saving the environment. They decided to use an
+                    electric-powered fleet of vehicles to help the environment.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2017</div>
+            </div>
+            <div class="event event-l">
+              <div
+                id="card-5"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    The Switch
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Up until 2018, they had used vegetables from domestic
+                    sources. However, we they decided to go international when
+                    it came to their food ingredients. They decided to use more
+                    of their overseas connections to get more amazing
+                    ingredients.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2018</div>
+            </div>
+
+            <div class="event event-r">
+              <div
+                id="card-6"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Wind Energy
+                  </h5>
+                  <p class="info-caption mb-4">
+                    There was another problem, however. The restaurant itself
+                    still used plenty of energy that came from coal mining. With
+                    yet another large investment toward a sustainable restaurant
+                    (with them investing in solar energy), they showed weren't
+                    sacred of the economic turmoil of COVID-19.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2020</div>
+            </div>
+            <div class="event event-l">
+              <div
+                id="card-7"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Expansion
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Do they expand? That was a pertinent question that Midori
+                    faced a few years into the pandemic. Although it seems like
+                    a good idea, the Anton, Sarah, and Eric all thought that
+                    expanding meant consuming more energy & environmental
+                    resources, so they decided to stay local to protect the
+                    environment and the sanctity of the restaurant.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2022</div>
+            </div>
+            <div class="event event-r">
+              <div
+                id="card-8"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Acclamation
+                  </h5>
+                  <p class="info-caption mb-4">
+                    At this point, Midori was receiving widespread acclamation
+                    for their "climate-first" approach to the food business.
+                    They are proud to boast a Michelin Green Start that they got
+                    awarded in 2023. With this, journals like the New York & LA
+                    Times, CNN, & NBC gave Midori widespread attention across
+                    climate activists.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2023</div>
+            </div>
+
+            <div class="event event-l">
+              <div
+                id="card-9"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    Overseas Transport
+                  </h5>
+                  <p class="info-caption mb-4">
+                    They had all of the ingredients from Asian local markets,
+                    but they had a problem: how would they get the food to us in
+                    an eco-friendly way? By looking at the Duffy Electric Boat
+                    Company support along with large investments from those
+                    sharing Midori's vision, they used electric boats (which is
+                    an emerging technology, like Byferga's electrical ferries)
+                    to give us the taste we all love in a sustainable manner.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2024</div>
+            </div>
+            <div class="event event-r">
+              <div
+                id="card-9"
+                class="event-card h-[400px] rounded-lg overflow-hidden shadow-lg bg-white border"
+              >
+                <div class="p-4 card-content">
+                  <h5 class="text-lg font-semibold mb-2 info-header">
+                    The Future
+                  </h5>
+                  <p class="info-caption mb-4">
+                    Midori has bright plans for the future as they don't plan to
+                    stop being sustainable. As of recent, they decided to donate
+                    two hundred thousand dollars to the Arbor Day Foundation in
+                    an attempt to tell the world that one can make money while
+                    still giving back to mother nature. They hope this message
+                    resonates with the younger generation as they continue to
+                    make waves.
+                  </p>
+                </div>
+              </div>
+              <div class="time-stamp">2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-[#1B1B1A] mt-32 text-white pt-16 pb-8 px-6">
+      <div class="max-w-screen-xl mx-auto">
+        <!-- Top Section with Logo and Navigation -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"
+        >
+          <!-- Logo & About -->
+          <div>
+            <div class="flex items-center mb-6">
+              <img
+                src="./images/favicon.ico"
+                class="w-10 h-10"
+                alt="Midori Logo"
+              />
+              <h3 class="ml-3 text-xl forum-extrabold">Midori</h3>
+            </div>
+            <p class="text-gray-400 urbanist-light mb-6">
+              Authentic vegetarian cuisine inspired by traditional Asian
+              flavors, crafted with care and respect for nature.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-[#057957] transition-colors"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Quick Links</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
                   >Home</a
                 >
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
+              <li>
                 <a
-                  href="about.html"
-                  class="w-full h-full flex justify-center items-center"
+                  href="menu.html"
+                  class="hover:text-[#057957] transition-colors"
+                  >Our Menu</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
                   >About Us</a
                 >
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="origins.html"
-                  class="w-full h-full flex justify-center items-center"
-                  >Where It's From</a
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >Reservations</a
                 >
               </li>
-              <li
-                class="hoveritem flex-1 flex justify-center items-center text-white hover:bg-[#333]"
-              >
-                <a
-                  href="#"
-                  class="w-full h-full flex justify-center items-center"
-                  >Sources</a
+              <li>
+                <a href="#" class="hover:text-[#057957] transition-colors"
+                  >Contact</a
                 >
               </li>
             </ul>
           </div>
 
-          <!-- Right Item -->
-          <li class="nav-hoveritem relative inline-block">
-            <a
-              href="menu.html"
-              class="relative bg-white py-4 px-8 rounded-xl overflow-hidden block"
-              id="menu-link-nav"
-            >
-              <div
-                id="greendot"
-                class="absolute scale-[.01] left-[10px] bg-emerald-600 rounded-full h-4 w-4 transition-transform duration-[300ms]"
-              ></div>
-              <p
-                class="relative text-black transition-colors duration-300"
-                id="menutext"
-              >
-                Menu
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+          <!-- Contact Information -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Contact Us</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 mt-1 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+                <span
+                  >123 Vegan Street, Kyoto Garden<br />San Francisco, CA
+                  94122</span
+                >
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+                <span>(415) 555-6789</span>
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-3 text-[#057957]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>hello@midori-cuisine.com</span>
+              </li>
+            </ul>
+          </div>
 
-      <!-- Team Section -->
-      <section class="bg-[#f8faf9] py-20">
-        <div class="team-section-header">
-          <h2 class="forum-extrabold">Our Team</h2>
-          <p class="urbanist-light">
-            Meet the passionate individuals behind Midori's culinary excellence
+          <!-- Opening Hours -->
+          <div>
+            <h3 class="text-lg mb-6 urbanist-medium">Opening Hours</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex justify-between">
+                <span>Monday - Thursday:</span>
+                <span>11:30 AM - 10:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Friday - Saturday:</span>
+                <span>11:30 AM - 11:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday:</span>
+                <span>12:00 PM - 9:00 PM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="border-t border-gray-800 pt-8 pb-6 mb-6">
+          <div class="md:flex md:items-center md:justify-between">
+            <div class="mb-6 md:mb-0 md:w-1/2 max-w-md">
+              <h4 class="text-lg mb-2 urbanist-medium">
+                Subscribe to our newsletter
+              </h4>
+              <p class="text-gray-400 text-sm">
+                Stay updated with our seasonal menus and special events.
+              </p>
+            </div>
+            <form class="flex flex-col md:flex-row gap-2">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="bg-[#242425] text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#057957]"
+              />
+              <button
+                type="submit"
+                class="bg-[#057957] text-white py-2 px-6 rounded-lg hover:bg-[#046346] transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div
+          class="text-center text-gray-500 text-sm border-t border-gray-800 pt-6"
+        >
+          <p>
+            &copy; 2025 Midori. All rights reserved. Proudly serving plant-based
+            cuisine.
           </p>
         </div>
-
-        <div class="team-container">
-          <div class="person">
-            <div class="container">
-              <div class="container-inner">
-                <img
-                  class="circle"
-                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
-                  alt="Head Chef Anton"
-                />
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="name">Anton</div>
-            <div class="title">Head Chef</div>
-          </div>
-
-          <div class="person">
-            <div class="container">
-              <div class="container-inner">
-                <img
-                  class="circle"
-                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
-                  alt="Sous Chef Sarah"
-                />
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="name">Sarah</div>
-            <div class="title">Sous Chef</div>
-          </div>
-
-          <div class="person">
-            <div class="container">
-              <div class="container-inner">
-                <img
-                  class="circle"
-                  src="images/Escoffier-graduate-Trenin-Nubiru-stands-proudly-smiling-in-an-Escoffier-kitchen-768.jpg"
-                  alt="Pastry Chef Mike"
-                />
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="name">Mike</div>
-            <div class="title">Pastry Chef</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sliding Divs Section -->
-      <section class="info-section">
-        <div class="max-w-7xl mx-auto">
-          <div class="text-center mb-20">
-            <h2
-              class="text-5xl md:text-6xl forum-extrabold text-emerald-800 mb-4"
-            >
-              Our Story
-            </h2>
-            <div class="flex justify-center items-center gap-4">
-              <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
-              <p class="text-gray-600 urbanist-light text-lg">
-                The principles that guide us
-              </p>
-              <div class="h-[1px] w-24 bg-emerald-600 opacity-30"></div>
-            </div>
-          </div>
-
-          <div class="info-cards-container">
-            <!-- Cards will be populated by JavaScript -->
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </footer>
   </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const observerOptions = {
-        threshold: 0.2,
-        rootMargin: "0px 0px -100px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      }, observerOptions);
-
-      document
-        .querySelectorAll(".slide-in-left, .slide-in-right")
-        .forEach((el) => {
-          observer.observe(el);
-        });
-    });
-  </script>
 </html>

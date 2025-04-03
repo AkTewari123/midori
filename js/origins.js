@@ -95,7 +95,7 @@ const handleOnMove = (e) => {
   const percentage = (mouseDelta / maxDelta) * -100,
     nextPercentageUnconstrained =
       parseFloat(track.dataset.prevPercentage) + percentage,
-    nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+    nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, -8), -90);
 
   track.dataset.percentage = nextPercentage;
 
@@ -145,7 +145,40 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   );
+  const additionalInfoElements = document.querySelectorAll(".additional-info");
 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transition =
+            "opacity 1s ease-out, transform 1s ease-out";
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+
+          observer.unobserve(entry.target); // Stop observing after animation
+        }
+      });
+    },
+    { threshold: 0.2 } // Trigger when 20% is visible
+  );
+
+  additionalInfoElements.forEach((el) => {
+    el.style.opacity = "0"; // Start hidden
+    el.style.transform = "translateY(30px)"; // Start slightly lower
+    observer.observe(el);
+  });
+  setTimeout(() => {
+    const ourIngredients = document.getElementById("our-ingredients");
+    const dragLeft = document.getElementById("drag-left");
+    const imageTrack = document.getElementById("image-track");
+    ourIngredients.style.opacity = 1;
+    dragLeft.style.opacity = 1;
+    dragLeft.style.transform = "translateY(0px)";
+    ourIngredients.style.transform = "translateY(0px)";
+    imageTrack.style.transform = "translateX(-9%)";
+    imageTrack.style.opacity = 1;
+  }, 50);
   setInterval(() => {
     updateCenteredImage();
   }, 100);
